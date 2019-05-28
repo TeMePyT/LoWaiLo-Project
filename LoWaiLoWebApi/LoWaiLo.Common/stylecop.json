@@ -1,0 +1,26 @@
+﻿{
+
+
+  "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+  "settings": {
+    "layoutRules": {
+      "newlineAtEndOfFile": "require"
+    },
+    "documentationRules": {
+      "companyName": "Ло Уай Ло",
+      "copyrightText": "Copyright (c) {companyName}. All Rights Reserved.",
+      "documentInterfaces": false,
+      "documentInternalElements": false,
+      "documentExposedElements": false,
+      "variables": {
+        "licenseName": "MIT",
+        "licenseFile": "LICENSE"
+      }
+    },
+    "orderingRules": {
+      "usingDirectivesPlacement": "insideNamespace",
+      "systemUsingDirectivesFirst": true,
+      "blankLinesBetweenUsingGroups": "require"
+    }
+  }
+}
