@@ -6,13 +6,10 @@
     "layoutRules": {
       "newlineAtEndOfFile": "require"
     },
-<<<<<<< HEAD
 	"namingRules": {
       "allowCommonHungarianPrefixes": true,
       "allowedHungarianPrefixes": [ "db", "at", "or", "up", "it", "un", "x", "y", "id", "ip", "bg" ]
     },
-=======
->>>>>>> b8b530e73b9df7fd2f3684e7889369a9fe344f68
     "documentationRules": {
       "companyName": "Ло Уай Ло",
       "copyrightText": "Copyright (c) {companyName}. All Rights Reserved.",

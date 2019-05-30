@@ -5,7 +5,6 @@ VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{BE41420E-D78D-411A-9547-0BAACE12798F}"
 EndProject
-<<<<<<< HEAD
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Data.Common", "Data\LoWaiLo.Data.Common\LoWaiLo.Data.Common.csproj", "{07316CDF-E427-4255-B15E-5127D80A29BB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Data.Models", "Data\LoWaiLo.Data.Models\LoWaiLo.Data.Models.csproj", "{3A15E3F2-9E98-4E69-B50D-7B40096AA80C}"
@@ -18,18 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{8F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{D97084AC-F863-45CB-A961-7E58BE35A69C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoWaiLo.WebAPI", "Web\LoWaiLo.WebAPI\LoWaiLo.WebAPI.csproj", "{C4FF74C1-8D1C-46CC-B25A-F336CF709835}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.WebAPI", "Web\LoWaiLo.WebAPI\LoWaiLo.WebAPI.csproj", "{C4FF74C1-8D1C-46CC-B25A-F336CF709835}"
 EndProject
-=======
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Data.Common", "LoWaiLo.Data.Common\LoWaiLo.Data.Common.csproj", "{07316CDF-E427-4255-B15E-5127D80A29BB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Data.Models", "LoWaiLo.Data.Models\LoWaiLo.Data.Models.csproj", "{3A15E3F2-9E98-4E69-B50D-7B40096AA80C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Data", "LoWaiLo.Data\LoWaiLo.Data.csproj", "{48F1CD7E-637D-443D-8F5D-F7A956AC3587}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Common", "LoWaiLo.Common\LoWaiLo.Common.csproj", "{457DE8E9-E93D-458B-B7DB-FA250FDFCE49}"
-EndProject
->>>>>>> b8b530e73b9df7fd2f3684e7889369a9fe344f68
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -52,13 +41,10 @@ Global
 		{457DE8E9-E93D-458B-B7DB-FA250FDFCE49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{457DE8E9-E93D-458B-B7DB-FA250FDFCE49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{457DE8E9-E93D-458B-B7DB-FA250FDFCE49}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{C4FF74C1-8D1C-46CC-B25A-F336CF709835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C4FF74C1-8D1C-46CC-B25A-F336CF709835}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C4FF74C1-8D1C-46CC-B25A-F336CF709835}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C4FF74C1-8D1C-46CC-B25A-F336CF709835}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
->>>>>>> b8b530e73b9df7fd2f3684e7889369a9fe344f68
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,10 +53,7 @@ Global
 		{07316CDF-E427-4255-B15E-5127D80A29BB} = {BE41420E-D78D-411A-9547-0BAACE12798F}
 		{3A15E3F2-9E98-4E69-B50D-7B40096AA80C} = {BE41420E-D78D-411A-9547-0BAACE12798F}
 		{48F1CD7E-637D-443D-8F5D-F7A956AC3587} = {BE41420E-D78D-411A-9547-0BAACE12798F}
-<<<<<<< HEAD
 		{C4FF74C1-8D1C-46CC-B25A-F336CF709835} = {D97084AC-F863-45CB-A961-7E58BE35A69C}
-=======
->>>>>>> b8b530e73b9df7fd2f3684e7889369a9fe344f68
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DCFF6BC6-9AB8-43A2-BF9A-09FD72DD3D1E}
