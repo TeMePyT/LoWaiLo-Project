@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+<<<<<<< HEAD
 <PropertyGroup>
     <CodeAnalysisRuleSet>..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
@@ -11,6 +12,12 @@
     <None Remove="stylecop.json" />
   </ItemGroup>
   
+=======
+  <ItemGroup>
+    <None Remove="stylecop.json" />
+  </ItemGroup>
+
+>>>>>>> b8b530e73b9df7fd2f3684e7889369a9fe344f68
   <ItemGroup>
     <AdditionalFiles Include="stylecop.json" />
   </ItemGroup>
