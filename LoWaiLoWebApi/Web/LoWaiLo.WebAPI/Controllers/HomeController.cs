@@ -1,43 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using LoWaiLo.WebAPI.Models;
-
-namespace LoWaiLo.WebAPI.Controllers
+﻿namespace LoWaiLo.WebAPI.Controllers
 {
+    using System.Diagnostics;
+    using LoWaiLo.WebAPI.Models;
+    using Microsoft.AspNetCore.Mvc;
+
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            this.ViewData["Message"] = "Your application description page.";
 
-            return View();
+            return this.View();
         }
 
         public IActionResult Contact()
         {
-            ViewData["Message"] = "Your contact page.";
+            this.ViewData["Message"] = "Your contact page.";
 
-            return View();
+            return this.View();
         }
 
         public IActionResult Privacy()
         {
-            return View();
+            return this.View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return this.View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? this.HttpContext.TraceIdentifier });
         }
     }
 }

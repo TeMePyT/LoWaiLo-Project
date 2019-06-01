@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LoWaiLo.Data.Migrations
 {
     [DbContext(typeof(LoWaiLoDbContext))]
-    [Migration("20190530200956_InitialCreate")]
+    [Migration("20190531224711_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

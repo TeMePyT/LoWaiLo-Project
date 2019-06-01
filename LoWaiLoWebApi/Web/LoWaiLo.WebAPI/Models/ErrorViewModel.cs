@@ -1,11 +1,9 @@
-using System;
-
-namespace LoWaiLo.WebAPI.Models
+﻿namespace LoWaiLo.WebAPI.Models
 {
     public class ErrorViewModel
     {
         public string RequestId { get; set; }
 
-        public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
+        public bool ShowRequestId => !string.IsNullOrEmpty(this.RequestId);
     }
 }

@@ -8,6 +8,14 @@
 
     public class ApplicationUser : IdentityUser, IAuditInfo, IDeletableEntity
     {
+        public ApplicationUser()
+        {
+            this.Id = Guid.NewGuid().ToString();
+            this.Roles = new HashSet<IdentityUserRole<string>>();
+            this.Claims = new HashSet<IdentityUserClaim<string>>();
+            this.Logins = new HashSet<IdentityUserLogin<string>>();
+        }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
