@@ -1,10 +1,13 @@
 ﻿namespace LoWaiLo.WebAPI
 {
+    using System;
     using System.Text;
     using LoWaiLo.Data;
     using LoWaiLo.Data.Common;
     using LoWaiLo.Data.Models;
     using LoWaiLo.Data.Repostitories;
+    using LoWaiLo.Data.Seeding;
+    using LoWaiLo.Services.Messaging;
     using LoWaiLo.WebAPI.Helpers;
     using LoWaiLo.WebAPI.Helpers.Logger;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -12,6 +15,7 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
@@ -33,6 +37,8 @@
         {
             services.AddDbContext<LoWaiLoDbContext>(
                  options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+
+            // jwt settings
             var jwtSettingsSection = this.Configuration.GetSection("JwtSettings");
             services.Configure<JwtSettings>(jwtSettingsSection);
 
@@ -69,6 +75,7 @@
                    options.Password.RequireNonAlphanumeric = false;
                    options.Password.RequiredLength = 6;
                    options.User.RequireUniqueEmail = true;
+                   options.SignIn.RequireConfirmedEmail = true;
                })
                .AddEntityFrameworkStores<LoWaiLoDbContext>()
                .AddUserStore<ApplicationUserStore>()
@@ -93,6 +100,7 @@
                    options.LoginPath = "/Identity/Account/Login";
                    options.LogoutPath = "/Identity/Account/Logout";
                    options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                   options.ExpireTimeSpan = TimeSpan.FromDays(5);
                });
 
             services
@@ -115,6 +123,8 @@
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
+            services.AddTransient<IEmailSender, NullMessageSender>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "LoWaiLo Web API", Version = "v1" });
@@ -123,6 +133,20 @@
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            using (var serviceScope = app.ApplicationServices.CreateScope())
+            {
+#pragma warning disable SA1305 // Field names should not use Hungarian notation
+                var dbContext = serviceScope.ServiceProvider.GetRequiredService<LoWaiLoDbContext>();
+#pragma warning restore SA1305 // Field names should not use Hungarian notation
+
+                if (env.IsDevelopment())
+                {
+                    dbContext.Database.Migrate();
+                }
+
+                ApplicationDbContextSeeder.Seed(dbContext, serviceScope.ServiceProvider);
+            }
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
