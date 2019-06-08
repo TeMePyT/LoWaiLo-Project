@@ -2,6 +2,7 @@
 {
     using System;
     using System.Text;
+    using AutoMapper;
     using LoWaiLo.Data;
     using LoWaiLo.Data.Common;
     using LoWaiLo.Data.Models;
@@ -38,6 +39,9 @@
             services.AddDbContext<LoWaiLoDbContext>(
                  options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
+            // automapper
+            services.AddAutoMapper(typeof(MappingConfiguration));
+
             // jwt settings
             var jwtSettingsSection = this.Configuration.GetSection("JwtSettings");
             services.Configure<JwtSettings>(jwtSettingsSection);
@@ -45,6 +49,10 @@
             // facebook settings
             var facebookSettingsSection = this.Configuration.GetSection("FacebookSettings");
             services.Configure<FacebookSettings>(facebookSettingsSection);
+
+            // email settings
+            var emailSettingsSection = this.Configuration.GetSection("SendEmailSettings");
+            services.Configure<EmailSettings>(emailSettingsSection);
 
             // configure jwt authentication
             var jwtSettings = jwtSettingsSection.Get<JwtSettings>();
@@ -123,6 +131,7 @@
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>));
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
+            // email service
             services.AddTransient<IEmailSender, NullMessageSender>();
 
             services.AddSwaggerGen(c =>

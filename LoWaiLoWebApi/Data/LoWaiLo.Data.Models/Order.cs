@@ -13,8 +13,6 @@
 
         public OrderStatus Status { get; set; }
 
-        public bool IsPaid { get; set; }
-
         public ICollection<OrderProduct> Products { get; set; }
 
         public ICollection<OrderAddon> Addons { get; set; }

@@ -1,20 +1,20 @@
 ﻿namespace LoWaiLo.Services.Messaging
 {
-    using Microsoft.AspNetCore.Identity.UI.Services;
-    using System;
     using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Identity.UI.Services;
+    using Microsoft.Extensions.Options;
 
     public class NullMessageSender : IEmailSender
     {
-        private const string ApiKey = "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";
-        private const string fromEmail = "noreply@LoWaiLo.com";
-        private const string fromName = "LoWaiLo";
-        private  SendGridEmailSender emailSender;
+        private readonly SendGridEmailSender emailSender;
+        private readonly EmailSettings emailSettings;
 
-        public NullMessageSender()
+        public NullMessageSender(IOptions<EmailSettings> settings)
         {
-            this.emailSender = new SendGridEmailSender(ApiKey, fromEmail, fromName);
+            this.emailSettings = settings.Value;
+            this.emailSender = new SendGridEmailSender(this.emailSettings.ApiKey, this.emailSettings.FromEmail, this.emailSettings.FromName);
         }
+
         public Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             return this.emailSender.SendEmailAsync(email, subject, htmlMessage);

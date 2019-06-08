@@ -5,14 +5,11 @@
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
-
     using LoWaiLo.Services.Messaging.SendGrid;
-
     using Microsoft.AspNetCore.Identity.UI.Services;
-    using Microsoft.Extensions.Logging;
-
     using Newtonsoft.Json;
-    public class SendGridEmailSender:IEmailSender
+
+    public class SendGridEmailSender : IEmailSender
     {
         private const string AuthenticationScheme = "Bearer";
         private const string BaseUrl = "https://api.sendgrid.com/v3/";

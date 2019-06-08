@@ -1,7 +1,7 @@
 ﻿namespace LoWaiLo.Services.Messaging.SendGrid
 {
-    using Newtonsoft.Json;
     using System.Collections.Generic;
+    using Newtonsoft.Json;
 
     public class SendGridMessage
     {

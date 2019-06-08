@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.1.0" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.0" />
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Api.Analyzers" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
@@ -32,7 +32,7 @@
     <ProjectReference Include="..\..\Data\LoWaiLo.Data.Models\LoWaiLo.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\LoWaiLo.Data\LoWaiLo.Data.csproj" />
     <ProjectReference Include="..\..\LoWaiLo.Common\LoWaiLo.Common.csproj" />
-    <ProjectReference Include="..\..\Services\LoWaiLo.Services.Mapping\LoWaiLo.Services.Mapping.csproj" />
+    <ProjectReference Include="..\..\Services\LoWaiLo.Services.Data\LoWaiLo.Services.Data.csproj" />
     <ProjectReference Include="..\..\Services\LoWaiLo.Services.Messaging\LoWaiLo.Services.Messaging\LoWaiLo.Services.Messaging.csproj" />
   </ItemGroup>
 
