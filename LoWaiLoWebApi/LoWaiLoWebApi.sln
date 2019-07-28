@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.WebAPI", "Web\LoWai
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Services.Messaging", "Services\LoWaiLo.Services.Messaging\LoWaiLo.Services.Messaging\LoWaiLo.Services.Messaging.csproj", "{2248B0CA-3CF6-4A31-89A5-59BC70E0F954}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoWaiLo.Services.Data", "Services\LoWaiLo.Services.Data\LoWaiLo.Services.Data.csproj", "{D26D6631-C5C3-4205-AB57-01A640F4FC38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Services.Data", "Services\LoWaiLo.Services.Data\LoWaiLo.Services.Data.csproj", "{D26D6631-C5C3-4205-AB57-01A640F4FC38}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

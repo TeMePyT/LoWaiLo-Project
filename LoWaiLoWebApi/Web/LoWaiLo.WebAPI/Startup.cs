@@ -132,7 +132,7 @@
             services.AddScoped<IDbQueryRunner, DbQueryRunner>();
 
             // email service
-            services.AddTransient<IEmailSender, NullMessageSender>();
+            services.AddTransient<IEmailSender, MessageSender>();
 
             services.AddSwaggerGen(c =>
             {

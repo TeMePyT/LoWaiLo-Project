@@ -1,7 +1,7 @@
 ﻿namespace LoWaiLo.WebAPI.Controllers
 {
     using System.Diagnostics;
-    using LoWaiLo.WebAPI.Models;
+    using LoWaiLo.WebAPI.ViewModels;
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : Controller

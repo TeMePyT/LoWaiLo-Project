@@ -1,4 +1,4 @@
-﻿namespace LoWaiLo.WebAPI.Models
+﻿namespace LoWaiLo.WebAPI.ViewModels
 {
     public class ErrorViewModel
     {

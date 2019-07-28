@@ -1,75 +1,409 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - LoWaiLo.WebAPI</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@this.ViewData["Title"] - LoWaiLo</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="~/plugins/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="~/plugins/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="~/plugins/animsition/dist/css/animsition.min.css" />
+    <link rel="stylesheet" href="~//css/site.css" />
+
+    <!-- CSS Icons -->
+    <link rel="stylesheet" href="~/css/themify-icons.css" />
+    <link rel="stylesheet" href="~/plugins/font-awesome/css/font-awesome.min.css" />
+
+    <!-- CSS Theme -->
+    <link id="theme" rel="stylesheet" href="~/css/themes/theme-red.min.css" />
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">LoWaiLo.WebAPI</a>
+    <!-- Body Wrapper -->
+    <div id="body-wrapper" class="animsition header-absolute">
+        <!-- Header -->
+        <header id="header" class="absolute light">
+            <div class="container">
+                <partial name="_CookieConsentPartial" />
+                <div class="row">
+                    <div class="col-md-7">
+                        <!-- Navigation -->
+                        <nav class="module module-navigation  mr-4">
+                            <ul id="nav-main" class="nav nav-main">
+                                <li class="has-dropdown">
+                                    <a href="#">Home</a>
+                                    <div class="dropdown-container">
+                                        <ul>
+                                            <li><a href="index.html">Home Basic</a></li>
+                                            <li><a href="index-burgers.html">Home Burgers</a></li>
+                                            <li><a href="index-slider.html">Home Fullwidth Slider</a></li>
+                                            <li><a href="index-video.html">Home Video</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="#">About</a>
+                                    <div class="dropdown-container">
+                                        <ul class="dropdown-mega">
+                                            <li><a href="page-about.html">About Us</a></li>
+                                            <li><a href="page-services.html">Services</a></li>
+                                            <li><a href="page-gallery.html">Gallery</a></li>
+                                            <li><a href="page-reviews.html">Reviews</a></li>
+                                            <li><a href="page-faq.html">FAQ</a></li>
+                                        </ul>
+                                        <div class="dropdown-image">
+                                            <img src="~/img/photos/dropdown-about.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="has-dropdown">
+                                    <a href="#">Menu</a>
+                                    <div class="dropdown-container">
+                                        <ul>
+                                            <li class="has-dropdown">
+                                                <a href="#">List</a>
+                                                <ul>
+                                                    <li><a href="menu-list-navigation.html">Navigation</a></li>
+                                                    <li><a href="menu-list-collapse.html">Collapse</a></li>
+                                                </ul>
+                                            </li>
+                                            <li class="has-dropdown">
+                                                <a href="#">Grid</a>
+                                                <ul>
+                                                    <li><a href="menu-grid-navigation.html">Navigation</a></li>
+                                                    <li><a href="menu-grid-collapse.html">Collapse</a></li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li><a href="page-offers.html">Offers</a></li>
+                                <li><a href="page-contact.html">Contact</a></li>
+                                <li class="has-dropdown">
+                                    <a href="#">More</a>
+                                    <div class="dropdown-container">
+                                        <ul class="dropdown-mega">
+                                            <li><a href="page-offer-single.html">Offer single</a></li>
+                                            <li><a href="page-product.html">Product</a></li>
+                                            <li><a href="book-a-table.html">Book a table</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="confirmation.html">Confirmation</a></li>
+                                            <li><a href="blog.html">Blog</a></li>
+                                            <li><a href="blog-sidebar.html">Blog + Sidebar</a></li>
+                                            <li><a href="blog-post.html">Blog Post</a></li>
+                                            <li><a href="documentation.html">Documentation</a></li>
+                                        </ul>
+                                        <div class="dropdown-image">
+                                            <img src="~/img/photos/dropdown-more.jpg" alt="">
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </nav>
+
+                        <div class="module right">
+                            <a href="menu-list-navigation.html" class="btn btn-primary"><span>Order</span></a>
+                        </div>
+                    </div>
+
+                    <div class="col-md-2">
+                        <a href="#" class="module module-cart right" data-toggle="panel-cart">
+                            <span class="cart-icon">
+                                <i class="ti ti-shopping-cart"></i>
+                                <span class="notification">2</span>
+                            </span>
+                            <span class="cart-value">$32.98</span>
+                        </a>
+                    </div>
+                    <div class="module right">
+                        @await this.Html.PartialAsync("_LoginPartial")
+                    </div>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-                <partial name="_LoginPartial" />
+
+        </header>
+        <!-- Header / End -->
+        <!-- Header -->
+        <header id="header-mobile" class="light">
+            <partial name="_CookieConsentPartial" />
+            <div class="module module-nav-toggle">
+                <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
             </div>
+            <div class="module module-logo right">
+                @await this.Html.PartialAsync("_LoginPartial")
+            </div>
+            <a href="#" class="module module-cart" data-toggle="panel-cart">
+                <i class="ti ti-shopping-cart"></i>
+                <span class="notification">2</span>
+            </a>
+        </header>
+        <!-- Header / End -->
+        <!-- Content -->
+        <div id="content">
+            @RenderBody()
+            <!-- Footer -->
+            <footer id="footer fixed-bottom" class="bg-dark dark">
+
+                <div class="container">
+                    <!-- Footer 2nd Row -->
+                    <div class="footer-second-row row align-items-center">
+                        <div class="col-lg-4 text-center text-md-left">
+                            <span class="text-sm text-muted">&copy; @DateTime.Now.Year - LoWaiLo<br>Made with love by TeMePyT.</span>
+                        </div>
+                        <div class="col-lg-4 text-center">
+                            <a href="index.html"><img src="assets/img/logo-light.svg" alt="" width="88" class="mt-5 mb-5"></a>
+                        </div>
+                        <div class="col-lg-4 col-md-6 text-center text-md-right">
+                            <a href="#" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
+                            <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="fa fa-google"></i></a>
+                            <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="fa fa-twitter"></i></a>
+                            <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="fa fa-youtube"></i></a>
+                            <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Back To Top -->
+                <a href="#" id="back-to-top"><i class="ti ti-angle-up"></i></a>
+
+            </footer>
+            <!-- Footer / End -->
+        </div>
+    <!-- Panel Cart -->
+    <div id="panel-cart">
+        <div class="panel-cart-container">
+            <div class="panel-cart-title">
+                <h5 class="title">Your Cart</h5>
+                <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+            </div>
+            <div class="panel-cart-content">
+                <table class="table-cart">
+                    <tr>
+                        <td class="title">
+                            <span class="name"><a href="#productModal" data-toggle="modal">Pizza Chicked BBQ</a></span>
+                            <span class="caption text-muted">26”, deep-pan, thin-crust</span>
+                        </td>
+                        <td class="price">$9.82</td>
+                        <td class="actions">
+                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
+                            <span class="caption text-muted">Large (500g)</span>
+                        </td>
+                        <td class="price">$9.82</td>
+                        <td class="actions">
+                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
+                            <span class="caption text-muted">Small (200g)</span>
+                        </td>
+                        <td class="price text-success">$0.00</td>
+                        <td class="actions">
+                            <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
+                            <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="title">
+                            <span class="name">Weekend 20% OFF</span>
+                        </td>
+                        <td class="price text-success">-$8.22</td>
+                        <td class="actions"></td>
+                    </tr>
+                </table>
+                <div class="cart-summary">
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Order total:</div>
+                        <div class="col-5"><strong>$21.02</strong></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Devliery:</div>
+                        <div class="col-5"><strong>$3.99</strong></div>
+                    </div>
+                    <hr class="hr-sm">
+                    <div class="row text-lg">
+                        <div class="col-7 text-right text-muted">Total:</div>
+                        <div class="col-5"><strong>$24.21</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
+    </div>
+    <!-- Panel Mobile -->
+    <nav id="panel-mobile">
+        <div class="module module-logo bg-dark dark">
+            <a href="#">
+                <img src="~/img/logo-light.svg" alt="" width="88">
+            </a>
+            <button class="close" data-toggle="panel-mobile"><i class="ti ti-close"></i></button>
+        </div>
+        <nav class="module module-navigation"></nav>
+        <div class="module module-social">
+            <h6 class="text-sm mb-3">Follow Us!</h6>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="fa fa-google"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="fa fa-twitter"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="fa fa-youtube"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
         </div>
     </nav>
 
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2019 - LoWaiLo.WebAPI</p>
-        </footer>
+    <!-- Body Overlay -->
+    <div id="body-overlay"></div>
+    <!-- Modal / Product -->
+    <div class="modal fade" id="productModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-lg dark bg-dark">
+                    <div class="bg-image"><img src="~/img/photos/modal-add.jpg" alt=""></div>
+                    <h4 class="modal-title">Specify your dish</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
+                </div>
+                <div class="modal-product-details">
+                    <div class="row align-items-center">
+                        <div class="col-9">
+                            <h6 class="mb-0">Boscaiola Pasta</h6>
+                            <span class="text-muted">Pasta, Cheese, Tomatoes, Olives</span>
+                        </div>
+                        <div class="col-3 text-lg text-right">$9.00</div>
+                    </div>
+                </div>
+                <div class="modal-body panel-details-container">
+                    <!-- Panel Details / Size -->
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_size" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        </h5>
+                        <div id="panelDetailsSize" class="collapse show">
+                            <div class="panel-details-content">
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Medium - 200g ($14.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Large - 350g ($21.99)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Panel Details / Additions -->
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_additions" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsAdditions" data-toggle="collapse">Additions</a>
+                        </h5>
+                        <div id="panelDetailsAdditions" class="collapse">
+                            <div class="panel-details-content">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Tomato ($1.29)</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Ham ($1.29)</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Chicken ($1.29)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Cheese($1.29)</span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input">
+                                                <span class="custom-control-indicator"></span>
+                                                <span class="custom-control-description">Bacon ($1.29)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Panel Details / Other -->
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_other" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
+                        </h5>
+                        <div id="panelDetailsOther" class="collapse">
+                            <textarea cols="30" rows="4" class="form-control" placeholder="Put this any other informations..."></textarea>
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
+            </div>
+        </div>
     </div>
+    <!-- JS Plugins -->
+    <script src="~/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="~/plugins/tether/dist/js/tether.min.js"></script>
+    <script src="~/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/plugins/slick-carousel/slick/slick.min.js"></script>
+    <script src="~/plugins/jquery.appear/jquery.appear.js"></script>
+    <script src="~/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+    <script src="~/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+    <script src="~/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
+    <script src="~/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
+    <script src="~/plugins/skrollr/dist/skrollr.min.js"></script>
+    <script src="~/plugins/animsition/dist/js/animsition.min.js"></script>
 
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
+    <!-- JS Core -->
+    <script src="~/js/core.js"></script>
     @RenderSection("Scripts", required: false)
+
 </body>
 </html>

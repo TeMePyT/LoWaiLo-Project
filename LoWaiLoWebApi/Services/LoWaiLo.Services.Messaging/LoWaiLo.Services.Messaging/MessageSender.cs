@@ -4,12 +4,12 @@
     using Microsoft.AspNetCore.Identity.UI.Services;
     using Microsoft.Extensions.Options;
 
-    public class NullMessageSender : IEmailSender
+    public class MessageSender : IEmailSender
     {
         private readonly SendGridEmailSender emailSender;
         private readonly EmailSettings emailSettings;
 
-        public NullMessageSender(IOptions<EmailSettings> settings)
+        public MessageSender(IOptions<EmailSettings> settings)
         {
             this.emailSettings = settings.Value;
             this.emailSender = new SendGridEmailSender(this.emailSettings.ApiKey, this.emailSettings.FromEmail, this.emailSettings.FromName);

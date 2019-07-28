@@ -2,8 +2,10 @@
 {
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
+
     using LoWaiLo.Data.Models;
     using LoWaiLo.WebAPI.Areas.Identity.Pages.Account.InputModels;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
@@ -14,7 +16,7 @@
     [AllowAnonymous]
 #pragma warning disable SA1649 // File name should match first type name
     public class RegisterModel : PageModel
-#pragma warning disable SA1649 // File name should match first type name
+#pragma warning restore SA1649 // File name should match first type name
     {
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
@@ -52,26 +54,22 @@
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)
                 {
-                    var addRoleResult = await this.userManager.AddToRoleAsync(user, "User");
-                    if (addRoleResult.Succeeded)
-                    {
-                        this.logger.LogInformation("User created a new account with password.");
+                    this.logger.LogInformation("User created a new account with password.");
 
-                        var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
-                        var callbackUrl = this.Url.Page(
-                            "/Account/ConfirmEmail",
-                            pageHandler: null,
-                            values: new { userId = user.Id, code = code },
-                            protocol: this.Request.Scheme);
+                    var code = await this.userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = this.Url.Page(
+                        "/Account/ConfirmEmail",
+                        pageHandler: null,
+                        values: new { userId = user.Id, code = code },
+                        protocol: this.Request.Scheme);
 
-                        await this.emailSender.SendEmailAsync(
-                            this.Input.Email,
-                            "Confirm your email",
-                            $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+                    await this.emailSender.SendEmailAsync(
+                        this.Input.Email,
+                        "Confirm your email",
+                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-                        // await this.signInManager.SignInAsync(user, isPersistent: false);
-                        return this.LocalRedirect(returnUrl);
-                    }
+                    await this.signInManager.SignInAsync(user, isPersistent: false);
+                    return this.LocalRedirect(returnUrl);
                 }
 
                 foreach (var error in result.Errors)
@@ -80,6 +78,7 @@
                 }
             }
 
+            // If we got this far, something failed, redisplay form
             return this.Page();
         }
     }

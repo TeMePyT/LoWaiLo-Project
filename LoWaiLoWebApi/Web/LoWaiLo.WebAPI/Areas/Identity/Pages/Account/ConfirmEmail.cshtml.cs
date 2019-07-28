@@ -2,12 +2,16 @@
 {
     using System;
     using System.Threading.Tasks;
+
     using LoWaiLo.Data.Models;
+
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.RazorPages;
 
-    #pragma warning disable SA1649 // File name should match first type name
+    [AllowAnonymous]
+#pragma warning disable SA1649 // File name should match first type name
     public class ConfirmEmailModel : PageModel
 #pragma warning restore SA1649 // File name should match first type name
     {
