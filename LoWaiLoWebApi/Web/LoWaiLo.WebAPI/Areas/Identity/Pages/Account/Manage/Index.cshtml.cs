@@ -99,7 +99,7 @@
             }
 
             await this.signInManager.RefreshSignInAsync(user);
-            this.StatusMessage = "Your profile has been updated";
+            this.StatusMessage = "Потребителският ви профил бе актуализиран";
             return this.RedirectToPage();
         }
 
@@ -126,10 +126,10 @@
                 protocol: this.Request.Scheme);
             await this.emailSender.SendEmailAsync(
                 email,
-                "Confirm your email",
-                $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
+               "Потвърдете имейла си",
+                $"Моля потвърдете вашия акаунт, като <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>кликнете тук</a>.");
 
-            this.StatusMessage = "Verification email sent. Please check your email.";
+            this.StatusMessage = "Изпратихме ви имейл за потвърждение. Моля, проверете електронната си поща.";
             return this.RedirectToPage();
         }
     }

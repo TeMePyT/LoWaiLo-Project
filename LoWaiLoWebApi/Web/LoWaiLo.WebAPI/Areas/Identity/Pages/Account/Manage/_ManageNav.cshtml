@@ -2,14 +2,17 @@
 @{
     var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
 }
-
-    <ul class="nav nav-pills nav-fill mb-3 flex-column" role="tablist">
-        <li class="@ManageNavPages.IndexNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a asp-page="./Index">Profile</a></li>
-        <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a id="change-password" asp-page="./ChangePassword">Password</a></li>
-        @if (hasExternalLogins)
-        {
-            <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a id="external-login" asp-page="./ExternalLogins">External logins</a></li>
-        }
-        <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a asp-page="./TwoFactorAuthentication">Two-factor authentication</a></li>
-        <li class="@ManageNavPages.PersonalDataNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a asp-page="./PersonalData">Personal data</a></li>
-    </ul>
+<!-- Side Navigation -->
+    <nav id="side-navigation" class="stick-to-content pt-4">
+        <h5 class="mb-3"><i class="ti ti-align-justify mr-3 text-muted"></i>Изберете настройка:</h5>
+        <ul class="nav nav-vertical" role="tablist">
+            <li class="@ManageNavPages.IndexNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a asp-page="./Index">Профил</a></li>
+            <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a id="change-password" asp-page="./ChangePassword">Парола</a></li>
+            @if (hasExternalLogins)
+            {
+                <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a id="external-login" asp-page="./ExternalLogins">Външен вход</a></li>
+            }
+            <li class="@ManageNavPages.PersonalDataNavClass(ViewContext) nav-item  nav-link font-weight-bold"><a asp-page="./PersonalData">Лични данни</a></li>
+            <li class="nav-item nav-link font-weight-bold"><a asp-area="Identity" asp-page="/Account/Logout">Изход</a></li>
+        </ul>
+    </nav>

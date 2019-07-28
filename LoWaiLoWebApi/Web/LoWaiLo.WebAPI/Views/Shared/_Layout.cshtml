@@ -21,11 +21,12 @@
 </head>
 <body>
     <!-- Body Wrapper -->
-    <div id="body-wrapper" class="animsition header-absolute">
+    <div id="body-wrapper" class="animsition">
         <!-- Header -->
-        <header id="header" class="absolute light">
+        <partial name="~/Views/Shared/Partials/_CookieConsentPartial.cshtml" />
+        <header id="header" class="light">
             <div class="container">
-                <partial name="_CookieConsentPartial" />
+
                 <div class="row">
                     <div class="col-md-7">
                         <!-- Navigation -->
@@ -103,7 +104,7 @@
                         </nav>
 
                         <div class="module right">
-                            <a href="menu-list-navigation.html" class="btn btn-primary"><span>Order</span></a>
+                            <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
                         </div>
                     </div>
 
@@ -117,21 +118,20 @@
                         </a>
                     </div>
                     <div class="module right">
-                        @await this.Html.PartialAsync("_LoginPartial")
+                        @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
                     </div>
                 </div>
             </div>
-
         </header>
         <!-- Header / End -->
         <!-- Header -->
         <header id="header-mobile" class="light">
-            <partial name="_CookieConsentPartial" />
+          
             <div class="module module-nav-toggle">
                 <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
             </div>
             <div class="module module-logo right">
-                @await this.Html.PartialAsync("_LoginPartial")
+                @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
             </div>
             <a href="#" class="module module-cart" data-toggle="panel-cart">
                 <i class="ti ti-shopping-cart"></i>
@@ -170,6 +170,7 @@
             </footer>
             <!-- Footer / End -->
         </div>
+    </div>
     <!-- Panel Cart -->
     <div id="panel-cart">
         <div class="panel-cart-container">
@@ -258,8 +259,7 @@
         </div>
     </nav>
 
-    <!-- Body Overlay -->
-    <div id="body-overlay"></div>
+  
     <!-- Modal / Product -->
     <div class="modal fade" id="productModal" role="dialog">
         <div class="modal-dialog" role="document">

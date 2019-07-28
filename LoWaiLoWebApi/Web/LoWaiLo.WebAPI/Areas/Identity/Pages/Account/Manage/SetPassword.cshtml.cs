@@ -73,7 +73,7 @@
             }
 
             await this.signInManager.RefreshSignInAsync(user);
-            this.StatusMessage = "Your password has been set.";
+            this.StatusMessage = "Вашата парола беше зададена.";
 
             return this.RedirectToPage();
         }

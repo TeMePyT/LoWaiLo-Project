@@ -9,7 +9,7 @@
         public string Email { get; set; }
 
         [Phone]
-        [Display(Name = "Phone number")]
+        [Display(Name = "Телефонен номер")]
         public string PhoneNumber { get; set; }
     }
 }

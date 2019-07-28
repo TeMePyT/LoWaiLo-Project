@@ -77,7 +77,7 @@
 
             await this.signInManager.RefreshSignInAsync(user);
             this.logger.LogInformation("User changed their password successfully.");
-            this.StatusMessage = "Your password has been changed.";
+            this.StatusMessage = "Вашата парола беше сменена.";
 
             return this.RedirectToPage();
         }
