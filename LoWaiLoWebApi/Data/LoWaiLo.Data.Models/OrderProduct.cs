@@ -1,14 +1,14 @@
 ﻿namespace LoWaiLo.Data.Models
 {
-    using LoWaiLo.Data.Common;
-
     public class OrderProduct
     {
-        public int Id { get; set; }
+        public string OrderId { get; set; }
+
+        public virtual Order Order { get; set; }
 
         public int ProductId { get; set; }
 
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
 
         public int Quantity { get; set; }
 

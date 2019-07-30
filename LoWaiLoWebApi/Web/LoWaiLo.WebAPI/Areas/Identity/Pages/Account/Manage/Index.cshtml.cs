@@ -126,7 +126,7 @@
                 protocol: this.Request.Scheme);
             await this.emailSender.SendEmailAsync(
                 email,
-               "Потвърдете имейла си",
+                "Потвърдете имейла си",
                 $"Моля потвърдете вашия акаунт, като <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>кликнете тук</a>.");
 
             this.StatusMessage = "Изпратихме ви имейл за потвърждение. Моля, проверете електронната си поща.";

@@ -4,6 +4,8 @@
 
     public class Review : BaseModel<int>
     {
+        public int Rating { get; set; }
+
         public string Content { get; set; }
 
         public string AuthorId { get; set; }

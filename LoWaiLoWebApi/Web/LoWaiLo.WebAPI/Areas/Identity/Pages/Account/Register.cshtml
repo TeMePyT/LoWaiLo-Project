@@ -3,36 +3,67 @@
 @{
     ViewData["Title"] = "Регистрация";
 }
-<div class="section">
-    <h4>@ViewData["Title"]</h4>
-
-    <div class="row">
-        <div class="col-md-4">
-            <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <h6>Създайте нов акаунт.</h6>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email">Имейл</label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+<section class="section section-lg bg-dark">
+    <div class="bg-video" data-property="{videoURL:'https://www.youtube.com/watch?v=sYKPitkn2q8', showControls: false, containment:'self',startAt:1,stopAt:61,mute:true,autoPlay:true,loop:true,opacity:0.8,quality:'hd1080'}"></div>
+    <div class="bg-image bg-video-placeholder zooming"><img src="assets/img/photos/bg-restaurant.jpg" alt=""></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 push-lg-3">
+                <!-- Login -->
+                <div class="utility-box">
+                    <div class="utility-box-title bg-dark dark">
+                        <div class="bg-image"><img src="/img/photos/modal-review.jpg" alt=""></div>
+                        <div>
+                            <span class="icon icon-secondary"><i class="fa fa-user-astronaut"></i></span>
+                            <h4 class="mb-0">Регистрация</h4>
+                            <p class="lead text-muted mb-0">Попълнете формата за да се регистрирате.</p>
+                        </div>
+                    </div>
+                    <form method="post" data-validate>
+                        <div class="utility-box-content">
+                            <div class="form-group">
+                                <input asp-for="Input.Email" class="form-control" placeholder="Имейл" required>
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Input.FirsName" class="form-control" placeholder="Име" required>
+                                <span asp-validation-for="Input.FirsName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Input.LastName" class="form-control" placeholder="Фамилия" required>
+                                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Input.Password" class="form-control" placeholder="Парола" required>
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input asp-for="Input.ConfirmPassword" class="form-control" placeholder="Повтори паролата" required>
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="text-right">
+                                <p>
+                                    <a asp-area="Identity" asp-page="/Account/Login" class="pr-2">Вече имате акаунт? Вход.</a>
+                                </p>
+                            </div>
+                        </div>
+                        <partial name="_ExternalLoginPartial" />
+                        <div class="form-group">
+                            <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit">
+                                <span class="description">Регистрирай се</span>
+                                <span class="success">
+                                    <svg x="0px" y="0px" viewBox="0 0 32 32"><path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11" /></svg>
+                                </span>
+                                <span class="error">Try again...</span>
+                            </button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password">Парола</label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.ConfirmPassword">Повтори парола</label>
-                    <input asp-for="Input.ConfirmPassword" class="form-control" />
-                    <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-                </div>
-                <button type="submit" class="btn btn-primary"><span>Регистрирай се</span></button>
-            </form>
+            </div>
         </div>
     </div>
-</div>
+    </section>
 
-@section Scripts {
-    <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
-}
+    @section Scripts {
+        <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
+    }

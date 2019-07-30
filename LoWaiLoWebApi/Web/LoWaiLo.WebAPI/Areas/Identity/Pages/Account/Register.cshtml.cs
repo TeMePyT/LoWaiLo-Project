@@ -1,11 +1,13 @@
 ﻿namespace LoWaiLo.WebAPI.Areas.Identity.Pages.Account
 {
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 
     using LoWaiLo.Data.Models;
     using LoWaiLo.WebAPI.Areas.Identity.Pages.Account.InputModels;
-
+    using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Identity.UI.Services;
@@ -40,8 +42,17 @@
 
         public string ReturnUrl { get; set; }
 
-        public void OnGet(string returnUrl = null)
+        public IList<AuthenticationScheme> ExternalLogins { get; set; }
+
+        public async void OnGet(string returnUrl = null)
         {
+            if (this.User.Identity.IsAuthenticated)
+            {
+                this.Response.Redirect("/Home/Error");
+            }
+
+            this.ExternalLogins = (await this.signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             this.ReturnUrl = returnUrl;
         }
 
@@ -50,7 +61,15 @@
             returnUrl = returnUrl ?? this.Url.Content("~/");
             if (this.ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = this.Input.Email, Email = this.Input.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = this.Input.Email,
+                    Email = this.Input.Email,
+                    FirstName = this.Input.FirsName,
+                    LastName = this.Input.LastName,
+                    ShoppingCart = new ShoppingCart(),
+                };
+
                 var result = await this.userManager.CreateAsync(user, this.Input.Password);
                 if (result.Succeeded)
                 {

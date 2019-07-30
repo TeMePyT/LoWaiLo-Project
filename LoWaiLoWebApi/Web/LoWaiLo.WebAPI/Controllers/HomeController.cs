@@ -13,8 +13,6 @@
 
         public IActionResult About()
         {
-            this.ViewData["Message"] = "Your application description page.";
-
             return this.View();
         }
 

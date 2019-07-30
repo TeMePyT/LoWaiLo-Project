@@ -1,7 +1,9 @@
 ﻿namespace LoWaiLo.WebAPI
 {
     using System;
+    using System.Reflection;
     using System.Text;
+    using AspNetCoreTemplate.Services.Mapping;
     using AutoMapper;
     using LoWaiLo.Data;
     using LoWaiLo.Data.Common;
@@ -11,6 +13,7 @@
     using LoWaiLo.Services.Messaging;
     using LoWaiLo.WebAPI.Helpers;
     using LoWaiLo.WebAPI.Helpers.Logger;
+    using LoWaiLo.WebAPI.ViewModels;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -142,6 +145,8 @@
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            AutoMapperConfig.RegisterMappings(typeof(ErrorViewModel).GetTypeInfo().Assembly);
+
             using (var serviceScope = app.ApplicationServices.CreateScope())
             {
 #pragma warning disable SA1305 // Field names should not use Hungarian notation

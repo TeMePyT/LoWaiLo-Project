@@ -4,79 +4,63 @@
 @{
     ViewData["Title"] = "Вход";
 }
-<div class="section">
-    <h3>@ViewData["Title"]</h3>
-    <div class="row">
-        <div class="col-md-4">
-            <section>
-                <form id="account" method="post">
-                    <h6>Влезте с акаунта си.</h6>
-                    <hr />
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="form-group">
-                        <label asp-for="Input.Email">Имейл</label>
-                        <input asp-for="Input.Email" class="form-control" />
-                        <span asp-validation-for="Input.Email" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Input.Password">Парола</label>
-                        <input asp-for="Input.Password" class="form-control" />
-                        <span asp-validation-for="Input.Password" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label asp-for="Input.RememberMe">
-                                <input asp-for="Input.RememberMe" />
-                                Запомни ме
-                            </label>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary"><span>Влез</span></button>
-                    </div>
-                    <div class="form-group">
-                        <p>
-                            <a id="forgot-password" asp-page="./ForgotPassword">Забравена парола?</a>
-                        </p>
-                        <p>
-                            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрирай се като нов потребител</a>
-                        </p>
-                    </div>
-                </form>
-            </section>
-        </div>
-        <div class="col-md-6 col-md-offset-2">
-            <section>
-                <h6>Изплозвайте друга услуга за вход.</h6>
-                <hr />
-                @{
-                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                    {
-                        <div>
-                            <p>
-                                There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                                for details on setting up this ASP.NET application to support logging in via external services.
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+    <section class="section section-lg bg-dark">
+        <div class="bg-video" data-property="{videoURL:'https://www.youtube.com/watch?v=sYKPitkn2q8', showControls: false, containment:'self',startAt:1,stopAt:61,mute:true,autoPlay:true,loop:true,opacity:0.8,quality:'hd1080'}"></div>
+        <div class="bg-image bg-video-placeholder zooming"><img src="assets/img/photos/bg-restaurant.jpg" alt=""></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 push-lg-3">
+                    <!-- Login -->
+                    <div class="utility-box">
+                        <div class="utility-box-title bg-dark dark">
+                            <div class="bg-image"><img src="/img/photos/modal-review.jpg" alt=""></div>
                             <div>
-                                <p>
-                                    @foreach (var provider in Model.ExternalLogins)
-                                    {
-                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                    }
-                                </p>
+                                <span class="icon icon-secondary"><i class="fa fa-user-check"></i></span>
+                                <h4 class="mb-0">Вход за потребители</h4>
+                                <p class="lead text-muted mb-0">Попълнете формата за да влезете.</p>
+                            </div>
+                        </div>
+                        <form method="post" data-validate>
+                            <div class="utility-box-content">
+                                <div class="form-group">
+                                    <input asp-for="Input.Email" class="form-control" placeholder="E-mail" required>
+                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <input asp-for="Input.Password" class="form-control" placeholder="Парола" required>
+                                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                </div>
+                                <div class="text-right">
+                                    <p>
+                                        <a asp-page="./ForgotPassword" class="pr-2">Забравена парола?</a>
+                                    </p>
+                                    <p>
+                                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Регистрирай се.</a>
+                                    </p>
+                                </div>
+                                <div class="checkbox">
+                                    <label asp-for="Input.RememberMe">
+                                        <input asp-for="Input.RememberMe" />
+                                        @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                    </label>
+                                </div>
+                            </div>
+                            <partial name="_ExternalLoginPartial" />
+                            <div class="form-group">
+                            <button class="utility-box-btn btn btn-secondary btn-block btn-lg btn-submit">
+                                <span class="description">Вход</span>
+                                <span class="success">
+                                    <svg x="0px" y="0px" viewBox="0 0 32 32"><path stroke-dasharray="19.79 19.79" stroke-dashoffset="19.79" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" d="M9,17l3.9,3.9c0.1,0.1,0.2,0.1,0.3,0L23,11" /></svg>
+                                </span>
+                                <span class="error">Try again...</span>
+                            </button>
                             </div>
                         </form>
-                    }
-                }
-            </section>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
-@section Scripts {
-    <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
-}
+    </section>
+        @section Scripts {
+            <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
+        }

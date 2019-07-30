@@ -7,6 +7,23 @@
 <PropertyGroup>
     <CodeAnalysisRuleSet>..\..\Rules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  
+<ItemGroup>
+  <Compile Remove="Migrations\20190729161829_AddShopingCart.cs" />
+  <Compile Remove="Migrations\20190729161829_AddShopingCart.Designer.cs" />
+  <Compile Remove="Migrations\20190729162057_AddShoppingCart.cs" />
+  <Compile Remove="Migrations\20190729162057_AddShoppingCart.Designer.cs" />
+  <Compile Remove="Migrations\20190729170229_InitialCreate.cs" />
+  <Compile Remove="Migrations\20190729170229_InitialCreate.Designer.cs" />
+  <Compile Remove="Migrations\20190729172505_InitialCreate.cs" />
+  <Compile Remove="Migrations\20190729172505_InitialCreate.Designer.cs" />
+  <Compile Remove="Migrations\20190729172643_InitialCreate.cs" />
+  <Compile Remove="Migrations\20190729172643_InitialCreate.Designer.cs" />
+  <Compile Remove="Migrations\20190729173723_InitialCreate.cs" />
+  <Compile Remove="Migrations\20190729173723_InitialCreate.Designer.cs" />
+  <Compile Remove="Migrations\20190729174007_InitialCreate.cs" />
+  <Compile Remove="Migrations\20190729174007_InitialCreate.Designer.cs" />
+</ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />
   </ItemGroup>

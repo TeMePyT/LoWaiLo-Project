@@ -26,6 +26,10 @@
 
         public ICollection<Like> ProductsLiked { get; set; }
 
+        public int ShoppingCartId { get; set; }
+
+        public virtual ShoppingCart ShoppingCart { get; set; }
+
         public DateTime CreatedOn { get; set; }
 
         public DateTime? ModifiedOn { get; set; }

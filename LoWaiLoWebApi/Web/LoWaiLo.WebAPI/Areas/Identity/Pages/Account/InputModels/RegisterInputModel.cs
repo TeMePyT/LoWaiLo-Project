@@ -19,5 +19,13 @@
         [Display(Name = "Потвърди паролата")]
         [Compare("Password", ErrorMessage = "Паролата и паролата за потвърждение не съвпадат.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Име")]
+        public string FirsName { get; set; }
+
+        [Required]
+        [Display(Name = "Фамилия")]
+        public string LastName { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace LoWaiLo.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -119,6 +119,8 @@ namespace LoWaiLo.Data.Migrations
 
                     b.Property<string>("SecurityStamp");
 
+                    b.Property<int>("ShoppingCartId");
+
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
@@ -136,6 +138,9 @@ namespace LoWaiLo.Data.Migrations
                         .HasName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
+                    b.HasIndex("ShoppingCartId")
+                        .IsUnique();
+
                     b.ToTable("AspNetUsers");
                 });
 
@@ -146,6 +151,8 @@ namespace LoWaiLo.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("CreatedOn");
+
+                    b.Property<string>("Image");
 
                     b.Property<DateTime?>("ModifiedOn");
 
@@ -176,7 +183,7 @@ namespace LoWaiLo.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Like");
+                    b.ToTable("Likes");
                 });
 
             modelBuilder.Entity("LoWaiLo.Data.Models.Log", b =>
@@ -215,6 +222,8 @@ namespace LoWaiLo.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
+                    b.Property<int>("PaymentStatus");
+
                     b.Property<int>("Status");
 
                     b.HasKey("Id");
@@ -226,44 +235,36 @@ namespace LoWaiLo.Data.Migrations
 
             modelBuilder.Entity("LoWaiLo.Data.Models.OrderAddon", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                    b.Property<int>("OrderId");
 
                     b.Property<int>("AddonId");
 
-                    b.Property<string>("OrderId");
+                    b.Property<string>("OrderId1");
 
                     b.Property<decimal>("Price");
 
                     b.Property<int>("Quantity");
 
-                    b.HasKey("Id");
+                    b.HasKey("OrderId", "AddonId");
 
                     b.HasIndex("AddonId");
 
-                    b.HasIndex("OrderId");
+                    b.HasIndex("OrderId1");
 
                     b.ToTable("OrderAddon");
                 });
 
             modelBuilder.Entity("LoWaiLo.Data.Models.OrderProduct", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
                     b.Property<string>("OrderId");
-
-                    b.Property<decimal>("Price");
 
                     b.Property<int>("ProductId");
 
+                    b.Property<decimal>("Price");
+
                     b.Property<int>("Quantity");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
+                    b.HasKey("OrderId", "ProductId");
 
                     b.HasIndex("ProductId");
 
@@ -283,6 +284,8 @@ namespace LoWaiLo.Data.Migrations
                     b.Property<string>("Description");
 
                     b.Property<string>("Image");
+
+                    b.Property<int>("MenuNumber");
 
                     b.Property<DateTime?>("ModifiedOn");
 
@@ -314,6 +317,8 @@ namespace LoWaiLo.Data.Migrations
                     b.Property<DateTime?>("ModifiedOn");
 
                     b.Property<int>("ProductId");
+
+                    b.Property<int>("Rating");
 
                     b.HasKey("Id");
 
@@ -347,6 +352,45 @@ namespace LoWaiLo.Data.Migrations
                     b.HasIndex("IsDeleted");
 
                     b.ToTable("Settings");
+                });
+
+            modelBuilder.Entity("LoWaiLo.Data.Models.ShoppingCart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ShoppingCarts");
+                });
+
+            modelBuilder.Entity("LoWaiLo.Data.Models.ShoppingCartProduct", b =>
+                {
+                    b.Property<int>("ProductId");
+
+                    b.Property<int>("ShoppingCartId");
+
+                    b.Property<int>("Quantity");
+
+                    b.HasKey("ProductId", "ShoppingCartId");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.ToTable("ShoppingCartProducts");
+                });
+
+            modelBuilder.Entity("LoWaiLo.Data.Models.UserFavoriteProduct", b =>
+                {
+                    b.Property<int>("ProductId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("ProductId", "UserId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFavoriteProducts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -435,6 +479,14 @@ namespace LoWaiLo.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("LoWaiLo.Data.Models.ApplicationUser", b =>
+                {
+                    b.HasOne("LoWaiLo.Data.Models.ShoppingCart", "ShoppingCart")
+                        .WithOne("User")
+                        .HasForeignKey("LoWaiLo.Data.Models.ApplicationUser", "ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
             modelBuilder.Entity("LoWaiLo.Data.Models.Like", b =>
                 {
                     b.HasOne("LoWaiLo.Data.Models.Product", "Product")
@@ -461,16 +513,17 @@ namespace LoWaiLo.Data.Migrations
                         .HasForeignKey("AddonId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.HasOne("LoWaiLo.Data.Models.Order")
-                        .WithMany("Addons")
-                        .HasForeignKey("OrderId");
+                    b.HasOne("LoWaiLo.Data.Models.Order", "Order")
+                        .WithMany("OrderAddons")
+                        .HasForeignKey("OrderId1");
                 });
 
             modelBuilder.Entity("LoWaiLo.Data.Models.OrderProduct", b =>
                 {
-                    b.HasOne("LoWaiLo.Data.Models.Order")
-                        .WithMany("Products")
-                        .HasForeignKey("OrderId");
+                    b.HasOne("LoWaiLo.Data.Models.Order", "Order")
+                        .WithMany("OrderProducts")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("LoWaiLo.Data.Models.Product", "Product")
                         .WithMany()
@@ -495,6 +548,32 @@ namespace LoWaiLo.Data.Migrations
                     b.HasOne("LoWaiLo.Data.Models.Product", "Product")
                         .WithMany("Reviews")
                         .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("LoWaiLo.Data.Models.ShoppingCartProduct", b =>
+                {
+                    b.HasOne("LoWaiLo.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("LoWaiLo.Data.Models.ShoppingCart", "ShoppingCart")
+                        .WithMany("ShoppingCartProducts")
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("LoWaiLo.Data.Models.UserFavoriteProduct", b =>
+                {
+                    b.HasOne("LoWaiLo.Data.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("LoWaiLo.Data.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

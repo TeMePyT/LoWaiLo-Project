@@ -13,8 +13,10 @@
 
         public OrderStatus Status { get; set; }
 
-        public ICollection<OrderProduct> Products { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
 
-        public ICollection<OrderAddon> Addons { get; set; }
+        public virtual ICollection<OrderProduct> OrderProducts { get; set; }
+
+        public ICollection<OrderAddon> OrderAddons { get; set; }
     }
 }
