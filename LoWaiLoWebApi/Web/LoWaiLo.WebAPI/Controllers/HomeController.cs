@@ -18,8 +18,6 @@
 
         public IActionResult Contact()
         {
-            this.ViewData["Message"] = "Your contact page.";
-
             return this.View();
         }
 

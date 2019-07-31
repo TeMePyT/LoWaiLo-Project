@@ -5,7 +5,7 @@
 
     using LoWaiLo.Services.Models;
 
-    public interface IProductService
+    public interface IProductsService
     {
         IEnumerable<ProductDto> All();
 

@@ -19,157 +19,17 @@
 
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="~/css/themes/theme-red.min.css" />
+  
 </head>
 <body>
     <!-- Body Wrapper -->
     <div id="body-wrapper" class="animsition">
-        <!-- Header -->
         <partial name="~/Views/Shared/Partials/_CookieConsentPartial.cshtml" />
-        <header id="header" class="light">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-md-7">
-                        <!-- Navigation -->
-                        <nav class="module module-navigation  mr-4">
-                            <ul id="nav-main" class="nav nav-main">
-                                <li class="has-dropdown">
-                                    <a href="#">Home</a>
-                                    <div class="dropdown-container">
-                                        <ul>
-                                            <li><a href="index.html">Home Basic</a></li>
-                                            <li><a href="index-burgers.html">Home Burgers</a></li>
-                                            <li><a href="index-slider.html">Home Fullwidth Slider</a></li>
-                                            <li><a href="index-video.html">Home Video</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li class="has-dropdown">
-                                    <a href="#">About</a>
-                                    <div class="dropdown-container">
-                                        <ul class="dropdown-mega">
-                                            <li><a href="page-about.html">About Us</a></li>
-                                            <li><a href="page-services.html">Services</a></li>
-                                            <li><a href="page-gallery.html">Gallery</a></li>
-                                            <li><a href="page-reviews.html">Reviews</a></li>
-                                            <li><a href="page-faq.html">FAQ</a></li>
-                                        </ul>
-                                        <div class="dropdown-image">
-                                            <img src="~/img/photos/dropdown-about.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="has-dropdown">
-                                    <a href="#">Menu</a>
-                                    <div class="dropdown-container">
-                                        <ul>
-                                            <li class="has-dropdown">
-                                                <a href="#">List</a>
-                                                <ul>
-                                                    <li><a href="menu-list-navigation.html">Navigation</a></li>
-                                                    <li><a href="menu-list-collapse.html">Collapse</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has-dropdown">
-                                                <a href="#">Grid</a>
-                                                <ul>
-                                                    <li><a href="menu-grid-navigation.html">Navigation</a></li>
-                                                    <li><a href="menu-grid-collapse.html">Collapse</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>
-                                <li><a href="page-offers.html">Offers</a></li>
-                                <li><a href="page-contact.html">Contact</a></li>
-                                <li class="has-dropdown">
-                                    <a href="#">More</a>
-                                    <div class="dropdown-container">
-                                        <ul class="dropdown-mega">
-                                            <li><a href="page-offer-single.html">Offer single</a></li>
-                                            <li><a href="page-product.html">Product</a></li>
-                                            <li><a href="book-a-table.html">Book a table</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="confirmation.html">Confirmation</a></li>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-sidebar.html">Blog + Sidebar</a></li>
-                                            <li><a href="blog-post.html">Blog Post</a></li>
-                                            <li><a href="documentation.html">Documentation</a></li>
-                                        </ul>
-                                        <div class="dropdown-image">
-                                            <img src="~/img/photos/dropdown-more.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </nav>
-
-                        <div class="module right">
-                            <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-2">
-                        <a href="#" class="module module-cart right" data-toggle="panel-cart">
-                            <span class="cart-icon">
-                                <i class="ti ti-shopping-cart"></i>
-                                <span class="notification">2</span>
-                            </span>
-                            <span class="cart-value">$32.98</span>
-                        </a>
-                    </div>
-                    <div class="module right">
-                        @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
-                    </div>
-                </div>
-            </div>
-        </header>
-        <!-- Header / End -->
-        <!-- Header -->
-        <header id="header-mobile" class="light">
-
-            <div class="module module-nav-toggle">
-                <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
-            </div>
-            <div class="module module-logo right">
-                @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
-            </div>
-            <a href="#" class="module module-cart" data-toggle="panel-cart">
-                <i class="ti ti-shopping-cart"></i>
-                <span class="notification">2</span>
-            </a>
-        </header>
-        <!-- Header / End -->
+        <partial name="~/Views/Shared/Partials/_NavbarPartial.cshtml" />
         <!-- Content -->
         <div id="content">
             @RenderBody()
-            <!-- Footer -->
-            <footer id="footer fixed-bottom" class="bg-dark dark">
-
-                <div class="container">
-                    <!-- Footer 2nd Row -->
-                    <div class="footer-second-row row align-items-center">
-                        <div class="col-lg-4 text-center text-md-left">
-                            <span class="text-sm text-muted">&copy; @DateTime.Now.Year - LoWaiLo<br>Made with love by TeMePyT.</span>
-                        </div>
-                        <div class="col-lg-4 text-center">
-                            <a href="index.html"><img src="assets/img/logo-light.svg" alt="" width="88" class="mt-5 mb-5"></a>
-                        </div>
-                        <div class="col-lg-4 col-md-6 text-center text-md-right">
-                            <a href="#" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="ti ti-facebook"></i></a>
-                            <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="ti ti-google"></i></a>
-                            <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="ti ti-twitter"></i></a>
-                            <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="ti ti-youtube"></i></a>
-                            <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="ti ti-instagram"></i></a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Back To Top -->
-                <a href="#" id="back-to-top"><i class="ti ti-angle-up"></i></a>
-
-            </footer>
-            <!-- Footer / End -->
+            <partial name="~/Views/Shared/Partials/_FooterPartial.cshtml" />
         </div>
     </div>
     <!-- Panel Cart -->
@@ -406,6 +266,9 @@
 
     <!-- JS Core -->
     <script src="~/js/core.js"></script>
+    <!-- JS Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB__UPqHGCQ5CtRMlFVtYwr5_uIhA3GGxE&libraries=places&callback=initMap"
+            async defer></script>
     @RenderSection("Scripts", required: false)
 
 </body>

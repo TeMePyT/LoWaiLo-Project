@@ -13,7 +13,7 @@
 
     using Microsoft.EntityFrameworkCore;
 
-    public class ProductsService : IProductService
+    public class ProductsService : IProductsService
     {
         private readonly IRepository<Product> productsRepository;
 

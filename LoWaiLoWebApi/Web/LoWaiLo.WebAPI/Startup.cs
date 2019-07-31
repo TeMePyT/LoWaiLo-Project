@@ -10,6 +10,8 @@
     using LoWaiLo.Data.Models;
     using LoWaiLo.Data.Repostitories;
     using LoWaiLo.Data.Seeding;
+    using LoWaiLo.Services;
+    using LoWaiLo.Services.Contracts;
     using LoWaiLo.Services.Messaging;
     using LoWaiLo.WebAPI.Helpers;
     using LoWaiLo.WebAPI.Helpers.Logger;
@@ -136,6 +138,9 @@
 
             // email service
             services.AddTransient<IEmailSender, MessageSender>();
+
+            services.AddScoped<ICategoriesService, CategoriesService>();
+            services.AddScoped<IProductsService, ProductsService>();
 
             services.AddSwaggerGen(c =>
             {
