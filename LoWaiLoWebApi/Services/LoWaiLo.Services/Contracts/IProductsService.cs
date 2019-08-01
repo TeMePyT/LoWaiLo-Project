@@ -2,16 +2,19 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using LoWaiLo.Services.Models;
+    using LoWaiLo.Data.Models;
 
     public interface IProductsService
     {
-        IEnumerable<ProductDto> All();
+        IEnumerable<Product> All();
 
-        Task AddAsync(ProductDto product);
+        bool Any();
 
-        Task EditAsync(ProductDto product);
+        Task AddAsync(Product product);
+
+        Task AddRangeAsync(IEnumerable<Product> products);
+
+        Task EditAsync(Product product);
 
         Task DeleteAsync(int productId);
 

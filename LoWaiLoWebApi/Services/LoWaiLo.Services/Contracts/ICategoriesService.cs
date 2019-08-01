@@ -2,17 +2,20 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-
-    using LoWaiLo.Services.Models;
+    using LoWaiLo.Data.Models;
 
     public interface ICategoriesService
     {
-        IEnumerable<CategoryDto> All();
+        IEnumerable<Category> All();
 
         bool Any();
 
+        Task CreateRangeAsync(string[] categoriesName);
+
         Task CreateAsync(string categoryName);
 
-        CategoryDto FindById(int categoryId);
+        Category FindById(int categoryId);
+
+        Category FindByName(string categoryName);
     }
 }

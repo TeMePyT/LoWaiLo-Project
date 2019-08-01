@@ -45,6 +45,11 @@
                 this.ModelState.AddModelError(string.Empty, this.ErrorMessage);
             }
 
+            if (this.User.Identity.IsAuthenticated)
+            {
+                this.Response.Redirect("/Home/Error");
+            }
+
             returnUrl = returnUrl ?? this.Url.Content("~/");
 
             // Clear the existing external cookie to ensure a clean login process

@@ -3,8 +3,6 @@
     using System;
     using System.Reflection;
     using System.Text;
-    using AspNetCoreTemplate.Services.Mapping;
-    using AutoMapper;
     using LoWaiLo.Data;
     using LoWaiLo.Data.Common;
     using LoWaiLo.Data.Models;
@@ -12,9 +10,11 @@
     using LoWaiLo.Data.Seeding;
     using LoWaiLo.Services;
     using LoWaiLo.Services.Contracts;
+    using LoWaiLo.Services.Mapping;
     using LoWaiLo.Services.Messaging;
     using LoWaiLo.WebAPI.Helpers;
     using LoWaiLo.WebAPI.Helpers.Logger;
+    using LoWaiLo.WebAPI.Middlewares.Extensions;
     using LoWaiLo.WebAPI.ViewModels;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
@@ -43,9 +43,6 @@
         {
             services.AddDbContext<LoWaiLoDbContext>(
                  options => options.UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
-
-            // automapper
-            services.AddAutoMapper(typeof(MappingConfiguration));
 
             // jwt settings
             var jwtSettingsSection = this.Configuration.GetSection("JwtSettings");
@@ -185,6 +182,10 @@
                .AllowCredentials()
                .WithOrigins("http://localhost:4200"));
 
+            app.UseSeedAdminMiddleware();
+            app.UseSeedCategoriesMiddleware();
+            app.UseSeedProductsMiddleware();
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
@@ -202,9 +203,8 @@
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute("areaRoute", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

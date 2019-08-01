@@ -4,12 +4,9 @@
     using System.Linq;
     using System.Threading.Tasks;
 
-    using AutoMapper;
-
     using LoWaiLo.Data.Common;
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Contracts;
-    using LoWaiLo.Services.Models;
 
     using Microsoft.EntityFrameworkCore;
 
@@ -17,33 +14,37 @@
     {
         private readonly IRepository<Product> productsRepository;
 
-        private readonly IMapper mapper;
-
-        public ProductsService(IRepository<Product> productRepository, IMapper mapper)
+        public ProductsService(IRepository<Product> productRepository)
         {
             this.productsRepository = productRepository;
-
-            this.mapper = mapper;
         }
 
-        public async Task AddAsync(ProductDto productDto)
+        public bool Any()
         {
-            var product = this.mapper.Map<Product>(productDto);
+            return this.productsRepository.All().Any();
+        }
 
+        public async Task AddAsync(Product product)
+        {
             await this.productsRepository.AddAsync(product);
 
             await this.productsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<ProductDto> All()
+        public async Task AddRangeAsync(IEnumerable<Product> products)
+        {
+            await this.productsRepository.AddRangeAsync(products);
+            await this.productsRepository.SaveChangesAsync();
+        }
+
+        public IEnumerable<Product> All()
         {
             return this.productsRepository
                  .All()
                  .AsNoTracking()
                  .Include(c => c.Category)
                  .Include(l => l.Likes)
-                 .ThenInclude(u => u.User)
-                 .Select(p => this.mapper.Map<ProductDto>(p));
+                 .ThenInclude(u => u.User);
         }
 
         public async Task DeleteAsync(int productId)
@@ -57,11 +58,8 @@
             await this.productsRepository.SaveChangesAsync();
         }
 
-        public async Task EditAsync(ProductDto productDto)
+        public async Task EditAsync(Product product)
         {
-            var product = this.mapper
-                  .Map<Product>(productDto);
-
             this.productsRepository.Update(product);
             await this.productsRepository.SaveChangesAsync();
         }

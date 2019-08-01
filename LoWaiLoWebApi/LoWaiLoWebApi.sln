@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Services", "Service
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Services.Mapping", "Services\LoWaiLo.Services.Mapping\LoWaiLo.Services.Mapping.csproj", "{E671AAF6-EA7F-4D52-9CFD-63E82839F55C}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{13EBD51B-2130-4AFC-A893-81C0D7F22612}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoWaiLo.Services.Tests", "LoWaiLo.Services.Tests\LoWaiLo.Services.Tests.csproj", "{FBFFCC47-BD3A-46B4-8BBC-6243EC224D39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,10 @@ Global
 		{E671AAF6-EA7F-4D52-9CFD-63E82839F55C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E671AAF6-EA7F-4D52-9CFD-63E82839F55C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E671AAF6-EA7F-4D52-9CFD-63E82839F55C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBFFCC47-BD3A-46B4-8BBC-6243EC224D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBFFCC47-BD3A-46B4-8BBC-6243EC224D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBFFCC47-BD3A-46B4-8BBC-6243EC224D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBFFCC47-BD3A-46B4-8BBC-6243EC224D39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +83,7 @@ Global
 		{2248B0CA-3CF6-4A31-89A5-59BC70E0F954} = {8FACEBE2-7165-4B0F-B151-33A69BDD505E}
 		{62D75699-3E79-4476-A5CC-6ADEED5AF74B} = {8FACEBE2-7165-4B0F-B151-33A69BDD505E}
 		{E671AAF6-EA7F-4D52-9CFD-63E82839F55C} = {8FACEBE2-7165-4B0F-B151-33A69BDD505E}
+		{FBFFCC47-BD3A-46B4-8BBC-6243EC224D39} = {13EBD51B-2130-4AFC-A893-81C0D7F22612}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DCFF6BC6-9AB8-43A2-BF9A-09FD72DD3D1E}

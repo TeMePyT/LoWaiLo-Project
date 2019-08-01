@@ -1,9 +1,9 @@
 ﻿namespace LoWaiLo.WebAPI.ViewModels
 {
+    using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Mapping;
-    using LoWaiLo.Services.Models;
 
-    public class CategoryViewModel : IMapTo<CategoryDto>, IMapFrom<CategoryDto>
+    public class CategoryViewModel : IMapTo<Category>, IMapFrom<Category>
     {
         public string Name { get; set; }
     }

@@ -1,4 +1,4 @@
-﻿namespace AspNetCoreTemplate.Services.Mapping
+﻿namespace LoWaiLo.Services.Mapping
 {
     using System;
     using System.Collections.Generic;
@@ -7,7 +7,6 @@
 
     using AutoMapper;
     using AutoMapper.Configuration;
-    using LoWaiLo.Services.Mapping;
 
     public static class AutoMapperConfig
     {
