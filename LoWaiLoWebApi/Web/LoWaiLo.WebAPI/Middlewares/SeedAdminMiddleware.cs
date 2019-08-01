@@ -25,32 +25,10 @@
 
             if (!userManager.Users.Any())
             {
-                var roleManager = serviceProvider.GetService<RoleManager<ApplicationRole>>();
-                var adminRoleExists = roleManager.RoleExistsAsync("Administrator").Result;
-                if (!adminRoleExists)
-                {
-                    var result = roleManager.CreateAsync(new ApplicationRole("Administrator")).Result;
-                    if (!result.Succeeded)
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
-
-                var userRoleExists = roleManager.RoleExistsAsync("User").Result;
-
-                if (!userRoleExists)
-                {
-                    var result = roleManager.CreateAsync(new ApplicationRole("User")).Result;
-                    if (!result.Succeeded)
-                    {
-                        throw new InvalidOperationException();
-                    }
-                }
-
                 var user = new ApplicationUser
                 {
                     Email = "admin@SoftUni.com",
-                    UserName = "TeMePyT",
+                    UserName = "admin@SoftUni.com",
                     FirstName = "Pesho",
                     LastName = "Peshov",
                     ShoppingCart = new ShoppingCart(),

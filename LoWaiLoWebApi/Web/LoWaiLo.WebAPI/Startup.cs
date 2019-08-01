@@ -85,7 +85,7 @@
                    options.Password.RequireNonAlphanumeric = false;
                    options.Password.RequiredLength = 6;
                    options.User.RequireUniqueEmail = true;
-                   options.SignIn.RequireConfirmedEmail = true;
+                   options.SignIn.RequireConfirmedEmail = false;
                })
                .AddEntityFrameworkStores<LoWaiLoDbContext>()
                .AddUserStore<ApplicationUserStore>()
@@ -121,6 +121,8 @@
                     options.MinimumSameSitePolicy = SameSiteMode.Lax;
                     options.ConsentCookie.Name = ".AspNetCore.ConsentCookie";
                 });
+
+            services.AddResponseCompression();
 
             services.AddSingleton(this.Configuration);
 

@@ -23,6 +23,6 @@
 
         public ICollection<Like> Likes { get; set; }
 
-        public ICollection<Review> Reviews { get; set; }
+        public ICollection<ProductReview> Reviews { get; set; }
     }
 }

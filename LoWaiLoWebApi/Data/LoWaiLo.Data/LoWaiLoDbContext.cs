@@ -33,7 +33,9 @@
 
         public DbSet<Addon> Addons { get; set; }
 
-        public DbSet<Review> Reviews { get; set; }
+        public DbSet<ProductReview> ProductReviews { get; set; }
+
+        public DbSet<SiteReview> SiteReviews { get; set; }
 
         public DbSet<Order> Orders { get; set; }
 

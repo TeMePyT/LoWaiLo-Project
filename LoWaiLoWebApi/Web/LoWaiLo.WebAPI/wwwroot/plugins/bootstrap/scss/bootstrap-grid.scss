@@ -27,17 +27,17 @@ html {
 // Variables
 //
 
-@import "variables";
+@import "_variables.scss";
 
 //
 // Grid mixins
 //
 
-@import "mixins/clearfix";
-@import "mixins/breakpoints";
-@import "mixins/grid-framework";
-@import "mixins/grid";
+@import "mixins/_clearfix.scss";
+@import "mixins/_breakpoints.scss";
+@import "mixins/_grid-framework.scss";
+@import "mixins/_grid.scss";
 
-@import "custom";
+@import "_custom.scss";
 
-@import "grid";
+@import "_grid.scss";

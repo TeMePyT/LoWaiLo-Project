@@ -15,4 +15,14 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Data\LoWaiLo.Data.Common\LoWaiLo.Data.Common.csproj" />
+    <ProjectReference Include="..\Data\LoWaiLo.Data.Models\LoWaiLo.Data.Models.csproj" />
+    <ProjectReference Include="..\Data\LoWaiLo.Data\LoWaiLo.Data.csproj" />
+    <ProjectReference Include="..\LoWaiLo.Common\LoWaiLo.Common.csproj" />
+    <ProjectReference Include="..\Services\LoWaiLo.Services.Mapping\LoWaiLo.Services.Mapping.csproj" />
+    <ProjectReference Include="..\Services\LoWaiLo.Services.Messaging\LoWaiLo.Services.Messaging\LoWaiLo.Services.Messaging.csproj" />
+    <ProjectReference Include="..\Services\LoWaiLo.Services\LoWaiLo.Services.csproj" />
+  </ItemGroup>
+
 </Project>
