@@ -22,7 +22,9 @@
 
         public ICollection<Order> Orders { get; set; }
 
-        public ICollection<ProductReview> Reviews { get; set; }
+        public ICollection<ProductReview> ProductReviews { get; set; }
+
+        public ICollection<SiteReview> SiteReviews { get; set; }
 
         public ICollection<Like> ProductsLiked { get; set; }
 

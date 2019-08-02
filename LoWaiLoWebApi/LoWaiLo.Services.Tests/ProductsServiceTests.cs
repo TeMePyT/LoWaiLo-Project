@@ -9,7 +9,6 @@
     using LoWaiLo.Data.Models;
 
     using Microsoft.EntityFrameworkCore;
-    using Newtonsoft.Json;
     using Xunit;
 
     public class ProductsServiceTests

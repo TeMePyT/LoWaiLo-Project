@@ -23,6 +23,12 @@
   <Compile Remove="Migrations\20190729173723_InitialCreate.Designer.cs" />
   <Compile Remove="Migrations\20190729174007_InitialCreate.cs" />
   <Compile Remove="Migrations\20190729174007_InitialCreate.Designer.cs" />
+  <Compile Remove="Migrations\20190802180357_RemovedSiteReview.cs" />
+  <Compile Remove="Migrations\20190802180357_RemovedSiteReview.Designer.cs" />
+  <Compile Remove="Migrations\20190802182352_test.cs" />
+  <Compile Remove="Migrations\20190802182352_test.Designer.cs" />
+  <Compile Remove="Migrations\20190802182652_test.cs" />
+  <Compile Remove="Migrations\20190802182652_test.Designer.cs" />
 </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />
