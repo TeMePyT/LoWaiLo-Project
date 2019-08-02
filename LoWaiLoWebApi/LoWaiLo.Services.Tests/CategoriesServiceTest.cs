@@ -1,12 +1,15 @@
 ﻿namespace LoWaiLo.Services.Tests
 {
-    using LoWaiLo.Data;
-    using LoWaiLo.Data.Common;
-    using LoWaiLo.Data.Models;
-    using Microsoft.EntityFrameworkCore;
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
+    using LoWaiLo.Data;
+    using LoWaiLo.Data.Common;
+    using LoWaiLo.Data.Models;
+
+    using Microsoft.EntityFrameworkCore;
+   
     using Xunit;
 
     public class CategoriesServiceTest
