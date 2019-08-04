@@ -18,6 +18,8 @@
 
         Task DeleteAsync(int productId);
 
+        Product GetProductById(int productId);
+
         bool Exists(int productId);
     }
 }

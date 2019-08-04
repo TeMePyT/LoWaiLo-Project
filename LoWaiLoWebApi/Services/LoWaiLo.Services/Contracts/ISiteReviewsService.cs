@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
 
     using LoWaiLo.Data.Models;
+
     public interface ISiteReviewsService
     {
         Task<SiteReview> CreateAsync(int rating, string text, string authorId);

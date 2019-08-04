@@ -1,16 +1,16 @@
-﻿using LoWaiLo.Data.Common;
-using LoWaiLo.Data.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.EntityFrameworkCore;
-using Xunit;
-using LoWaiLo.Data;
-using System.Threading.Tasks;
-using System.Linq;
-
-namespace LoWaiLo.Services.Tests
+﻿namespace LoWaiLo.Services.Tests
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using LoWaiLo.Data;
+    using LoWaiLo.Data.Common;
+    using LoWaiLo.Data.Models;
+
+    using Microsoft.EntityFrameworkCore;
+
+    using Xunit;
     public class ReviewsServiceTests
     {
         private readonly IRepository<ProductReview> reviewsRepository;

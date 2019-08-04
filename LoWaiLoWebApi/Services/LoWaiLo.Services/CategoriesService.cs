@@ -14,7 +14,7 @@
 
         public CategoriesService(IRepository<Category> categoriesRepository)
         {
-            this.categoriesRepository = categoriesRepository;;
+            this.categoriesRepository = categoriesRepository;
         }
 
         public IEnumerable<Category> All()

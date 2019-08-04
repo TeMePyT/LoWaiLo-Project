@@ -64,6 +64,13 @@
             await this.productsRepository.SaveChangesAsync();
         }
 
+        public Product GetProductById(int productId)
+        {
+            return this.productsRepository
+                .All()
+                .First(p => p.Id == productId);
+        }
+
         public bool Exists(int productId)
         {
             return this.productsRepository

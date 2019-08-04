@@ -50,7 +50,6 @@
 
             this.reviewsRepository.Delete(review);
             await this.reviewsRepository.SaveChangesAsync();
-
         }
 
         public bool Exists(int reviewId)
