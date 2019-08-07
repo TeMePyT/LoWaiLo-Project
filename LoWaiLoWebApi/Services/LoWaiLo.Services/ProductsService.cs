@@ -37,14 +37,15 @@
             await this.productsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<Product> All()
+        public IQueryable<Product> All()
         {
             return this.productsRepository
                  .All()
                  .AsNoTracking()
                  .Include(c => c.Category)
                  .Include(l => l.Likes)
-                 .ThenInclude(u => u.User);
+                 .ThenInclude(u => u.User)
+                 .Include(r => r.Reviews);
         }
 
         public async Task DeleteAsync(int productId)

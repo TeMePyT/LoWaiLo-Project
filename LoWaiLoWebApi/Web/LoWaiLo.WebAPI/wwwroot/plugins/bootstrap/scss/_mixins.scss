@@ -19,39 +19,39 @@
 }
 
 // Utilities
-@import "mixins/_breakpoints.scss";
-@import "mixins/_hover.scss";
-@import "mixins/_image.scss";
-@import "mixins/_badge.scss";
-@import "mixins/_resize.scss";
-@import "mixins/_screen-reader.scss";
-@import "mixins/_size.scss";
-@import "mixins/_reset-text.scss";
-@import "mixins/_text-emphasis.scss";
-@import "mixins/_text-hide.scss";
-@import "mixins/_text-truncate.scss";
-@import "mixins/_transforms.scss";
-@import "mixins/_visibility.scss";
+@import "mixins/breakpoints";
+@import "mixins/hover";
+@import "mixins/image";
+@import "mixins/badge";
+@import "mixins/resize";
+@import "mixins/screen-reader";
+@import "mixins/size";
+@import "mixins/reset-text";
+@import "mixins/text-emphasis";
+@import "mixins/text-hide";
+@import "mixins/text-truncate";
+@import "mixins/transforms";
+@import "mixins/visibility";
 
 // // Components
-@import "mixins/_alert.scss";
-@import "mixins/_buttons.scss";
-@import "mixins/_cards.scss";
-@import "mixins/_pagination.scss";
-@import "mixins/_lists.scss";
-@import "mixins/_list-group.scss";
-@import "mixins/_nav-divider.scss";
-@import "mixins/_forms.scss";
-@import "mixins/_table-row.scss";
+@import "mixins/alert";
+@import "mixins/buttons";
+@import "mixins/cards";
+@import "mixins/pagination";
+@import "mixins/lists";
+@import "mixins/list-group";
+@import "mixins/nav-divider";
+@import "mixins/forms";
+@import "mixins/table-row";
 
 // // Skins
-@import "mixins/_background-variant.scss";
-@import "mixins/_border-radius.scss";
-@import "mixins/_gradients.scss";
+@import "mixins/background-variant";
+@import "mixins/border-radius";
+@import "mixins/gradients";
 
 // // Layout
-@import "mixins/_clearfix.scss";
+@import "mixins/clearfix";
 // @import "mixins/navbar-align";
-@import "mixins/_grid-framework.scss";
-@import "mixins/_grid-framework.scss";
-@import "mixins/_float.scss";
+@import "mixins/grid-framework";
+@import "mixins/grid";
+@import "mixins/float";

@@ -1,12 +1,13 @@
 ﻿namespace LoWaiLo.Services.Contracts
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using LoWaiLo.Data.Models;
 
     public interface IProductsService
     {
-        IEnumerable<Product> All();
+        IQueryable<Product> All();
 
         bool Any();
 

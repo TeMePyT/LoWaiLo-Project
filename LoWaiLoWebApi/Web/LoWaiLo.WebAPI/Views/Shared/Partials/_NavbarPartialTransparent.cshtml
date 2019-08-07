@@ -2,7 +2,15 @@
 <header id="header" class="absolute transparent">
     <div class="container">
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-3">
+                <!-- Logo -->
+                <div class="module module-logo light">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img src="~/img/logo-dark-red.png" alt="" width="88">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5">
                 <!-- Navigation -->
                 <nav class="module module-navigation  mr-4">
                     <ul id="nav-main" class="nav nav-main">
@@ -22,27 +30,7 @@
                                 </div>
                             </div>
                         </li>
-                        <li class="has-dropdown">
-                            <a href="#">Menu</a>
-                            <div class="dropdown-container">
-                                <ul>
-                                    <li class="has-dropdown">
-                                        <a href="#">List</a>
-                                        <ul>
-                                            <li><a href="menu-list-navigation.html">Navigation</a></li>
-                                            <li><a href="menu-list-collapse.html">Collapse</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="has-dropdown">
-                                        <a href="#">Grid</a>
-                                        <ul>
-                                            <li><a href="menu-grid-navigation.html">Navigation</a></li>
-                                            <li><a href="menu-grid-collapse.html">Collapse</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
+                        <li> <a asp-controller="Menu" asp-action="Menu">Меню</a></li>
                         <li><a href="page-offers.html">Offers</a></li>
                         <li><a asp-controller="Home" asp-action="Contact">За контакти</a></li>
                         <li class="has-dropdown">
@@ -66,12 +54,7 @@
                         </li>
                     </ul>
                 </nav>
-
-                <div class="module right">
-                    <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
-                </div>
             </div>
-
             <div class="col-md-2">
                 <a href="#" class="module module-cart right" data-toggle="panel-cart">
                     <span class="cart-icon">
@@ -81,8 +64,15 @@
                     <span class="cart-value">$32.98</span>
                 </a>
             </div>
-            <div class="module right">
-                @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
+            <div class="col-md-1">
+                <div class="module left">
+                    <a href="menu-list-navigation.html" class="btn btn-primary"><span>Поръчай</span></a>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <div class="module right">
+                    @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
+                </div>
             </div>
         </div>
     </div>

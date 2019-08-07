@@ -5,11 +5,12 @@
     public class LoginInputModel
     {
         [Required]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "Потребителско име:")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
+        [Display(Name = "Парола:")]
         public string Password { get; set; }
 
         [Display(Name = "Запомни ме?")]

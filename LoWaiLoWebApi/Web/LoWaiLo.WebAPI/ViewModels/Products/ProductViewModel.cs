@@ -1,5 +1,6 @@
-﻿namespace LoWaiLo.WebAPI.ViewModels
+﻿namespace LoWaiLo.WebAPI.ViewModels.Products
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
@@ -7,8 +8,9 @@
 
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Mapping;
+    using LoWaiLo.WebAPI.ViewModels.Reviews.ViewModels;
 
-    public class ProductViewModel : IMapFrom<Product>, IMapTo<Product>, IHaveCustomMappings
+    public class ProductViewModel : IMapFrom<Product>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
@@ -29,7 +31,13 @@
         [Display(Name = "Категория")]
         public string Category { get; set; }
 
+        public DateTime CreatedOn { get; set; }
+
+        [Display(Name="Харесвания")]
         public IEnumerable<string> Likes { get; set; }
+
+        [Display(Name="Коментари")]
+        public IEnumerable<ReviewViewModel> Reviews { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

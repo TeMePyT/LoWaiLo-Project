@@ -1,7 +1,6 @@
 ﻿namespace LoWaiLo.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -69,13 +68,12 @@
                 .UserName;
         }
 
-        public IEnumerable<ProductReview> GetReviews(int productId)
+        public IQueryable<ProductReview> GetReviews(int productId)
         {
             return this.reviewsRepository
                 .All()
                 .Include(r => r.Author)
-                .Where(r => r.ProductId == productId)
-                .ToList();
+                .Where(r => r.ProductId == productId);
         }
     }
 }

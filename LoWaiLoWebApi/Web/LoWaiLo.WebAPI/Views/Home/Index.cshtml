@@ -2,94 +2,159 @@
     ViewData["Title"] = "Home Page";
     Layout = "_LayoutTransparent";
 }
+@model IndexViewModel
+<!-- Section - Main -->
+<section class="section section-main bg-dark dark">
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner" role="listbox">
-        <div class="item active">
-            <img src="~/images/banner1.svg" alt="ASP.NET" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how to build ASP.NET apps that can run anywhere.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525028&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner2.svg" alt="Visual Studio" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    There are powerful new features in Visual Studio for building modern web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525030&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-        <div class="item">
-            <img src="~/images/banner3.svg" alt="Microsoft Azure" class="img-responsive" />
-            <div class="carousel-caption" role="option">
-                <p>
-                    Learn how Microsoft's Azure cloud platform allows you to build, deploy, and scale web apps.
-                    <a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkID=525027&clcid=0x409">
-                        Learn More
-                    </a>
-                </p>
-            </div>
-        </div>
-    </div>
-    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
-</div>
+    <div class="bg-image bg-fixed"><img src="~/img/food.jpg" alt=""></div>
 
-<div class="row">
-    <div class="col-md-3">
-        <h2>Application uses</h2>
-        <ul>
-            <li>Sample pages using ASP.NET Core MVC</li>
-            <li>Theming using <a href="https://go.microsoft.com/fwlink/?LinkID=398939">Bootstrap</a></li>
-        </ul>
+    <div class="container v-center">
+        <div class="row">
+            <div class="col-md-7 push-md-3">
+                <h1 class="display-2">Ние готвим <strong>най-добрата китайска кухня</strong> в Плевен</h1>
+                <h4 class="text-muted mb-5">Опитайте я сега, поръчайте онлайн!</h4>
+                <a href="page-offers.html" class="btn btn-outline-primary btn-lg"><span>Поръчайте сега</span></a>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>How to</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398600">Add a Controller and View</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699315">Manage User Secrets using Secret Manager.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699316">Use logging to log a message.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699317">Add packages using NuGet.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
-        </ul>
+</section>
+<!-- Section - About -->
+<section class="section section-bg-edge">
+
+    <div class="image right col-md-6 push-md-6">
+        <div class="bg-image"><img src="~/img/delish-crack-noodles.jpg" alt=""></div>
     </div>
-    <div class="col-md-3">
-        <h2>Overview</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET Core</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=699320">Fundamentals of ASP.NET Core such as Startup and middleware.</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398602">Working with Data</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkId=398603">Security</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699321">Client side development</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
-        </ul>
+
+    <div class="container">
+        <div class="col-lg-5 col-md-9">
+            <div class="rate mb-5 rate-lg"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star"></i></div>
+            <h1 class="display-2">Защо <strong>нашата</strong> храна?</h1>
+            <p class="lead text-muted mb-5">
+                Предлагаме Ви приятна и уютна атмосфера, наситена с китайски оригинални мотиви и съчетана със стил, уникалност и безупречност в обслужването, които ще задоволят и най-изтънчените вкусове.
+            </p>
+            <!-- Feature -->
+            <div class="feature feature-1">
+                <div class="feature-icon icon icon-primary"><i class="ti ti-desktop"></i></div>
+                <div class="feature-content">
+                    <h4 class="mb-2">Онлайн поръчка</h4>
+                    <p class="text-muted mb-0">Бързо и лесно, само с няколко клика на мишката.</p>
+                </div>
+            </div>
+            <!-- Feature -->
+            <div class="feature feature-1">
+                <div class="feature-icon icon icon-primary"><i class="ti-heart"></i></div>
+                <div class="feature-content">
+                    <h4 class="mb-2">Перфектен вкус</h4>
+                    <p class="text-muted mb-0">
+                        Усилията и труда на целия ни екип са насочени към пълното персонално задоволяване на потребителските нужди на клиентите ни.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-md-3">
-        <h2>Run &amp; Deploy</h2>
-        <ul>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=517853">Run tools such as EF migrations and more</a></li>
-            <li><a href="https://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+
+</section>
+<!-- Section - Menu -->
+<section class="section cover protrude pull-up-10">
+
+    <div class="menu-sample-carousel carousel inner-controls" data-slick='{
+                "dots": true,
+                "slidesToShow": 3,
+                "slidesToScroll": 1,
+                "infinite": true,
+                "responsive": [
+                    {
+                        "breakpoint": 991,
+                        "settings": {
+                            "slidesToShow": 2,
+                            "slidesToScroll": 1
+                        }
+                    },
+                    {
+                        "breakpoint": 690,
+                        "settings": {
+                            "slidesToShow": 1,
+                            "slidesToScroll": 1
+                        }
+                    }
+                ]
+            }'>
+        @foreach (var category in Model.Categories)
+        {
+            <!-- Menu Sample -->
+            <div class="menu-sample">
+                <a href="menu-list-navigation.html#Burgers">
+                    <img src="@category.Image" alt="" class="image">
+                    <p class="title"><font size="26">@category.Name</font></p>
+                </a>
+            </div>
+        }
+    </div>
+
+</section>
+<!-- Section - Steps -->
+<section class="section bg-dark dark">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <!-- Step -->
+                <div class="feature feature-1">
+                    <div class="feature-icon icon icon-primary"><i class="ti ti-shopping-cart"></i></div>
+                    <div class="feature-content">
+                        <h4 class="mb-2"><a href="menu-list-collapse.html">Изберете ястие</a></h4>
+                        <p class="text-muted mb-0">Нашето меню съдържа богат набор от ястия.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Step -->
+                <div class="feature feature-1">
+                    <div class="feature-icon icon icon-primary"><i class="ti ti-wallet"></i></div>
+                    <div class="feature-content">
+                        <h4 class="mb-2">Изпратете поръчка</h4>
+                        <p class="text-muted mb-0">Доставка за поръчка над 10 лв - 1 лв, за поръчка под 10 лв - 2лв.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- Step -->
+                <div class="feature feature-1">
+                    <div class="feature-icon icon icon-primary"><i class="ti ti-package"></i></div>
+                    <div class="feature-content">
+                        <h4 class="mb-2">Получете вашата храна!</h4>
+                        <p class="text-muted mb-3">Стремим се да обработваме поръчките максимално бързо.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Section -->
+<section class="section section-lg dark bg-dark">
+
+    <!-- BG Image -->
+    <div class="bg-image bg-fixed"><img src="~/img/photos/bg-food2.jpg" alt=""></div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 push-md-3">
+                <button class="btn-play mb-5" data-toggle="video-modal" data-target="#modalVideo" data-video="https://www.youtube.com/embed/sYKPitkn2q8"></button>
+                <h1 class="display-2">Вижте нашето <strong>промо</strong> видео!</h1>
+                <h4 class="text-muted mb-5">Опитайте сега с нашата онлайн поръчка!</h4>
+                <a href="page-offers.html" class="btn btn-outline-primary btn-lg"><span>Поръчайте сега</span></a>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Video Modal / Demo -->
+<div class="modal modal-video fade" id="modalVideo" role="dialog">
+    <button class="close" data-dismiss="modal"><i class="ti-close"></i></button>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <iframe height="500"></iframe>
+        </div>
     </div>
 </div>

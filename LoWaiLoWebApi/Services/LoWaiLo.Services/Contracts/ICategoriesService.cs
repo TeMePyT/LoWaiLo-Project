@@ -1,16 +1,18 @@
 ﻿namespace LoWaiLo.Services.Contracts
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
+
     using LoWaiLo.Data.Models;
 
     public interface ICategoriesService
     {
-        IEnumerable<Category> All();
+        IQueryable<Category> All();
 
         bool Any();
 
-        Task CreateRangeAsync(string[] categoriesName);
+        Task CreateRangeAsync(IEnumerable<Category> categories);
 
         Task CreateAsync(string categoryName);
 

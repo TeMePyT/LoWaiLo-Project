@@ -1,6 +1,7 @@
 ﻿namespace LoWaiLo.Services.Tests
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
@@ -41,10 +42,20 @@
         [Fact]
         public async Task AllShouldReturnCorrectValues()
         {
-            await this.categoriesService.CreateRangeAsync(new string[]
+            var categories = new List<Category>();
+            var appetizers = new Category
             {
-                "Десерти", "Супи"
-            });
+                Name = "Десерти",
+                Image = "https://www.dropbox.com/s/r1qx7zp4zja7azt/sm_01.jpg?dl=0",
+            };
+            categories.Add(appetizers);
+            var soups = new Category
+            {
+                Name = "Супи",
+                Image = "https://www.dropbox.com/s/x8nge5s4s919lzb/sm_02.jpg?dl=0",
+            };
+            categories.Add(soups);
+            await categoriesService.CreateRangeAsync(categories);
 
             var resultCount = categoriesService.All().Count();
             var resultNameFirst = categoriesService.All().First().Name;
@@ -76,10 +87,20 @@
         [Fact]
         public async Task FindByIdShouldReturnCorrectValues()
         {
-            await categoriesService.CreateRangeAsync(new string[]
+            var categories = new List<Category>();
+            var appetizers = new Category
             {
-               "Десерти", "Супи"
-            });
+                Name = "Десерти",
+                Image = "https://www.dropbox.com/s/r1qx7zp4zja7azt/sm_01.jpg?dl=0",
+            };
+            categories.Add(appetizers);
+            var soups = new Category
+            {
+                Name = "Супи",
+                Image = "https://www.dropbox.com/s/x8nge5s4s919lzb/sm_02.jpg?dl=0",
+            };
+            categories.Add(soups);
+            await categoriesService.CreateRangeAsync(categories);
 
             var result1 = categoriesService.FindById(1).Name;
             var result2 = categoriesService.FindById(2).Name;
@@ -91,10 +112,20 @@
         [Fact]
         public async Task FindByNameShouldReturnCorrectValues()
         {
-            await categoriesService.CreateRangeAsync(new string[]
-          {
-               "Десерти", "Супи"
-          });
+            var categories = new List<Category>();
+            var appetizers = new Category
+            {
+                Name = "Десерти",
+                Image = "https://www.dropbox.com/s/r1qx7zp4zja7azt/sm_01.jpg?dl=0",
+            };
+            categories.Add(appetizers);
+            var soups = new Category
+            {
+                Name = "Супи",
+                Image = "https://www.dropbox.com/s/x8nge5s4s919lzb/sm_02.jpg?dl=0",
+            };
+            categories.Add(soups);
+            await categoriesService.CreateRangeAsync(categories);
 
             var result1 = categoriesService.FindByName("Десерти").Name;
             var result2 = categoriesService.FindByName("Супи").Name;

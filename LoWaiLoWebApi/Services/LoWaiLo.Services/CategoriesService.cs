@@ -17,11 +17,10 @@
             this.categoriesRepository = categoriesRepository;
         }
 
-        public IEnumerable<Category> All()
+        public IQueryable<Category> All()
         {
             return this.categoriesRepository
-                .All()
-                .OrderBy(c => c.Name);
+                .All();
         }
 
         public bool Any()
@@ -29,14 +28,8 @@
             return this.categoriesRepository.All().Any();
         }
 
-        public async Task CreateRangeAsync(string[] categoriesNames)
+        public async Task CreateRangeAsync(IEnumerable<Category> categories)
         {
-            var categories = categoriesNames
-                .Select(categoryName => new Category
-                {
-                    Name = categoryName,
-                });
-
             await this.categoriesRepository.AddRangeAsync(categories);
             await this.categoriesRepository.SaveChangesAsync();
         }

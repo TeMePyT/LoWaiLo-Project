@@ -66,12 +66,11 @@
                .UserName;
         }
 
-        public IEnumerable<SiteReview> GetReviews()
+        public IQueryable<SiteReview> GetReviews()
         {
             return this.reviewsRepository
-                .All()
-                .Include(r => r.Author)
-                .ToList();
+                 .All()
+                 .Include(r => r.Author);
         }
     }
 }

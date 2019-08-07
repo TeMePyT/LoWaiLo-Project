@@ -1,6 +1,6 @@
 ﻿namespace LoWaiLo.Services.Contracts
 {
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using LoWaiLo.Data.Models;
@@ -9,7 +9,7 @@
     {
         Task<SiteReview> CreateAsync(int rating, string text, string authorId);
 
-        IEnumerable<SiteReview> GetReviews();
+        IQueryable<SiteReview> GetReviews();
 
         Task DeleteReviewAsync(int reviewId);
 

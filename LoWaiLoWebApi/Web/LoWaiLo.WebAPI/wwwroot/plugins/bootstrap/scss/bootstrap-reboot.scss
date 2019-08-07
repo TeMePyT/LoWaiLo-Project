@@ -2,9 +2,9 @@
 //
 // Includes only Normalize and our custom Reboot reset.
 
-@import "_variables.scss";
-@import "_mixins.scss";
-@import "_custom.scss";
+@import "variables";
+@import "mixins";
+@import "custom";
 
-@import "_normalize.scss";
-@import "_reboot.scss";
+@import "normalize";
+@import "reboot";

@@ -10,6 +10,10 @@
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Потребителско име")]
+        public string UserName { get; set; }
+
+        [Required]
         [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} и с най-много {1} знака.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Парола")]

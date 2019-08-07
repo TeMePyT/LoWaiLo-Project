@@ -1,6 +1,6 @@
 ﻿namespace LoWaiLo.Services.Contracts
 {
-    using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using LoWaiLo.Data.Models;
@@ -15,6 +15,6 @@
 
         Task UpdateShoppingCartProductQuantity(int productId, string userId, int quantity);
 
-        IEnumerable<ShoppingCartProduct> GetAllShoppingCartProducts(string userId);
+        IQueryable<ShoppingCartProduct> GetAllShoppingCartProducts(string userId);
     }
 }

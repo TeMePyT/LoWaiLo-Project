@@ -112,7 +112,7 @@
             await this.shoppingCartProductsRepository.SaveChangesAsync();
         }
 
-        public IEnumerable<ShoppingCartProduct> GetAllShoppingCartProducts(string userId)
+        public IQueryable<ShoppingCartProduct> GetAllShoppingCartProducts(string userId)
         {
             var user = this.userManager
               .FindByIdAsync(userId)

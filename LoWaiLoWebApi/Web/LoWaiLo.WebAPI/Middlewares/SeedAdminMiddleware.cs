@@ -28,7 +28,7 @@
                 var user = new ApplicationUser
                 {
                     Email = "admin@SoftUni.com",
-                    UserName = "admin@SoftUni.com",
+                    UserName = "TeMePyT",
                     FirstName = "Pesho",
                     LastName = "Peshov",
                     ShoppingCart = new ShoppingCart(),
