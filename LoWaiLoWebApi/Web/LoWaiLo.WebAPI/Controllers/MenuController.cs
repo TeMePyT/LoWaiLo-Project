@@ -26,7 +26,7 @@
             this.productsService = productsService;
         }
 
-        public async Task<IActionResult> Menu(MenuViewModel model)
+        public async Task<IActionResult> All(MenuViewModel model)
         {
             model.Categories = await this.categoriesService.All().To<CategoryViewModel>().ToListAsync();
 

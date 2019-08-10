@@ -9,6 +9,9 @@
 
         [Required]
         [MinLength(ReviewMinimumLength, ErrorMessage = ReviewErrorMessage)]
-        public string Review { get; set; }
+        public string Content { get; set; }
+
+
+        public int Rating { get; set; }
     }
 }

@@ -42,9 +42,9 @@
             return this.dbSet.FindAsync(id);
         }
 
-        public void AddAsync(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
-            this.dbSet.AddAsync(entity);
+            await this.dbSet.AddAsync(entity);
         }
 
         public Task AddRangeAsync(IEnumerable<TEntity> entities)

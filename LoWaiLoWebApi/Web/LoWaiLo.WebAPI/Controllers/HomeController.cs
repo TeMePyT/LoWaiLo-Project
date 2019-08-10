@@ -35,7 +35,7 @@
             var categories = await this.categoriesService.All().To<CategoryViewModel>().ToListAsync();
 
             var siteReviews = await this.reviewService.GetReviews().To<ReviewViewModel>().ToListAsync();
-            var reviews = siteReviews.OrderByDescending(x => x.DateCreated).Take(3);
+            var reviews = siteReviews.OrderByDescending(x => x.ModifiedOn).Take(3);
 
             var allProducts = await this.productsService.All().To<ProductViewModel>().ToListAsync();
             var products = allProducts.OrderByDescending(x => x.CreatedOn).Take(5);

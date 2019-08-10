@@ -52,9 +52,9 @@
 
         public void Dispose() => this.Context.Dispose();
 
-        public Task AddAsync(TEntity entity)
+        public async Task AddAsync(TEntity entity)
         {
-            throw new NotImplementedException();
+           await this.DbSet.AddAsync(entity);
         }
 
         public Task AddRangeAsync(IEnumerable<TEntity> entities)

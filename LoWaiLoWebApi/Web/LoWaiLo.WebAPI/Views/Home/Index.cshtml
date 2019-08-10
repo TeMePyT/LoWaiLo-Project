@@ -13,7 +13,7 @@
             <div class="col-md-7 push-md-3">
                 <h1 class="display-2">Ние готвим <strong>най-добрата китайска кухня</strong> в Плевен</h1>
                 <h4 class="text-muted mb-5">Опитайте я сега, поръчайте онлайн!</h4>
-                <a href="page-offers.html" class="btn btn-outline-primary btn-lg"><span>Поръчайте сега</span></a>
+                <a asp-controller="Menu" asp-action="All" class="btn btn-outline-primary btn-lg"><span>Поръчайте сега</span></a>
             </div>
         </div>
     </div>
@@ -83,7 +83,7 @@
         {
             <!-- Menu Sample -->
             <div class="menu-sample">
-                <a href="menu-list-navigation.html#Burgers">
+                <a asp-controller="Menu" asp-action="All" asp-fragment="@category.Name">
                     <img src="@category.Image" alt="" class="image">
                     <p class="title"><font size="26">@category.Name</font></p>
                 </a>
@@ -143,7 +143,7 @@
                 <button class="btn-play mb-5" data-toggle="video-modal" data-target="#modalVideo" data-video="https://www.youtube.com/embed/sYKPitkn2q8"></button>
                 <h1 class="display-2">Вижте нашето <strong>промо</strong> видео!</h1>
                 <h4 class="text-muted mb-5">Опитайте сега с нашата онлайн поръчка!</h4>
-                <a href="page-offers.html" class="btn btn-outline-primary btn-lg"><span>Поръчайте сега</span></a>
+                <a asp-controller="Menu" asp-action="All" class="btn btn-outline-primary btn-lg"><span>Поръчайте сега</span></a>
             </div>
         </div>
     </div>
