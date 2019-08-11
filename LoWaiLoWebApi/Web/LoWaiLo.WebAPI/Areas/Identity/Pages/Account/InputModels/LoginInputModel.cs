@@ -4,11 +4,13 @@
 
     public class LoginInputModel
     {
-        [Required]
+        private const string RequiredError = "Полето е задължително.";
+
+        [Required(ErrorMessage =RequiredError)]
         [Display(Name = "Потребителско име:")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredError)]
         [DataType(DataType.Password)]
         [Display(Name = "Парола:")]
         public string Password { get; set; }

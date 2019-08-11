@@ -13,5 +13,5 @@ $(document).ready(function () {
         }
         document.getElementById("Rating").value = onStar;
     });
-
 });
+

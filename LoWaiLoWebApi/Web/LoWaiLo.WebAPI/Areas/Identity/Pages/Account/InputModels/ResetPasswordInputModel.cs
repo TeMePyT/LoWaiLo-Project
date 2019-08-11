@@ -4,11 +4,14 @@
 
     public class ResetPasswordInputModel
     {
-        [Required]
-        [EmailAddress]
+        private const string RequiredError = "Полето е задължително.";
+        private const string EmailError = "Форматът трябва да бъде name@domain.com.";
+
+        [Required(ErrorMessage = RequiredError)]
+        [EmailAddress(ErrorMessage = EmailError)]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredError)]
         [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} и с най-много {1} знака.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         public string Password { get; set; }

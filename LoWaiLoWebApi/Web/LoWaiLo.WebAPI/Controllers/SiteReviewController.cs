@@ -1,6 +1,7 @@
 ﻿namespace LoWaiLo.WebAPI.Controllers
 {
     using System.Linq;
+    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Contracts;
@@ -12,9 +13,13 @@
     using Microsoft.AspNetCore.Mvc;
 
     using Microsoft.EntityFrameworkCore;
+    using X.PagedList;
 
     public class SiteReviewController : Controller
     {
+        private const int DefaultPageSize = 10;
+        private const int DefaultPageNumber = 1;
+
         private readonly ISiteReviewsService siteReviewsService;
         private readonly UserManager<ApplicationUser> userManager;
 
@@ -27,18 +32,16 @@
         [BindProperty]
         public CreateReviewInputModel Input { get; set; }
 
-        public async Task<IActionResult> All()
+        public async Task<IActionResult> All(SiteReviewViewModel model)
         {
-            SiteReviewViewModel model = new SiteReviewViewModel();
-            model.Reviews = await this.siteReviewsService.GetReviews().To<ReviewViewModel>().OrderBy(r => r.Id).Take(6).ToListAsync();
+            var reviews = await this.siteReviewsService.GetReviews().To<ReviewViewModel>().OrderByDescending(r => r.ModifiedOn).ToListAsync();
+
+            int pageNumber = model.PageNumber ?? DefaultPageNumber;
+            int pageSize = model.PageSize ?? DefaultPageSize;
+
+            model.Reviews = reviews.ToPagedList(pageNumber, pageSize);
             model.InnerModel = new CreateReviewInputModel();
             return this.View(model);
-        }
-
-        public IActionResult Create()
-        {
-            var model = new CreateReviewInputModel();
-            return this.PartialView("~/Views/Shared/Partials/_ReviewBox.cshtml", model);
         }
 
         [HttpPost]
@@ -48,11 +51,13 @@
             if (this.ModelState.IsValid)
             {
                 var author = await this.userManager.FindByNameAsync(this.User.Identity.Name);
-                await this.siteReviewsService.CreateAsync(model.Rating, model.Content, author.Id);
+                var content = Regex.Replace(model.Content, "<script.*?</script>", string.Empty, RegexOptions.Singleline | RegexOptions.IgnoreCase);
+
+                await this.siteReviewsService.CreateAsync(model.Rating, content, author.Id);
                 return this.RedirectToAction(nameof(this.All));
             }
 
-            return this.PartialView("~/Views/Shared/Partials/_ReviewBox.cshtml", model);
+            return this.RedirectToAction(nameof(this.All));
         }
     }
 }

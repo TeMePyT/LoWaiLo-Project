@@ -17,7 +17,7 @@
         public string Author { get; set; }
 
         [Display(Name="Последно коригиран на: ")]
-        public DateTime ModifiedOn{ get; set; }
+        public DateTime ModifiedOn { get; set; }
 
         public void CreateMappings(IProfileExpression configuration)
         {

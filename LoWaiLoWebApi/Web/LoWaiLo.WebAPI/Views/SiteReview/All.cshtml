@@ -1,8 +1,10 @@
-﻿@{
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList;
+@{
     ViewData["Title"] = "Мнения";
 }
 @model SiteReviewViewModel
-
 <!-- Page Title -->
 <div class="page-title page-title-lg bg-dark dark">
     <div class="bg-image bg-parallax"><img src="~/img/photos/bg-croissant.jpg" alt=""></div>
@@ -19,11 +21,11 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-xl-8 push-xl-2">
-                 @{int counter = 0; }
+
                 @foreach (var review in Model.Reviews)
                 {
-                   
-                    if (counter % 2 == 0)
+
+                    if (review.Rating > 2)
                     {
                         <!-- Blockquote -->
                         <blockquote class="blockquote blockquote-lg light" data-center-top="filter: blur(0); transform: scale(1);" data-bottom-top="transform: scale(0.9);">
@@ -44,7 +46,6 @@
                                 <span class="name">@review.Author<span class="text-muted">, @review.ModifiedOn.ToString()</span></span>
                             </footer>
                         </blockquote>
-                     counter++;
                     }
                     else
                     {
@@ -67,19 +68,30 @@
                                 <span class="name">@review.Author<span class="text-muted">, @review.ModifiedOn.ToString()</span></span>
                             </footer>
                         </blockquote>
-                     counter++;
                     }
                 }
             </div>
         </div>
     </div>
 </div>
+<div class="mt-3 d-flex justify-content-around">
+    @Html.PagedListPager((IPagedList)Model.Reviews, page => Url.Action("All",
+                                            new
+                                                {
+                                                    PageNumber = page,
+                                                   PageSize = Model.PageSize,
+                                            }),
+                                            new PagedListRenderOptions
+                                            {
+                                                MaximumPageNumbersToDisplay = 5,
+                                                LiElementClasses = new string[] { "page-item" },
+                                                PageClasses = new string[] { "page-link" }
+                                            })
+</div>
 
 <!-- Section -->
 <section class="section section-lg dark bg-dark">
-
     <div class="bg-image bg-parallax"><img src="~/img/photos/bg-review.jpg" alt=""></div>
-
     <div class="container text-center">
         <div class="row">
             <div class="col-lg-8 push-lg-2">
@@ -89,6 +101,9 @@
             </div>
         </div>
     </div>
-
 </section>
-<partial name="~/Views/Shared/Partials/_ReviewBox.cshtml" model="Model.InnerModel"/>
+<partial name="~/Views/Shared/Partials/Reviews/_ReviewBox.cshtml" model="Model.InnerModel" />
+@section scripts{
+    <script src="~/js/site.js"></script>
+    <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
+}

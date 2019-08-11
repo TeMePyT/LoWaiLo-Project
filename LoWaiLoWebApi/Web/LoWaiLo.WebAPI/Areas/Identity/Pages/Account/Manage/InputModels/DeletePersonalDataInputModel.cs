@@ -4,7 +4,9 @@
 
     public class DeletePersonalDataInputModel
     {
-        [Required]
+        private const string RequiredError = "Полето е задължително.";
+
+        [Required(ErrorMessage = RequiredError)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

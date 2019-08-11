@@ -4,7 +4,9 @@
 
     public class SetPasswordInputModel
     {
-        [Required]
+        private const string RequiredError = "Полето е задължително.";
+
+        [Required(ErrorMessage = RequiredError)]
         [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} и с най-много {1} знака.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Нова парола")]

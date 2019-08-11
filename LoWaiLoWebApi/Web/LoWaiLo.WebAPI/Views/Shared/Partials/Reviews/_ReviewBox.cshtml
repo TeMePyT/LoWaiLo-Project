@@ -16,8 +16,9 @@
                     </div>
                     <div class="form-group">
                         <label>Вашата оценка:</label>
-                        <div class="rate rate-lg rating mb-2" id="rate"><i class="fa fa-star" data-value="5"></i><i class="fa fa-star" data-value="4"></i><i class="fa fa-star" data-value="3"></i><i class="fa fa-star" data-value="2"></i><i class="fa fa-star" data-value="1"></i></div>
+                        <div class="rate rate-lg rating mb-2" id="rate"><i class="fa fa-star" data-value="5"></i><i class="fa fa-star" data-value="4"></i><i class="fa fa-star" data-value="3"></i><i class="fa fa-star" data-value="2"></i><i class="fa fa-star" data-value="1"></i></span></div>
                         <input asp-for="Rating" type="hidden" name="Rating" id="Rating" value="0" />
+                        <span asp-validation-for="Rating" class="text-danger"></span>
                     </div>
                     <div class="text-center">
                         <button class="btn btn-primary"><span>Добави</span></button>
@@ -27,4 +28,3 @@
         </div>
     </div>
 </div>
-

@@ -4,16 +4,19 @@
 
     public class RegisterInputModel
     {
-        [Required]
-        [EmailAddress]
+        private const string RequiredError = "Полето е задължително.";
+        private const string EmailError = "Форматът трябва да бъде name@domain.com.";
+
+        [Required(ErrorMessage = RequiredError)]
+        [EmailAddress(ErrorMessage = EmailError)]
         [Display(Name = "Имейл")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredError)]
         [Display(Name = "Потребителско име")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredError)]
         [StringLength(100, ErrorMessage = "{0} трябва да бъде най-малко {2} и с най-много {1} знака.", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Парола")]
@@ -24,11 +27,11 @@
         [Compare("Password", ErrorMessage = "Паролата и паролата за потвърждение не съвпадат.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredError)]
         [Display(Name = "Име")]
         public string FirsName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = RequiredError)]
         [Display(Name = "Фамилия")]
         public string LastName { get; set; }
     }
