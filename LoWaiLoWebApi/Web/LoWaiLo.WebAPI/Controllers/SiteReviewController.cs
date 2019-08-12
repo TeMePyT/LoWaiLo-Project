@@ -44,6 +44,11 @@
             return this.View(model);
         }
 
+        public IActionResult Create()
+        {
+            return this.RedirectToAction(nameof(this.All));
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> Create(CreateReviewInputModel model)
