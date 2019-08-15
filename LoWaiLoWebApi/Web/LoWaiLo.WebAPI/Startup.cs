@@ -140,6 +140,7 @@
 
             services.AddScoped<ICategoriesService, CategoriesService>();
             services.AddScoped<IProductsService, ProductsService>();
+            services.AddScoped<IAddonsService, AddonsService>();
             services.AddScoped<ISiteReviewsService, SiteReviewsService>();
             services.AddScoped<IProductReviewsService, ProductReviewsService>();
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
@@ -190,6 +191,7 @@
             app.UseSeedAdminMiddleware();
             app.UseSeedCategoriesMiddleware();
             app.UseSeedProductsMiddleware();
+            app.UseSeedAddonsMiddleware();
 
             app.UseHttpsRedirection();
 

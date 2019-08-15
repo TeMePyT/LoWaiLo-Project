@@ -8,6 +8,7 @@
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Contracts;
     using LoWaiLo.Services.Mapping;
+    using LoWaiLo.WebAPI.ViewModels.Addons;
     using LoWaiLo.WebAPI.ViewModels.Categories;
     using LoWaiLo.WebAPI.ViewModels.Menu;
     using LoWaiLo.WebAPI.ViewModels.Products;
@@ -27,14 +28,17 @@
 
         private readonly ICategoriesService categoriesService;
         private readonly IProductsService productsService;
+        private readonly IAddonsService addonsService;
         private readonly IProductReviewsService productReviewsService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public MenuController(ICategoriesService categoriesService, IProductsService productsService, IProductReviewsService productReviewsService, UserManager<ApplicationUser> userManager)
+        public MenuController(ICategoriesService categoriesService, IProductsService productsService, IProductReviewsService productReviewsService, IAddonsService addonsService, UserManager<ApplicationUser> userManager)
         {
             this.categoriesService = categoriesService;
 
             this.productsService = productsService;
+
+            this.addonsService = addonsService;
 
             this.productReviewsService = productReviewsService;
 
@@ -44,6 +48,8 @@
         public async Task<IActionResult> All(MenuViewModel model)
         {
             model.Categories = await this.categoriesService.All().To<CategoryViewModel>().ToListAsync();
+
+            model.Addons = await this.addonsService.All().To<AddonViewModel>().ToListAsync();
 
             return this.View(model);
         }

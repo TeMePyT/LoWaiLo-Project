@@ -26,6 +26,7 @@
                         {
                             <li><a href="#@category.Id">@category.Name</a></li>
                         }
+                        <li><a href="#addons">Добавки</a></li>
                     </ul>
                 </nav>
             </div>
@@ -49,7 +50,7 @@
                                             <a asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id"><img class="mb-4" src="@product.Image" alt=""></a>
                                             <h6 class="mb-0">@product.Name</h6>
                                             <div class="row align-items-center mt-4">
-                                                <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">от</span> @product.Price лв.</span></div>
+                                                <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">от</span> <b>@product.Price лв.</b></span></div>
                                                 <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Добави</span></button></div>
                                             </div>
                                         </div>
@@ -59,6 +60,31 @@
                         </div>
                     </div>
                 }
+                <!-- Menu Category  -->
+                <div id="addons" class="menu-category">
+                    <div class="menu-category-title">
+                        <div class="bg-image"><img src="https://www.dropbox.com/s/p8g01cd90dx5o7x/Addons.png?raw=1" alt=""></div>
+                        <h2 class="title">Добавки</h2>
+                    </div>
+                    <div class="menu-category-content">
+                        @foreach (var addon in Model.Addons)
+                        {
+                            <!-- Menu Item -->
+                            <div class="menu-item menu-list-item">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6 mb-2 mb-sm-0">
+                                        <h6 class="mb-0">@addon.Name</h6>
+                                        <span class="text-muted text-sm">@addon.Description</span>
+                                    </div>
+                                    <div class="col-sm-6 text-sm-right">
+                                        <span class="text-md mr-4"><span class="text-muted">от</span> <b>@addon.Price  лв.</b></span>
+                                        <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Добави</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
             </div>
         </div>
     </div>
