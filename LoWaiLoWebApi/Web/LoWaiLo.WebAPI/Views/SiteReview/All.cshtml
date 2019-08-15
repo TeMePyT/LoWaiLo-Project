@@ -40,6 +40,11 @@
                                         <i class="fa fa-star"></i>
                                     }
                                 </div>
+                                @if (review.Author == this.User.Identity.Name)
+                                {
+                                    <button type="button" class="close" aria-label="Close"><i class="ti-close"></i></button>
+                                }
+
                                 <p style="font-size:16px">@review.Content</p>
                             </div>
                             <footer>

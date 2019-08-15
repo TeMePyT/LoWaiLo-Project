@@ -1,0 +1,129 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList;
+@model DetailsViewModel
+<!-- Section -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-2">
+                <!-- Product Single -->
+                <div class="product-single">
+                    <div class="product-image d-flex justify-content-around">
+                        <img src="@Model.Product.Image" alt="">
+                    </div>
+                    <div class="product-content">
+                        <div class="product-header text-center">
+                            <h1 class="product-title">@Model.Product.Name</h1>
+                        </div>
+                        <h5 class="text-center text-muted">Допълнителна информация</h5>
+                        <textarea cols="30" rows="4" class="form-control" placeholder="Попълнете тук, ако имате специални изисквания..."></textarea>
+
+
+                        <h5 class="text-center text-muted">Поръчайте сега!</h5>
+                        <div class="product-price text-center">@Model.Product.Price лв</div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group text-center">
+                                    <input type="number" class="form-control input-qty form-control-lg" min="1" value="1">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <button class="btn btn-outline-primary btn-lg btn-block"><span>Добави</span></button>
+                            </div>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a asp-controller="Menu" asp-action="All" class="btn btn-link">Обратно в менюто</a>
+                        </div>
+                    </div>
+                    <h3 class="mt-5 mb-5 text-center">Мнения</h3>
+                    @foreach (var review in Model.Product.Reviews)
+                    {
+                        if (review.Rating > 2)
+                        {
+                            <!-- Blockquote -->
+                            <blockquote class="blockquote blockquote-lg light" data-center-top="filter: blur(0); transform: scale(1);" data-bottom-top="transform: scale(0.9);">
+                                <div class="blockquote-content">
+                                    <div class="rate rate-sm mb-3">
+                                        @for (int i = 1; i <= review.Rating; i++)
+                                        {
+                                            <i class="fa fa-star active"></i>
+                                        }
+                                        @for (int i = (review.Rating + 1); i <= 5; i++)
+                                        {
+                                            <i class="fa fa-star"></i>
+                                        }
+                                    </div>
+                                    @if (review.Author == this.User.Identity.Name)
+                                    {
+                                        <button type="button" class="close" aria-label="Close"><i class="ti-close"></i></button>
+                                    }
+
+                                    <p style="font-size:16px">@review.Content</p>
+                                </div>
+                                <footer>
+                                    <span class="name">@review.Author<span class="text-muted">, @review.ModifiedOn.ToString()</span></span>
+                                </footer>
+                            </blockquote>
+                        }
+                        else
+                        {
+                            <!-- Blockquote -->
+                            <blockquote class="blockquote blockquote-lg" data-center-top="filter: blur(0); transform: scale(1);" data-bottom-top="transform: scale(0.9);">
+                                <div class="blockquote-content dark">
+                                    <div class="rate rate-sm mb-3">
+                                        @for (int i = 1; i <= review.Rating; i++)
+                                        {
+                                            <i class="fa fa-star active"></i>
+                                        }
+                                        @for (int i = (review.Rating + 1); i <= 5; i++)
+                                        {
+                                            <i class="fa fa-star"></i>
+                                        }
+                                    </div>
+                                    <p style="font-size:16px">@review.Content</p>
+                                </div>
+                                <footer>
+                                    <span class="name">@review.Author<span class="text-muted">, @review.ModifiedOn.ToString()</span></span>
+                                </footer>
+                            </blockquote>
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="mt-3 d-flex justify-content-around">
+    @Html.PagedListPager((IPagedList)Model.Product.Reviews, page => Url.Action("All",
+                                            new
+                                                {
+                                                    PageNumber = page,
+                                                   PageSize = Model.PageSize,
+                                            }),
+                                            new PagedListRenderOptions
+                                            {
+                                                MaximumPageNumbersToDisplay = 5,
+                                                LiElementClasses = new string[] { "page-item" },
+                                                PageClasses = new string[] { "page-link" }
+                                            })
+</div>
+
+<!-- Section -->
+<section class="section section-lg dark bg-dark">
+    <div class="bg-image bg-parallax"><img src="~/img/photos/bg-review.jpg" alt=""></div>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-lg-8 push-lg-2">
+                <h3 class="mb-3">Желаете ли да оставите мнение за нас?</h3>
+                <h4 class="text-muted">Не се притеснявайте да го направите!</h4>
+                <button class="btn btn-outline-primary btn-lg" data-toggle="modal" data-target="#reviewModal"><span>Оставете мнение</span></button>
+            </div>
+        </div>
+    </div>
+</section>
+<partial name="~/Views/Shared/Partials/Reviews/_ProductReviewBox.cshtml" model="Model.InnerModel" />
+@section scripts{
+    <script src="~/js/site.js"></script>
+    <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
+}

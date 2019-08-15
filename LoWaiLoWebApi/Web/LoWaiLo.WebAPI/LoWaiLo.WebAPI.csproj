@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <None Remove="Areas\Identity\Pages\Account\Manage\_Layout.cshtml~RF52f1278f.TMP" />
+    <None Remove="Views\Menu\Details.cshtml~RF9a44b6c.TMP" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="..\..\stylecop.json" Link="stylecop.json" />

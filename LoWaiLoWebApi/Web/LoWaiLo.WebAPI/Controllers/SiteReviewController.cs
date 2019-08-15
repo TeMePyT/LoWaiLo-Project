@@ -3,11 +3,13 @@
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
+
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Contracts;
     using LoWaiLo.Services.Mapping;
     using LoWaiLo.WebAPI.ViewModels.Reviews.InputModels;
     using LoWaiLo.WebAPI.ViewModels.Reviews.ViewModels;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
@@ -44,14 +46,14 @@
             return this.View(model);
         }
 
-        public IActionResult Create()
+        public IActionResult AddReview()
         {
             return this.RedirectToAction(nameof(this.All));
         }
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(CreateReviewInputModel model)
+        public async Task<IActionResult> AddReview(CreateReviewInputModel model)
         {
             if (this.ModelState.IsValid)
             {

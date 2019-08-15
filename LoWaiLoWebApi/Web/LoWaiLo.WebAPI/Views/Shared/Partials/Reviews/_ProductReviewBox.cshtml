@@ -1,4 +1,4 @@
-﻿@model CreateReviewInputModel
+﻿@model CreateProductReviewInputModel
 <!-- Modal / Review -->
 <div class="modal fade" id="reviewModal" role="dialog">
     <div class="modal-dialog" role="document">
@@ -9,7 +9,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
             </div>
             <div class="modal-body">
-                <form id="review" method="post" action="AddReview">
+                <form asp-controller="Menu" method="post" asp-action="AddReview">
                     <div class="form-group">
                         <textarea asp-for="Content" cols="30" rows="6" class="form-control" placeholder="Напишете вашето ревю тук..."></textarea>
                         <span asp-validation-for="Content" class="text-danger"></span>
@@ -18,6 +18,7 @@
                         <label>Вашата оценка:</label>
                         <div class="rate rate-lg rating mb-2" id="rate"><i class="fa fa-star" data-value="5"></i><i class="fa fa-star" data-value="4"></i><i class="fa fa-star" data-value="3"></i><i class="fa fa-star" data-value="2"></i><i class="fa fa-star" data-value="1"></i></span></div>
                         <input asp-for="Rating" type="hidden" name="Rating" id="Rating" value="0" />
+                        <input asp-for="ProductId" type="hidden" name="ProductId" value="@this.ViewBag.Id" />
                     </div>
                     <div class="text-center">
                         <button class="btn btn-primary"><span>Добави</span></button>

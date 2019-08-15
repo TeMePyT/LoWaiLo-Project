@@ -3,7 +3,6 @@
     using System.Collections.Generic;
 
     using LoWaiLo.Data.Common;
-    using LoWaiLo.Services.Mapping;
 
     public class Product : BaseModel<int>
     {
