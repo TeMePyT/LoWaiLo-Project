@@ -34,6 +34,7 @@
         public async Task AddRangeAsync(IEnumerable<Product> products)
         {
             await this.productsRepository.AddRangeAsync(products);
+
             await this.productsRepository.SaveChangesAsync();
         }
 

@@ -83,19 +83,20 @@
             Assert.True(result);
         }
 
-        //Тестът минава само ако се рънне самостоятелно...
         [Fact]
         public async Task FindByIdShouldReturnCorrectValues()
         {
             var categories = new List<Category>();
             var appetizers = new Category
             {
+                Id=1,
                 Name = "Десерти",
                 Image = "https://www.dropbox.com/s/r1qx7zp4zja7azt/sm_01.jpg?dl=0",
             };
             categories.Add(appetizers);
             var soups = new Category
             {
+                Id=2,
                 Name = "Супи",
                 Image = "https://www.dropbox.com/s/x8nge5s4s919lzb/sm_02.jpg?dl=0",
             };

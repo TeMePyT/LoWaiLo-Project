@@ -57,7 +57,7 @@
 
             int pageNumber = model.PageNumber ?? DefaultPageNumber;
             int pageSize = model.PageSize ?? DefaultPageSize;
-            model.Product.Reviews = this.productReviewsService.GetReviews(id).To<ReviewViewModel>().ToPagedList(pageNumber, pageSize);
+            model.Product.Reviews = this.productReviewsService.GetReviews(id).To<ReviewViewModel>().OrderByDescending(r => r.ModifiedOn).ToPagedList(pageNumber, pageSize);
             model.InnerModel = new CreateProductReviewInputModel();
 
             this.ViewBag.Id = id;

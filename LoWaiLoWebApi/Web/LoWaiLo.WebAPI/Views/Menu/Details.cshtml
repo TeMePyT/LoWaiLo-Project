@@ -9,17 +9,16 @@
             <div class="col-lg-8 push-lg-2">
                 <!-- Product Single -->
                 <div class="product-single">
-                    <div class="product-image d-flex justify-content-around">
-                        <img src="@Model.Product.Image" alt="">
-                    </div>
                     <div class="product-content">
+                        <div class="product-image d-flex justify-content-around">
+                            <img src="@Model.Product.Image" alt="">
+                        </div>
                         <div class="product-header text-center">
                             <h1 class="product-title">@Model.Product.Name</h1>
                         </div>
                         <h5 class="text-center text-muted">Допълнителна информация</h5>
                         <textarea cols="30" rows="4" class="form-control" placeholder="Попълнете тук, ако имате специални изисквания..."></textarea>
-
-
+                        <br />
                         <h5 class="text-center text-muted">Поръчайте сега!</h5>
                         <div class="product-price text-center">@Model.Product.Price лв</div>
                         <div class="row">

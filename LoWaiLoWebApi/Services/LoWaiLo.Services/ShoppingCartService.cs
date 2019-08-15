@@ -14,9 +14,7 @@
 
     public class ShoppingCartService : IShoppingCartService
     {
-#pragma warning disable SA1310 // Field names should not contain underscore
-        private const int DEFAULT_PRODUCT_QUANTITY = 1;
-#pragma warning restore SA1310 // Field names should not contain underscore
+        private const int DefaultProductQuantity = 1;
 
         private readonly IRepository<ShoppingCartProduct> shoppingCartProductsRepository;
         private readonly IProductsService productsService;
@@ -53,7 +51,7 @@
             shoppingCartProduct = new ShoppingCartProduct
             {
                 Product = product,
-                Quantity = quantity == null ? DEFAULT_PRODUCT_QUANTITY : quantity.Value,
+                Quantity = quantity == null ? DefaultProductQuantity : quantity.Value,
                 ShoppingCartId = user.ShoppingCartId,
             };
 
