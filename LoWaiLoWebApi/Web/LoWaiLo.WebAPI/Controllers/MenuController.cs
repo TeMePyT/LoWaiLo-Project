@@ -1,5 +1,6 @@
 ﻿namespace LoWaiLo.WebAPI.Controllers
 {
+    using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -45,7 +46,7 @@
             this.userManager = userManager;
         }
 
-        public async Task<IActionResult> All(MenuViewModel model)
+        public async Task<IActionResult> Index(MenuViewModel model)
         {
             model.Categories = await this.categoriesService.All().To<CategoryViewModel>().ToListAsync();
 
@@ -77,17 +78,26 @@
         {
             if (this.ModelState.IsValid)
             {
-                var author = await this.userManager.FindByNameAsync(this.User.Identity.Name);
-                var content = Regex.Replace(model.Content, "<script.*?</script>", string.Empty, RegexOptions.Singleline | RegexOptions.IgnoreCase);
-                if (model.ProductId > 0)
+                try
                 {
-                    await this.productReviewsService.CreateAsync(model.Rating, content, author.Id, (int)model.ProductId);
-                }
+                    var author = await this.userManager.FindByNameAsync(this.User.Identity.Name);
+                    var content = Regex.Replace(model.Content, "<script.*?</script>", string.Empty, RegexOptions.Singleline | RegexOptions.IgnoreCase);
+                    if (model.ProductId > 0)
+                    {
+                        await this.productReviewsService.CreateAsync(model.Rating, content, author.Id, (int)model.ProductId);
+                    }
 
-                var productId = (int)model.ProductId;
-                return this.RedirectToAction(nameof(this.Details), new { id = productId });
+                    var productId = (int)model.ProductId;
+                    return this.RedirectToAction(nameof(this.Details), new { id = productId });
+                }
+                catch (Exception)
+                {
+                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    return this.RedirectToAction("Error", "Home");
+                }
             }
 
+            this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
             return this.RedirectToAction("Error", "Home");
         }
     }

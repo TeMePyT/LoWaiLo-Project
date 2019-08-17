@@ -20,13 +20,13 @@
 
         public string LastName { get; set; }
 
-        public ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Order> Orders { get; set; }
 
-        public ICollection<ProductReview> ProductReviews { get; set; }
+        public virtual ICollection<ProductReview> ProductReviews { get; set; }
 
-        public ICollection<SiteReview> SiteReviews { get; set; }
+        public virtual ICollection<SiteReview> SiteReviews { get; set; }
 
-        public ICollection<Like> ProductsLiked { get; set; }
+        public virtual ICollection<Like> ProductsLiked { get; set; }
 
         public int ShoppingCartId { get; set; }
 

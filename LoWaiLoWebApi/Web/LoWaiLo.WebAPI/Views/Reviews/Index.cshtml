@@ -48,7 +48,7 @@
                                 <p style="font-size:16px">@review.Content</p>
                             </div>
                             <footer>
-                                <span class="name">@review.Author<span class="text-muted">, @review.ModifiedOn.ToString()</span></span>
+                                <span class="name"><b>@review.Author,</b><span class="text-muted"> @review.ModifiedOn.ToString(@"MM\/dd\/yyyy HH:mm:ss")</span></span>
                             </footer>
                         </blockquote>
                     }

@@ -23,7 +23,7 @@
                                         <li><a href="#">Услуги</a></li>
                                         <li><a href="#">Запази маса</a></li>
                                         <li><a href="#">Галрия</a></li>
-                                        <li><a asp-controller="SiteReview" asp-action="All">Мнения</a></li>
+                                        <li><a asp-controller="Reviews" asp-action="Index">Мнения</a></li>
                                         <li><a href="#">FAQ</a></li>
                                     </ul>
                                     <div class="dropdown-image">
@@ -31,24 +31,16 @@
                                     </div>
                                 </div>
                             </li>
-                            <li> <a asp-controller="Menu" asp-action="All">Меню</a></li>
+                            <li> <a asp-controller="Menu" asp-action="Index">Меню</a></li>
                             <li><a href="#">Оферти</a></li>
                             <li><a asp-controller="Home" asp-action="Contact">За контакти</a></li>
                         </ul>
                     </nav>
                 </div>
-                <div class="col-md-2">
-                    <a href="#" class="module module-cart right" data-toggle="panel-cart">
-                        <span class="cart-icon">
-                            <i class="ti ti-shopping-cart"></i>
-                            <span class="notification">2</span>
-                        </span>
-                        <span class="cart-value">$32.98</span>
-                    </a>
-                </div>
+              @(await Component.InvokeAsync("NavbarBasketComponent"))
                 <div class="col-md-1">
                     <div class="module left">
-                        <a asp-controller="Menu" asp-action="All" class="btn btn-outline-secondary"><span>Поръчай</span></a>
+                        <a asp-controller="Menu" asp-action="Index" class="btn btn-outline-secondary"><span>Поръчай</span></a>
                     </div>
                 </div>
                 <div class="col-md-1">

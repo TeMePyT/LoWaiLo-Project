@@ -4,9 +4,12 @@
     using System.Linq;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
-
+    using LoWaiLo.Common;
     using LoWaiLo.Data.Models;
+    using LoWaiLo.Services.Contracts;
     using LoWaiLo.WebAPI.Areas.Identity.Pages.Account.InputModels;
+    using LoWaiLo.WebAPI.Helpers;
+    using LoWaiLo.WebAPI.ViewModels.ShoppingCart;
     using Microsoft.AspNetCore.Authentication;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
@@ -22,17 +25,20 @@
     {
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IShoppingCartService shoppingCartService;
         private readonly ILogger<RegisterModel> logger;
         private readonly IEmailSender emailSender;
 
         public RegisterModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
+            IShoppingCartService shoppingCartService,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.shoppingCartService = shoppingCartService;
             this.logger = logger;
             this.emailSender = emailSender;
         }
@@ -90,6 +96,23 @@
                     await this.userManager.AddToRoleAsync(user, "User");
 
                     await this.signInManager.SignInAsync(user, isPersistent: false);
+
+                    var cart = SessionHelper.GetObjectFromJson<ShoppingCartViewModel>(this.HttpContext.Session, GlobalConstants.SessionShoppingCartKey);
+                    if (cart != null)
+                    {
+                        foreach (var product in cart.Products)
+                        {
+                            await this.shoppingCartService.AddProductInCart(product.Id, user.Id, product.Quantity);
+                        }
+
+                        foreach (var addon in cart.Addons)
+                        {
+                            await this.shoppingCartService.AddAddonInCart(addon.Id, user.Id, addon.Quantity);
+                        }
+
+                        this.HttpContext.Session.Remove(GlobalConstants.SessionShoppingCartKey);
+                    }
+
                     return this.LocalRedirect(returnUrl);
                 }
 

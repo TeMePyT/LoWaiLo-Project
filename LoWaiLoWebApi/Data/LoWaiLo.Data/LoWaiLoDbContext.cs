@@ -43,6 +43,8 @@
 
         public DbSet<ShoppingCartProduct> ShoppingCartProducts { get; set; }
 
+        public DbSet<ShoppingCartAddon> ShoppingCartAddons { get; set; }
+
         public DbSet<Like> Likes { get; set; }
 
         public DbSet<UserFavoriteProduct> UserFavoriteProducts { get; set; }
@@ -71,6 +73,8 @@
             builder.Entity<OrderProduct>().HasKey(x => new { x.OrderId, x.ProductId });
 
             builder.Entity<ShoppingCartProduct>().HasKey(x => new { x.ProductId, x.ShoppingCartId });
+
+            builder.Entity<ShoppingCartAddon>().HasKey(x => new { x.AddonId, x.ShoppingCartId });
 
             builder.Entity<UserFavoriteProduct>().HasKey(x => new { x.ProductId, x.UserId });
 

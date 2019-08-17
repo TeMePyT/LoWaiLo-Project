@@ -1,8 +1,22 @@
-﻿@{
-    ViewData["Title"] = "Error";
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Грешка";
 }
 
-<h1 class="text-danger">Грешка.</h1>
-<h2 class="text-danger">@ViewData["Message"] .</h2>
-
+<!-- Page Title -->
+<div class="page-title bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-4">
+                <h3 class="mb-0" style="color:red">@ViewData["Title"]</h3>
+                <h4 class="text-muted mb-0" style="color:red">@ViewBag.ErrorMessage</h4>
+                @if (Model.ShowRequestId)
+                {
+                    <h4 class="text-muted mb-0" style="color:red"><strong>Заявка номер:</strong> <code>@Model.RequestId</code></h4>
+                    <h5 class="text-muted mb-0" style="color:red">Моля, изпратете на admin@gmail.com номера на заявката ви и кратко описани, за да получите помощ.</h5>
+                }
+            </div>
+        </div>
+    </div>
+</div>
 

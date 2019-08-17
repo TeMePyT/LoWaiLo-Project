@@ -6,10 +6,10 @@
     {
         public string UserId { get; set; }
 
-        public ApplicationUser User { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         public int ProductId { get; set; }
 
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

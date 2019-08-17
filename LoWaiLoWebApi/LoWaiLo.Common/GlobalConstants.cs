@@ -9,5 +9,7 @@
         public const string CarrierRoleName = "Carrier";
 
         public const string ApplicationUserRoleName = "User";
+
+        public const string SessionShoppingCartKey = "SessionCart";
     }
 }

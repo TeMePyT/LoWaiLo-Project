@@ -8,6 +8,8 @@
 
         public virtual ApplicationUser User { get; set; }
 
-        public ICollection<ShoppingCartProduct> ShoppingCartProducts { get; set; }
+        public virtual ICollection<ShoppingCartProduct> ShoppingCartProducts { get; set; }
+
+        public virtual ICollection<ShoppingCartAddon> ShoppingCartAddons { get; set; }
     }
 }

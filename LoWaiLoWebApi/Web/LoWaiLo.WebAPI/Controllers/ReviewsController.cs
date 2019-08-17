@@ -1,5 +1,6 @@
 ﻿namespace LoWaiLo.WebAPI.Controllers
 {
+    using System;
     using System.Linq;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
@@ -17,7 +18,7 @@
     using Microsoft.EntityFrameworkCore;
     using X.PagedList;
 
-    public class SiteReviewController : Controller
+    public class ReviewsController : Controller
     {
         private const int DefaultPageSize = 10;
         private const int DefaultPageNumber = 1;
@@ -25,16 +26,13 @@
         private readonly ISiteReviewsService siteReviewsService;
         private readonly UserManager<ApplicationUser> userManager;
 
-        public SiteReviewController(ISiteReviewsService siteReviewsService, UserManager<ApplicationUser> userManager)
+        public ReviewsController(ISiteReviewsService siteReviewsService, UserManager<ApplicationUser> userManager)
         {
             this.siteReviewsService = siteReviewsService;
             this.userManager = userManager;
         }
 
-        [BindProperty]
-        public CreateReviewInputModel Input { get; set; }
-
-        public async Task<IActionResult> All(SiteReviewViewModel model)
+        public async Task<IActionResult> Index(SiteReviewViewModel model)
         {
             var reviews = await this.siteReviewsService.GetReviews().To<ReviewViewModel>().OrderByDescending(r => r.ModifiedOn).ToListAsync();
 
@@ -48,7 +46,7 @@
 
         public IActionResult AddReview()
         {
-            return this.RedirectToAction(nameof(this.All));
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [HttpPost]
@@ -57,14 +55,23 @@
         {
             if (this.ModelState.IsValid)
             {
-                var author = await this.userManager.FindByNameAsync(this.User.Identity.Name);
-                var content = Regex.Replace(model.Content, "<script.*?</script>", string.Empty, RegexOptions.Singleline | RegexOptions.IgnoreCase);
+                try
+                {
+                    var author = await this.userManager.FindByNameAsync(this.User.Identity.Name);
+                    var content = Regex.Replace(model.Content, "<script.*?</script>", string.Empty, RegexOptions.Singleline | RegexOptions.IgnoreCase);
 
-                await this.siteReviewsService.CreateAsync(model.Rating, content, author.Id);
-                return this.RedirectToAction(nameof(this.All));
+                    await this.siteReviewsService.CreateAsync(model.Rating, content, author.Id);
+                    return this.RedirectToAction(nameof(this.Index));
+                }
+                catch (Exception)
+                {
+                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    return this.RedirectToAction("Error", "Home");
+                }
             }
 
-            return this.RedirectToAction(nameof(this.All));
+            this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+            return this.RedirectToAction("Error", "Home");
         }
     }
 }

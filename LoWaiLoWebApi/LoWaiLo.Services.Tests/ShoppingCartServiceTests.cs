@@ -21,8 +21,10 @@
     public class ShoppingCartServiceTests
     {
         private readonly IRepository<ShoppingCartProduct> shoppingCartProductsRepository;
+        private readonly IRepository<ShoppingCartAddon> shoppingCartAddonsRepository;
         private readonly LoWaiLoDbContext context;
         private readonly Mock<IProductsService> productsService;
+        private readonly Mock<IAddonsService> addonsService;
         public ShoppingCartServiceTests()
         {
             var options = new DbContextOptionsBuilder<LoWaiLoDbContext>()
@@ -31,7 +33,9 @@
             this.context = new LoWaiLoDbContext(options);
 
             this.shoppingCartProductsRepository = new DbRepository<ShoppingCartProduct>(context);
+            this.shoppingCartAddonsRepository = new DbRepository<ShoppingCartAddon>(context);
             this.productsService = new Mock<IProductsService>();
+            this.addonsService = new Mock<IAddonsService>();
         }
 
         [Fact]
@@ -59,7 +63,7 @@
                     Image = "https://www.dropbox.com/s/r0r2ax7al6qtbjk/03.jpg?dl=0",
                 });
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
 
             await shoppingCartService.AddProductInCart(productId, userId);
             var result1 = shoppingCartProductsRepository.All().ToList();
@@ -91,7 +95,7 @@
                     Image = "https://www.dropbox.com/s/r0r2ax7al6qtbjk/03.jpg?dl=0",
                 });
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
             await shoppingCartService.AddProductInCart(productId, userId);
 
             var result = shoppingCartProductsRepository.All().ToList();
@@ -116,7 +120,7 @@
             this.productsService.Setup(p => p.GetProductById(productId))
               .Returns(product);
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
             await shoppingCartService.AddProductInCart(productId, userId);
 
             var result = shoppingCartProductsRepository.All().ToList();
@@ -149,7 +153,7 @@
             userStore.Setup(s => s.FindByIdAsync(userId, CancellationToken.None)).ReturnsAsync(context.Users.First(x => x.Id == userId));
             var userManager = TestUserManager(userStore.Object);
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
 
             await shoppingCartService.AddProductInCart(product.Id, user.Id);
             await shoppingCartService.AddProductInCart(product.Id, user.Id);
@@ -188,7 +192,7 @@
             userStore.Setup(s => s.FindByIdAsync(userId, CancellationToken.None)).ReturnsAsync(context.Users.First(x => x.Id == userId));
             var userManager = TestUserManager(userStore.Object);
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
 
             await shoppingCartService.AddProductInCart(product.Id, user.Id, quantity);
 
@@ -246,7 +250,7 @@
             userStore.Setup(s => s.FindByIdAsync(userId, CancellationToken.None)).ReturnsAsync(context.Users.First(x => x.Id == userId));
             var userManager = TestUserManager(userStore.Object);
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
             var result = shoppingCartService.GetAllShoppingCartProducts(user.Id).Count();
 
             Assert.Equal(2, result);
@@ -262,7 +266,7 @@
             userStore.Setup(s => s.FindByIdAsync(userId, CancellationToken.None)).ReturnsAsync(user);
             var userManager = TestUserManager(userStore.Object);
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
 
             var result = shoppingCartService.GetAllShoppingCartProducts(userId);
 
@@ -282,7 +286,7 @@
             userStore.Setup(s => s.FindByIdAsync(userId, CancellationToken.None)).ReturnsAsync(context.Users.First(x => x.Id == userId));
             var userManager = TestUserManager(userStore.Object);
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
 
             var result = shoppingCartService.AnyProdicts(userId);
 
@@ -302,7 +306,7 @@
             userStore.Setup(s => s.FindByIdAsync(userId, CancellationToken.None)).ReturnsAsync(context.Users.First(x => x.Id == userId));
             var userManager = TestUserManager(userStore.Object);
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
 
             var productId = 1;
             this.productsService.Setup(p => p.GetProductById(productId))
@@ -376,7 +380,7 @@
 
             productsService.Setup(x => x.GetProductById(products.First().Id)).Returns(products.First());
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
 
             var firstCheck = shoppingCartService.GetAllShoppingCartProducts(userId).ToList().Count();
             Assert.Equal(2, firstCheck);
@@ -426,7 +430,7 @@
 
             productsService.Setup(x => x.GetProductById(product.Id)).Returns(product);
 
-            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, userManager);
+            var shoppingCartService = new ShoppingCartService(shoppingCartProductsRepository, productsService.Object, shoppingCartAddonsRepository, addonsService.Object, userManager);
 
             await shoppingCartService.UpdateShoppingCartProductQuantity(product.Id, user.Id, quantity);
 

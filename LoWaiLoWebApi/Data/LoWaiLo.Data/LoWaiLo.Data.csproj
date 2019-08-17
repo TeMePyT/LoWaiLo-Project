@@ -29,6 +29,12 @@
   <Compile Remove="Migrations\20190802182352_test.Designer.cs" />
   <Compile Remove="Migrations\20190802182652_test.cs" />
   <Compile Remove="Migrations\20190802182652_test.Designer.cs" />
+  <Compile Remove="Migrations\20190816194337_AddingShoppingCartAddons.cs" />
+  <Compile Remove="Migrations\20190816194337_AddingShoppingCartAddons.Designer.cs" />
+  <Compile Remove="Migrations\20190816204725_SomeTweaksConnectedToAddons.cs" />
+  <Compile Remove="Migrations\20190816204725_SomeTweaksConnectedToAddons.Designer.cs" />
+  <Compile Remove="Migrations\20190816204851_SomeTweaksConnectedToAddons.cs" />
+  <Compile Remove="Migrations\20190816204851_SomeTweaksConnectedToAddons.Designer.cs" />
 </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />

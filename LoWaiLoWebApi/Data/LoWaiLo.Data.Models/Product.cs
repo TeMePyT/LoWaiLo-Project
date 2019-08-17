@@ -18,7 +18,7 @@
 
         public int CategoryId { get; set; }
 
-        public Category Category { get; set; }
+        public virtual Category Category { get; set; }
 
         public ICollection<Like> Likes { get; set; }
 

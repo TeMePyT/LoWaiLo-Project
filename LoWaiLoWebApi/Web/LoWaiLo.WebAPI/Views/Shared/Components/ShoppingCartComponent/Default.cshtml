@@ -1,0 +1,85 @@
+﻿@model ShoppingCartViewModel
+<!-- Panel Cart -->
+    <div id="panel-cart">
+        <div class="panel-cart-container">
+            <div class="panel-cart-title">
+                <h5 class="title">Вашата количка</h5>
+                <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+            </div>
+            <div class="panel-cart-content">
+                <table class="table-cart">
+                    @if (Model.Addons.Count == 0 && Model.Products.Count == 0)
+                    {
+                        <tr>
+                            <td class="actions">
+                                <p>Вашата количка е празна.</p>
+                                <p>Моля добавете продукти за да продължите.</p>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @foreach (var product in Model.Products)
+                        {
+                            <tr>
+                                <td class="actions">
+                                    <a class="text-danger pr-2" asp-controller="ShoppingCart" asp-action="EditProductQuantity" asp-route-id="@product.Id" asp-route-quantity="@(product.Quantity-1)"><i class="fa fa-minus-circle"> </i> </a>
+                                    @product.Quantity
+                                    <a class="text-danger pl-2" asp-controller="ShoppingCart" asp-action="EditProductQuantity" asp-route-id="@product.Id" asp-route-quantity="@(product.Quantity+1)"><i class="fa fa-plus-circle"> </i> </a>
+                                </td>
+                                <td class="title">
+                                    <span class="name"><a asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id">@product.Name</a></span>
+                                </td>
+                                <td class="price">@product.TotalPrice</td>
+                                <td class="actions">
+                                    <a asp-controller="ShoppingCart" asp-action="DeleteProduct" asp-route-id="@product.Id" class="action-icon"><i class="ti ti-close"></i></a>
+                                </td>
+                            </tr>
+                        }
+                        @foreach (var addon in Model.Addons)
+                        {
+                            <tr>
+                                <td class="actions">
+                                    <a class="text-danger pr-2" asp-controller="ShoppingCart" asp-action="EditAddonQuantity" asp-route-id="@addon.Id" asp-route-quantity="@(addon.Quantity-1)"><i class="fa fa-minus-circle"> </i> </a>
+                                    @addon.Quantity
+                                    <a class="text-danger pl-2" asp-controller="ShoppingCart" asp-action="EditProductQuantity" asp-route-id="@addon.Id" asp-route-quantity="@(addon.Quantity+1)"><i class="fa fa-plus-circle"> </i> </a>
+                                </td>
+                                <td class="title">
+                                    <span class="name">@addon.Name</span>
+                                </td>
+                                <td class="price">@addon.TotalPrice</td>
+                                <td class="actions">
+                                    <a asp-controller="ShoppingCart" asp-action="DeleteAddon" asp-route-id="@addon.Id" class="action-icon"><i class="ti ti-close"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </table>
+                <div class="cart-summary">
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Общо продукти:</div>
+                        <div class="col-5"><strong>@Model.ProductsTotal</strong></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Доставка:</div>
+                        <div class="col-5"><strong>@Model.DeliveryPrice лв</strong></div>
+                    </div>
+                    <hr class="hr-sm">
+                    <div class="row text-lg">
+                        <div class="col-7 text-right text-muted"> Общо:</div>
+                        <div class="col-5"><strong>@Model.ShoppingCartTotal</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @if (Model.Addons.Count == 0 && Model.Products.Count == 0)
+        {
+            <button  class="panel-cart-action btn btn-info btn-block btn-lg" disabled><span>Приключи проръчката</span></button>
+        }
+        else
+        {
+            <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Приключи проръчката</span></a>
+        }
+
+    </div>
+

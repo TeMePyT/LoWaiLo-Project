@@ -51,7 +51,7 @@
                 };
                 addons.Add(meat);
 
-                var vegetables= new Addon
+                var vegetables = new Addon
                 {
                     Name = "Зеленчуци",
                     Description = "100 гр.",

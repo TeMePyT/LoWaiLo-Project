@@ -92,6 +92,12 @@
                .AddRoleStore<ApplicationRoleStore>()
                .AddDefaultTokenProviders();
 
+            services.AddSession(options =>
+            {
+                options.Cookie.HttpOnly = true;
+                options.IdleTimeout = new TimeSpan(0, 4, 0, 0);
+            });
+
             services.AddCors();
 
             services
@@ -198,6 +204,8 @@
             app.UseStaticFiles();
 
             app.UseCookiePolicy();
+
+            app.UseSession();
 
             app.UseAuthentication();
 

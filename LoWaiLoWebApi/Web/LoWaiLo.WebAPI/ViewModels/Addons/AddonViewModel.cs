@@ -4,7 +4,7 @@
 
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Mapping;
- 
+
     public class AddonViewModel : IMapFrom<Addon>
     {
         public int Id { get; set; }

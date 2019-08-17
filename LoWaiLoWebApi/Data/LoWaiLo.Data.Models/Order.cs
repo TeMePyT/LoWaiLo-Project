@@ -9,7 +9,7 @@
     {
         public string CustomerId { get; set; }
 
-        public ApplicationUser Customer { get; set; }
+        public virtual ApplicationUser Customer { get; set; }
 
         public OrderStatus Status { get; set; }
 
@@ -17,6 +17,6 @@
 
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
 
-        public ICollection<OrderAddon> OrderAddons { get; set; }
+        public virtual ICollection<OrderAddon> OrderAddons { get; set; }
     }
 }
