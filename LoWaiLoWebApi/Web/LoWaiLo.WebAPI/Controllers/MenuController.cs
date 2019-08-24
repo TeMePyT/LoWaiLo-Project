@@ -68,13 +68,14 @@
             model.InnerModel = new CreateProductReviewInputModel();
 
             this.ViewBag.Id = id;
+            this.TempData["ProductId"] = id;
 
             return this.View(model);
         }
 
         public IActionResult AddReview()
         {
-            return this.RedirectToAction(nameof(this.Index));
+            return this.RedirectToAction(nameof(this.Details), new { id = (int)this.TempData["ProductId"] });
         }
 
         [HttpPost]
@@ -104,6 +105,30 @@
 
             this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
             return this.RedirectToAction("Error", "Home");
+        }
+
+        [Authorize]
+        public async Task<IActionResult> DeleteProductReview(int id)
+        {
+            if (this.productReviewsService.GetReviews((int)this.TempData["ProductId"]).Any(x => x.Id == id))
+            {
+                try
+                {
+                    await this.productReviewsService.DeleteReviewAsync(id);
+
+                    return this.RedirectToAction(nameof(this.Details), new { id = (int)this.TempData["ProductId"] });
+                }
+                catch (Exception)
+                {
+                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    return this.RedirectToAction("Error", "Home");
+                }
+            }
+            else
+            {
+                this.ViewBag.ErrorMessage = $"Мнение с номер {id} не беше намерено.";
+                return this.RedirectToAction("Error", "Home");
+            }
         }
     }
 }

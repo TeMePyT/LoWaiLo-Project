@@ -69,7 +69,7 @@
             {
                 var user = new ApplicationUser
                 {
-                    UserName = this.Input.Email,
+                    UserName = this.Input.UserName,
                     Email = this.Input.Email,
                     FirstName = this.Input.FirsName,
                     LastName = this.Input.LastName,

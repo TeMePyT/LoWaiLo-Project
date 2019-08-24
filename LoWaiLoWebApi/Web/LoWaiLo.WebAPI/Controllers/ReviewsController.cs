@@ -73,5 +73,29 @@
             this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
             return this.RedirectToAction("Error", "Home");
         }
+
+        [Authorize]
+        public async Task<IActionResult> DeleteReview(int id)
+        {
+            if (this.siteReviewsService.GetReviews().Any(x => x.Id == id))
+            {
+                try
+                {
+                    await this.siteReviewsService.DeleteReviewAsync(id);
+
+                    return this.RedirectToAction(nameof(this.Index));
+                }
+                catch (Exception)
+                {
+                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    return this.RedirectToAction("Error", "Home");
+                }
+            }
+            else
+            {
+                this.ViewBag.ErrorMessage = $"Мнение с номер {id} не беше намерено.";
+                return this.RedirectToAction("Error", "Home");
+            }
+        }
     }
 }

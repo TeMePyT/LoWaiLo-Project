@@ -6,7 +6,7 @@
 <!-- Section - Main -->
 <section class="section section-main bg-dark dark">
 
-    <div class="bg-image bg-fixed"><img src="~/img/food.jpg" alt=""></div>
+    <div class="bg-image bg-fixed"><img src="~/img/food-dark.jpg" alt=""></div>
 
     <div class="container v-center">
         <div class="row">
@@ -84,7 +84,7 @@
             <!-- Menu Sample -->
             <div class="menu-sample">
                 <a asp-controller="Menu" asp-action="Index" asp-fragment="@category.Id">
-                    <img src="@category.Image" alt="" class="image">
+                    <img src="@category.Image" alt="" class="image" style="-webkit-filter:brightness(70%); -moz-filter: brightness(70%)">
                     <p class="title"><font size="26">@category.Name</font></p>
                 </a>
             </div>
@@ -112,7 +112,7 @@
                 <div class="feature feature-1">
                     <div class="feature-icon icon icon-primary"><i class="ti ti-wallet"></i></div>
                     <div class="feature-content">
-                        <h4 class="mb-2">Изпратете поръчка</h4>
+                        <h4 class="mb-2">Направете поръчка</h4>
                         <p class="text-muted mb-0">Доставка за поръчка над 10 лв - 1 лв, за поръчка под 10 лв - 2лв.</p>
                     </div>
                 </div>

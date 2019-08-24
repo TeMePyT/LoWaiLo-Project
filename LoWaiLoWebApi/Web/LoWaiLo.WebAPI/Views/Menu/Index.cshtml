@@ -42,13 +42,13 @@
                         <div class="menu-category-content padded">
                             <div class="row gutters-sm">
 
-                                @foreach (var product in category.Products)
+                                @foreach (var product in category.Products.OrderBy(x=>x.MenuNumber))
                                 {
                                     <div class="col-lg-4 col-6">
                                         <!-- Menu Item -->
                                         <div class="menu-item menu-grid-item">
                                             <a asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id"><img class="mb-4" src="@product.Image" alt=""></a>
-                                            <h6 class="mb-0">@product.Name</h6>
+                                            <h6 class="mb-0">@product.MenuNumber.  @product.Name</h6>
                                             <div class="row align-items-center mt-4">
                                                 <div class="col-sm-6"><span class="text-md mr-4"><span class="text-muted">от</span> <b>@product.Price лв.</b></span></div>
                                                 <div class="col-sm-6 text-sm-right mt-2 mt-sm-0"><a asp-controller="ShoppingCart" asp-action="AddProduct" asp-route-id="@product.Id" class="btn btn-outline-secondary btn-sm"><span>Добави</span></a></div>

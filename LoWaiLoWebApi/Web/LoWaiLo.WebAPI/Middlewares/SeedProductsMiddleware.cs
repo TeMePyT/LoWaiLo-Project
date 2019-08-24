@@ -93,7 +93,7 @@
                 var orizSkaridi = new Product
                 {
                     Name = "Ориз със скариди, яйца и шунка",
-                    MenuNumber = 35,
+                    MenuNumber = 40,
                     Price = 6.80m,
                     Weight = 800,
                     Image = "https://www.dropbox.com/s/u05yopm9pexbxi0/40.jpg?raw=1",
@@ -172,8 +172,8 @@
                 products.Add(teleBambuk);
                 var teleKitai = new Product
                 {
-                    Name = "Телешко с бамбук и китайски гъби",
-                    MenuNumber = 70,
+                    Name = "Телешко с китайски аромати",
+                    MenuNumber = 76,
                     Price = 11.80m,
                     Weight = 700,
                     Image = "https://www.dropbox.com/s/jhs7gi8cwqaq71k/76.jpg?raw=1",
