@@ -56,6 +56,9 @@
             {
                 Email = email,
                 PhoneNumber = phoneNumber,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Adress = user.Adress,
             };
 
             this.IsEmailConfirmed = await this.userManager.IsEmailConfirmedAsync(user);
@@ -96,6 +99,27 @@
                     var userId = await this.userManager.GetUserIdAsync(user);
                     throw new InvalidOperationException($"Unexpected error occurred setting phone number for user with ID '{userId}'.");
                 }
+            }
+
+            var userFirstName = user.FirstName;
+            if (userFirstName != this.Input.FirstName)
+            {
+                user.FirstName = this.Input.FirstName;
+                await this.userManager.UpdateAsync(user);
+            }
+
+            var userLastName = user.LastName;
+            if (userLastName != this.Input.LastName)
+            {
+                user.LastName = this.Input.LastName;
+                await this.userManager.UpdateAsync(user);
+            }
+
+            var userAdress = user.Adress;
+            if (userAdress != this.Input.Adress)
+            {
+                user.Adress = this.Input.Adress;
+                await this.userManager.UpdateAsync(user);
             }
 
             await this.signInManager.RefreshSignInAsync(user);

@@ -1,4 +1,4 @@
-﻿namespace LoWaiLo.Data.Models
+﻿    namespace LoWaiLo.Data.Models
 {
     using System.Collections.Generic;
 
@@ -13,7 +13,9 @@
 
         public OrderStatus Status { get; set; }
 
-        public PaymentStatus PaymentStatus { get; set; }
+        public string DeliveryAdress { get; set; }
+
+        public decimal TotalPrice { get; set; }
 
         public virtual ICollection<OrderProduct> OrderProducts { get; set; }
 

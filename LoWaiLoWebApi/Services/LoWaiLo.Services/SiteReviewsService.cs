@@ -1,12 +1,13 @@
 ﻿namespace LoWaiLo.Services
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+
     using LoWaiLo.Data.Common;
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Contracts;
+
     using Microsoft.EntityFrameworkCore;
 
     public class SiteReviewsService : ISiteReviewsService

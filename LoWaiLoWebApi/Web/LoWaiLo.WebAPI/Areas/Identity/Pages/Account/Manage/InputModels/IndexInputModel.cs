@@ -14,5 +14,14 @@
         [Phone]
         [Display(Name = "Телефонен номер")]
         public string PhoneNumber { get; set; }
+
+        [Display(Name ="Име")]
+        public string FirstName { get; set; }
+
+        [Display(Name ="Фамилия")]
+        public string LastName { get; set; }
+
+        [Display(Name ="Адрес")]
+        public string Adress { get; set; }
     }
 }

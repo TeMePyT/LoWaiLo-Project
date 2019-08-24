@@ -5,8 +5,11 @@
     using System.Net.Http.Headers;
     using System.Text;
     using System.Threading.Tasks;
+
     using LoWaiLo.Services.Messaging.SendGrid;
+
     using Microsoft.AspNetCore.Identity.UI.Services;
+
     using Newtonsoft.Json;
 
     public class SendGridEmailSender : IEmailSender

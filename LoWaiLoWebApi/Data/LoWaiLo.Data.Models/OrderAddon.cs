@@ -2,7 +2,7 @@
 {
     public class OrderAddon
     {
-        public int OrderId { get; set; }
+        public string OrderId { get; set; }
 
         public virtual Order Order { get; set; }
 

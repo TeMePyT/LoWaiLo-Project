@@ -150,6 +150,7 @@
             services.AddScoped<ISiteReviewsService, SiteReviewsService>();
             services.AddScoped<IProductReviewsService, ProductReviewsService>();
             services.AddScoped<IShoppingCartService, ShoppingCartService>();
+            services.AddScoped<IOrdersService, OrdersService>();
 
             services.AddSwaggerGen(c =>
             {

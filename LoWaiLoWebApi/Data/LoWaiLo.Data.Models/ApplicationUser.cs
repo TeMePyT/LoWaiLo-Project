@@ -20,6 +20,8 @@
 
         public string LastName { get; set; }
 
+        public string Adress { get; set; }
+
         public virtual ICollection<Order> Orders { get; set; }
 
         public virtual ICollection<ProductReview> ProductReviews { get; set; }

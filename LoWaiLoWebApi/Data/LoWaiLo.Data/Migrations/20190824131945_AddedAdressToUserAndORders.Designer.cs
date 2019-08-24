@@ -4,14 +4,16 @@ using LoWaiLo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LoWaiLo.Data.Migrations
 {
     [DbContext(typeof(LoWaiLoDbContext))]
-    partial class LoWaiLoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190824131945_AddedAdressToUserAndORders")]
+    partial class AddedAdressToUserAndORders
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -226,9 +228,9 @@ namespace LoWaiLo.Data.Migrations
 
                     b.Property<DateTime?>("ModifiedOn");
 
-                    b.Property<int>("Status");
+                    b.Property<int>("PaymentStatus");
 
-                    b.Property<decimal>("TotalPrice");
+                    b.Property<int>("Status");
 
                     b.HasKey("Id");
 
