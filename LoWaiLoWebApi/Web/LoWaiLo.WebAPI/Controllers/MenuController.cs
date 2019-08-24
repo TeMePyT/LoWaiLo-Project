@@ -72,6 +72,11 @@
             return this.View(model);
         }
 
+        public IActionResult AddReview()
+        {
+            return this.RedirectToAction(nameof(this.Index));
+        }
+
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> AddReview(CreateProductReviewInputModel model)
@@ -87,7 +92,7 @@
                         await this.productReviewsService.CreateAsync(model.Rating, content, author.Id, (int)model.ProductId);
                     }
 
-                    var productId = (int)model.ProductId;
+                    var productId = model.ProductId;
                     return this.RedirectToAction(nameof(this.Details), new { id = productId });
                 }
                 catch (Exception)

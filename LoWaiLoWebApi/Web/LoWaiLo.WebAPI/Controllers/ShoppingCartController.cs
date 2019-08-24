@@ -167,6 +167,11 @@
 
         public async Task<IActionResult> EditProductQuantity(int id, int quantity)
         {
+            if (quantity <= 0)
+            {
+                return this.RedirectToAction(nameof(this.DeleteProduct), new { id });
+            }
+
             if (this.User.Identity.IsAuthenticated)
             {
                 var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
@@ -197,6 +202,11 @@
 
         public async Task<IActionResult> EditAddonQuantity(int id, int quantity)
         {
+            if (quantity <= 0)
+            {
+                return this.RedirectToAction(nameof(this.DeleteAddon), new { id });
+            }
+
             if (this.User.Identity.IsAuthenticated)
             {
                 var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);

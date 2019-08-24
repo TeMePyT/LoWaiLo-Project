@@ -1,5 +1,4 @@
-﻿
-$(document).ready(function () {
+﻿$(document).ready(function () {
     $('#rate i').on('click', function () {
         var onStar = parseInt($(this).data('value'), 10);
         var stars = $(this).parent().children('i.fa').toArray().reverse();
@@ -14,4 +13,3 @@ $(document).ready(function () {
         document.getElementById("Rating").value = onStar;
     });
 });
-

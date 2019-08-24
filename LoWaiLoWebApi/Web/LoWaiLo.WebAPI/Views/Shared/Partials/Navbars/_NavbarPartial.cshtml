@@ -53,17 +53,14 @@
     </header>
 <!-- Header / End -->
 <!-- Header -->
-<header id="header-mobile" class="light">
+    <header id="header-mobile" class="light">
 
-    <div class="module module-nav-toggle">
-        <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
-    </div>
-    <div class="module module-logo">
-        @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
-    </div>
-    <a href="#" class="module module-cart" data-toggle="panel-cart">
-        <i class="ti ti-shopping-cart"></i>
-        <span class="notification">2</span>
-    </a>
-</header>
+        <div class="module module-nav-toggle">
+            <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
+        </div>
+        <div class="module module-logo">
+            @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
+        </div>
+        @(await Component.InvokeAsync("NavbarBasketPanelComponent"))
+    </header>
 <!-- Header / End -->
