@@ -8,7 +8,7 @@
 
     public interface IOrdersService
     {
-        Task<Order> CreateOrderAsync(string userId, string deliveryAdress, IEnumerable<ShoppingCartProduct> products, IEnumerable<ShoppingCartAddon> addons);
+        Task<Order> CreateOrderAsync(string userId, string deliveryAddress, string phoneNumber, IEnumerable<ShoppingCartProduct> products, IEnumerable<ShoppingCartAddon> addons);
 
         Task ProcessOrderAsync(string orderId, OrderStatus status);
 

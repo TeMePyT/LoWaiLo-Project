@@ -65,12 +65,12 @@
                 }
                 catch (Exception)
                 {
-                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
                     return this.RedirectToAction("Error", "Home");
                 }
             }
 
-            this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+            this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
             return this.RedirectToAction("Error", "Home");
         }
 
@@ -87,13 +87,13 @@
                 }
                 catch (Exception)
                 {
-                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
                     return this.RedirectToAction("Error", "Home");
                 }
             }
             else
             {
-                this.ViewBag.ErrorMessage = $"Мнение с номер {id} не беше намерено.";
+                this.TempData["ErrorMessage"] = $"Мнение с номер {id} не беше намерено.";
                 return this.RedirectToAction("Error", "Home");
             }
         }

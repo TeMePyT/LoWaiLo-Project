@@ -26,5 +26,7 @@
         IQueryable<ShoppingCartProduct> GetAllShoppingCartProducts(string userId);
 
         IQueryable<ShoppingCartAddon> GetShoppingCartAddons(string userId);
+
+        Task ClearShoppingCart(string userId);
     }
 }

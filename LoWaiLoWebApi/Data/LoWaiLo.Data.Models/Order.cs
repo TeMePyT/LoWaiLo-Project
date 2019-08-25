@@ -13,7 +13,11 @@
 
         public OrderStatus Status { get; set; }
 
-        public string DeliveryAdress { get; set; }
+        public string DeliveryAddress { get; set; }
+
+        public string PhoneNumber { get; set; }
+
+        public decimal DeliveryPrice { get; set; }
 
         public decimal TotalPrice { get; set; }
 

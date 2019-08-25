@@ -20,13 +20,14 @@
             this.ordersRepository = ordersRepository;
         }
 
-        public async Task<Order> CreateOrderAsync(string userId, string deliveryAdress, IEnumerable<ShoppingCartProduct> products, IEnumerable<ShoppingCartAddon> addons)
+        public async Task<Order> CreateOrderAsync(string userId, string deliveryAddress, string phoneNumber, IEnumerable<ShoppingCartProduct> products, IEnumerable<ShoppingCartAddon> addons)
         {
             var order = new Order
             {
                 CustomerId = userId,
                 Status = OrderStatus.Pending,
-                DeliveryAdress = deliveryAdress,
+                DeliveryAddress = deliveryAddress,
+                PhoneNumber = phoneNumber,
             };
 
             var orderProducts = products.Select(x => new OrderProduct
@@ -54,6 +55,7 @@
 
             var deliveryPrice = productsPrice + addonsPrice < 10 ? 2 : 1;
 
+            order.DeliveryPrice = deliveryPrice;
             order.TotalPrice = productsPrice + addonsPrice + deliveryPrice;
 
             await this.ordersRepository.AddAsync(order);

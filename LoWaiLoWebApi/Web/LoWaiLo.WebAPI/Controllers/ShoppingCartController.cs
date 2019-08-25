@@ -3,7 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
     using AutoMapper;
+
     using LoWaiLo.Common;
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Contracts;
@@ -11,6 +13,7 @@
     using LoWaiLo.WebAPI.ViewModels.Addons;
     using LoWaiLo.WebAPI.ViewModels.Products;
     using LoWaiLo.WebAPI.ViewModels.ShoppingCart;
+
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
 
@@ -46,7 +49,7 @@
                 }
                 catch (Exception)
                 {
-                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
                     return this.RedirectToAction("Error", "Home");
                 }
             }
@@ -84,7 +87,7 @@
                 }
                 catch (Exception)
                 {
-                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
                     return this.RedirectToAction("Error", "Home");
                 }
             }
@@ -111,7 +114,7 @@
             return this.RedirectToAction("Index", "Menu");
         }
 
-        public async Task<IActionResult> DeleteProduct(int id)
+        public async Task<IActionResult> DeleteProduct(int id, string returnUrl = null)
         {
             if (this.User.Identity.IsAuthenticated)
             {
@@ -135,10 +138,17 @@
                 }
             }
 
-            return this.RedirectToAction("Index", "Menu");
+            if (!string.IsNullOrEmpty(returnUrl) && this.Url.IsLocalUrl(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
+            else
+            {
+                return this.RedirectToAction("Index", "Menu");
+            }
         }
 
-        public async Task<IActionResult> DeleteAddon(int id)
+        public async Task<IActionResult> DeleteAddon(int id, string returnUrl = null)
         {
             if (this.User.Identity.IsAuthenticated)
             {
@@ -150,7 +160,7 @@
                 ShoppingCartViewModel session = SessionHelper.GetObjectFromJson<ShoppingCartViewModel>(this.HttpContext.Session, GlobalConstants.SessionShoppingCartKey);
                 if (session == null)
                 {
-                    this.ViewBag.ErrorMessage = "Вашата количка е празна.";
+                    this.TempData["ErrorMessage"] = "Вашата количка е празна.";
                     return this.RedirectToAction("Error", "Home");
                 }
 
@@ -162,22 +172,27 @@
                 }
             }
 
-            return this.RedirectToAction("Index", "Menu");
+            if (!string.IsNullOrEmpty(returnUrl) && this.Url.IsLocalUrl(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
+            else
+            {
+                return this.RedirectToAction("Index", "Menu");
+            }
         }
 
-        public async Task<IActionResult> EditProductQuantity(int id, int quantity)
+        public async Task<IActionResult> EditProductQuantity(int id, int quantity, string returnUrl = null)
         {
             if (quantity <= 0)
             {
-                return this.RedirectToAction(nameof(this.DeleteProduct), new { id });
+                return this.RedirectToAction(nameof(this.DeleteProduct), new { id, returnUrl });
             }
 
             if (this.User.Identity.IsAuthenticated)
             {
                 var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
                 await this.shoppingCartService.UpdateShoppingCartProductQuantity(id, user.Id, quantity);
-
-                return this.RedirectToAction("Index", "Menu");
             }
             else
             {
@@ -197,22 +212,27 @@
                 }
             }
 
-            return this.RedirectToAction("Index", "Menu");
+            if (!string.IsNullOrEmpty(returnUrl) && this.Url.IsLocalUrl(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
+            else
+            {
+                return this.RedirectToAction("Index", "Menu");
+            }
         }
 
-        public async Task<IActionResult> EditAddonQuantity(int id, int quantity)
+        public async Task<IActionResult> EditAddonQuantity(int id, int quantity, string returnUrl = null)
         {
             if (quantity <= 0)
             {
-                return this.RedirectToAction(nameof(this.DeleteAddon), new { id });
+                return this.RedirectToAction(nameof(this.DeleteAddon), new { id, returnUrl });
             }
 
             if (this.User.Identity.IsAuthenticated)
             {
                 var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
                 await this.shoppingCartService.UpdateShoppingCartAddonQuantity(id, user.Id, quantity);
-
-                return this.RedirectToAction("Index", "Menu");
             }
             else
             {
@@ -232,7 +252,14 @@
                 }
             }
 
-            return this.RedirectToAction("Index", "Menu");
+            if (!string.IsNullOrEmpty(returnUrl) && this.Url.IsLocalUrl(returnUrl))
+            {
+                return this.Redirect(returnUrl);
+            }
+            else
+            {
+                return this.RedirectToAction("Index", "Menu");
+            }
         }
     }
 }

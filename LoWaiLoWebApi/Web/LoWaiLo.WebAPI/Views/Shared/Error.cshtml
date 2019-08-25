@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-8 push-lg-4">
                 <h3 class="mb-0" style="color:red">@ViewData["Title"]</h3>
-                <h4 class="text-muted mb-0" style="color:red">@ViewBag.ErrorMessage</h4>
+                <h4 class="text-muted mb-0" style="color:red">@TempData["ErrorMessage"]</h4>
                 @if (Model.ShowRequestId)
                 {
                     <h4 class="text-muted mb-0" style="color:red"><strong>Заявка номер:</strong> <code>@Model.RequestId</code></h4>

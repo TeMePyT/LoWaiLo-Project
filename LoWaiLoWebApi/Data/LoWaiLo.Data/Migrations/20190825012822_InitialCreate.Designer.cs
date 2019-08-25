@@ -4,14 +4,16 @@ using LoWaiLo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LoWaiLo.Data.Migrations
 {
     [DbContext(typeof(LoWaiLoDbContext))]
-    partial class LoWaiLoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190825012822_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +83,7 @@ namespace LoWaiLo.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<string>("Address");
+                    b.Property<string>("Adress");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -224,11 +226,7 @@ namespace LoWaiLo.Data.Migrations
 
                     b.Property<string>("DeliveryAddress");
 
-                    b.Property<decimal>("DeliveryPrice");
-
                     b.Property<DateTime?>("ModifiedOn");
-
-                    b.Property<string>("PhoneNumber");
 
                     b.Property<int>("Status");
 

@@ -188,6 +188,8 @@
                 return;
             }
 
+            shoppingCartAddon.Quantity = quantity;
+
             this.shoppingCartAddonsRepository.Update(shoppingCartAddon);
             await this.shoppingCartAddonsRepository.SaveChangesAsync();
         }
@@ -230,6 +232,23 @@
                 .Include(x => x.Addon)
                 .Include(x => x.ShoppingCart)
                 .Where(x => x.ShoppingCart.User.Id == userId);
+        }
+
+        public async Task ClearShoppingCart(string userId)
+        {
+            var user = this.userManager.FindByIdAsync(userId)
+                .GetAwaiter()
+                .GetResult();
+
+            var products = this.shoppingCartProductsRepository.All().Where(x => x.ShoppingCartId == user.ShoppingCartId);
+            var addons = this.shoppingCartAddonsRepository.All().Where(x => x.ShoppingCartId == user.ShoppingCartId);
+
+            this.shoppingCartProductsRepository.DeleteRange(products);
+            await this.shoppingCartProductsRepository.SaveChangesAsync();
+
+            this.shoppingCartAddonsRepository.DeleteRange(addons);
+            await this.shoppingCartAddonsRepository.SaveChangesAsync();
+
         }
 
         private ShoppingCartProduct GetShoppingCartProduct(int productId, int shoppingCartId)

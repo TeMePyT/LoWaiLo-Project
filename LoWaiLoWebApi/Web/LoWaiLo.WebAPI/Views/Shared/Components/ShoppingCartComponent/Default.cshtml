@@ -42,7 +42,7 @@
                                 <td class="actions">
                                     <a class="text-danger pr-2" asp-controller="ShoppingCart" asp-action="EditAddonQuantity" asp-route-id="@addon.Id" asp-route-quantity="@(addon.Quantity-1)"><i class="fa fa-minus-circle"> </i> </a>
                                     @addon.Quantity
-                                    <a class="text-danger pl-2" asp-controller="ShoppingCart" asp-action="EditProductQuantity" asp-route-id="@addon.Id" asp-route-quantity="@(addon.Quantity+1)"><i class="fa fa-plus-circle"> </i> </a>
+                                    <a class="text-danger pl-2" asp-controller="ShoppingCart" asp-action="EditAddonQuantity" asp-route-id="@addon.Id" asp-route-quantity="@(addon.Quantity+1)"><i class="fa fa-plus-circle"> </i> </a>
                                 </td>
                                 <td class="title">
                                     <span class="name">@addon.Name</span>
@@ -72,13 +72,13 @@
                 </div>
             </div>
         </div>
-        @if (Model.Addons.Count == 0 && Model.Products.Count == 0)
+        @if (Model.Products.Count == 0)
         {
             <button  class="panel-cart-action btn btn-info btn-block btn-lg" disabled><span>Приключи проръчката</span></button>
         }
         else
         {
-            <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Приключи проръчката</span></a>
+            <a asp-controller="Checkout" asp-action="Index" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Приключи проръчката</span></a>
         }
 
     </div>

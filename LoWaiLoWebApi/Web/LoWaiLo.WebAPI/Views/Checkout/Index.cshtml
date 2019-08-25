@@ -1,0 +1,113 @@
+﻿@model CheckoutInputModel
+@{
+    ViewData["Title"] = "Данни за поръчката";
+}
+
+<!-- Page Title -->
+<div class="page-title bg-dark dark">
+    <!-- BG Image -->
+    <div class="bg-image bg-parallax"><img src="~/img/photos/bg-croissant.jpg" alt=""></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-4">
+                <h3 class="mb-0">Детайли за поръчката</h3>
+                <h4 class="text-muted mb-0"><strong style="color:red">Важно! </strong>Доставяме само в рамките на град Плевен</h4>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Section -->
+<section class="section bg-light">
+
+    <div class="container">
+        <form asp-controller="Checkout" asp-action="Checkout">
+            <div class="row">
+                <div class="col-xl-4 push-xl-8 col-lg-5 push-lg-7">
+                    <div class="shadow bg-white stick-to-content mb-4">
+                        <div class="bg-dark dark p-4"><h5 class="mb-0">Вашата поръчка</h5></div>
+                        <table class="table-cart">
+                            @foreach (var product in Model.ShoppingCart.Products)
+                            {
+                                <tr>
+                                    <td class="actions">
+                                        <a class="text-danger pr-2" asp-controller="ShoppingCart" asp-action="EditProductQuantity" asp-route-id="@product.Id" asp-route-quantity="@(product.Quantity-1)" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)"><i class="fa fa-minus-circle"> </i> </a>
+                                        @product.Quantity
+                                        <a class="text-danger pl-2" asp-controller="ShoppingCart" asp-action="EditProductQuantity" asp-route-id="@product.Id" asp-route-quantity="@(product.Quantity+1)" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)"><i class="fa fa-plus-circle"> </i> </a>
+                                    </td>
+                                    <td class="title">
+                                        <span class="name"><a asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id">@product.Name</a></span>
+                                    </td>
+                                    <td class="price">@product.TotalPrice</td>
+                                    <td class="actions">
+                                        <a asp-controller="ShoppingCart" asp-action="DeleteProduct" asp-route-id="@product.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-icon"><i class="ti ti-close"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                            @foreach (var addon in Model.ShoppingCart.Addons)
+                            {
+                                <tr>
+                                    <td class="actions">
+                                        <a class="text-danger pr-2" asp-controller="ShoppingCart" asp-action="EditAddonQuantity" asp-route-id="@addon.Id" asp-route-quantity="@(addon.Quantity-1)" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)"><i class="fa fa-minus-circle"> </i> </a>
+                                        @addon.Quantity
+                                        <a class="text-danger pl-2" asp-controller="ShoppingCart" asp-action="EditAddonQuantity" asp-route-id="@addon.Id" asp-route-quantity="@(addon.Quantity+1)" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)"><i class="fa fa-plus-circle"> </i> </a>
+                                    </td>
+                                    <td class="title">
+                                        <span class="name">@addon.Name</span>
+                                    </td>
+                                    <td class="price">@addon.TotalPrice</td>
+                                    <td class="actions">
+                                        <a asp-controller="ShoppingCart" asp-action="DeleteAddon" asp-route-id="@addon.Id" asp-route-returnUrl="@string.Format("{0}{1}",Context.Request.Path, Context.Request.QueryString)" class="action-icon"><i class="ti ti-close"></i></a>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                        <div class="cart-summary">
+                            <div class="row">
+                                <div class="col-7 text-right text-muted">Общо продукти:</div>
+                                <div class="col-5"><strong>@Model.ShoppingCart.ProductsTotal</strong></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-7 text-right text-muted">Доставка:</div>
+                                <div class="col-5"><strong>@Model.ShoppingCart.DeliveryPrice лв</strong></div>
+                            </div>
+                            <hr class="hr-sm">
+                            <div class="row text-lg">
+                                <div class="col-7 text-right text-muted"> Общо:</div>
+                                <div class="col-5"><strong>@Model.ShoppingCart.ShoppingCartTotal</strong></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-8 pull-xl-4 col-lg-7 pull-lg-5">
+                    <div class="bg-white p-4 p-md-5 mb-4">
+                        <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Информация за поръчката</h4>
+                        <div class="row mb-5">
+                            <div class="form-group col-sm-6">
+                                <label asp-for="FirstName"></label>
+                                <input asp-for="FirstName" type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label asp-for="LastName"></label>
+                                <input asp-for="LastName" type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <label asp-for="Address"></label>
+                                <input asp-for="Address" type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label asp-for="PhoneNumber"></label>
+                                <input asp-for="PhoneNumber" type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-lg"><span>Поръчайте сега!</span></button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+@section scripts{
+    <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
+}

@@ -58,7 +58,7 @@
                 PhoneNumber = phoneNumber,
                 FirstName = user.FirstName,
                 LastName = user.LastName,
-                Adress = user.Adress,
+                Adress = user.Address,
             };
 
             this.IsEmailConfirmed = await this.userManager.IsEmailConfirmedAsync(user);
@@ -115,10 +115,10 @@
                 await this.userManager.UpdateAsync(user);
             }
 
-            var userAdress = user.Adress;
+            var userAdress = user.Address;
             if (userAdress != this.Input.Adress)
             {
-                user.Adress = this.Input.Adress;
+                user.Address = this.Input.Adress;
                 await this.userManager.UpdateAsync(user);
             }
 

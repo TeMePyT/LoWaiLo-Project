@@ -76,14 +76,15 @@
                     },
                 };
             var userId = "123";
-            var adress = "Pleven, Hristo Botev 89, A, 12";
+            var address = "Pleven, Hristo Botev 89, A, 12";
+            var phoneNumber = "064831122";
 
-            var order = await this.ordersService.CreateOrderAsync(userId, adress, products, addons);
+            var order = await this.ordersService.CreateOrderAsync(userId, address, phoneNumber, products, addons);
 
             Assert.Equal(2, order.OrderProducts.Count);
             Assert.Equal(2, order.OrderAddons.Count);
             Assert.Equal(17, order.TotalPrice);
-            Assert.Equal("Pleven, Hristo Botev 89, A, 12", order.DeliveryAdress);
+            Assert.Equal("Pleven, Hristo Botev 89, A, 12", order.DeliveryAddress);
         }
 
         [Fact]
@@ -139,9 +140,9 @@
                     },
                 };
             var userId = "123";
-            var adress = "Pleven, Hristo Botev 89, A, 12";
-
-            var order = await this.ordersService.CreateOrderAsync(userId, adress, products, addons);
+            var address = "Pleven, Hristo Botev 89, A, 12";
+            var phoneNumber = "064831122";
+            var order = await this.ordersService.CreateOrderAsync(userId, address, phoneNumber, products, addons);
 
             var orderId = this.ordersRepository.All().First().Id;
 
@@ -198,9 +199,9 @@
                     },
                 };
             var userId = "123";
-            var adress = "Pleven, Hristo Botev 89, A, 12";
-
-            var order = await this.ordersService.CreateOrderAsync(userId, adress, products, addons);
+            var address = "Pleven, Hristo Botev 89, A, 12";
+            var phoneNumber = "064831122";
+            var order = await this.ordersService.CreateOrderAsync(userId, address, phoneNumber, products, addons);
 
             Assert.Equal("Pending", order.Status.ToString());
 

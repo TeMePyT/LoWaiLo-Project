@@ -15,11 +15,12 @@
     using LoWaiLo.WebAPI.ViewModels.Products;
     using LoWaiLo.WebAPI.ViewModels.Reviews.InputModels;
     using LoWaiLo.WebAPI.ViewModels.Reviews.ViewModels;
+
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-
     using Microsoft.EntityFrameworkCore;
+
     using X.PagedList;
 
     public class MenuController : Controller
@@ -98,12 +99,12 @@
                 }
                 catch (Exception)
                 {
-                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
                     return this.RedirectToAction("Error", "Home");
                 }
             }
 
-            this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+            this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
             return this.RedirectToAction("Error", "Home");
         }
 
@@ -120,13 +121,13 @@
                 }
                 catch (Exception)
                 {
-                    this.ViewBag.ErrorMessage = "Нещо се обърка при обработката на заявката ви.";
+                    this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
                     return this.RedirectToAction("Error", "Home");
                 }
             }
             else
             {
-                this.ViewBag.ErrorMessage = $"Мнение с номер {id} не беше намерено.";
+                this.TempData["ErrorMessage"] = $"Мнение с номер {id} не беше намерено.";
                 return this.RedirectToAction("Error", "Home");
             }
         }
