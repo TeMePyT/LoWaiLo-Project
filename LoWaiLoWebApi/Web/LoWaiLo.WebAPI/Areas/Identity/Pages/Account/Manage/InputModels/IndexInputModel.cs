@@ -13,12 +13,16 @@
 
         [Phone]
         [Display(Name = "Телефонен номер")]
+        [DataType(DataType.PhoneNumber)]
+        [RegularExpression(@"/^([+]\d{2})?\d{10}$/", ErrorMessage ="Моля въведете валиден номер")]
         public string PhoneNumber { get; set; }
 
         [Display(Name ="Име")]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z\\s]+$", ErrorMessage ="Името трябва да съдържа само букви")]
         public string FirstName { get; set; }
 
         [Display(Name ="Фамилия")]
+        [RegularExpression(@"^[a-zA-Z][a-zA-Z\\s]+$", ErrorMessage = "Фамилията трябва да съдържа само букви")]
         public string LastName { get; set; }
 
         [Display(Name ="Адрес")]

@@ -1,6 +1,7 @@
 ﻿namespace LoWaiLo.Services.Contracts
 {
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     using LoWaiLo.Data.Models;
@@ -12,9 +13,9 @@
 
         Task ProcessOrderAsync(string orderId, OrderStatus status);
 
-        IEnumerable<Order> GetOrdersByStatus(OrderStatus status);
+        IQueryable<Order> GetOrdersByStatus(OrderStatus status);
 
-        IEnumerable<Order> GetUserOrders(string userId);
+        IQueryable<Order> GetUserOrders(string userId);
 
         bool Exists(string orderId);
     }

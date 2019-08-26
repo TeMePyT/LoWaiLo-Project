@@ -10,6 +10,8 @@
 
         public static string ChangePassword => "ChangePassword";
 
+        public static string MyOrders => "MyOrders";
+
         public static string DownloadPersonalData => "DownloadPersonalData";
 
         public static string DeletePersonalData => "DeletePersonalData";
@@ -23,6 +25,8 @@
         public static string IndexNavClass(ViewContext viewContext) => PageNavClass(viewContext, Index);
 
         public static string ChangePasswordNavClass(ViewContext viewContext) => PageNavClass(viewContext, ChangePassword);
+
+        public static string MyOrdersNavClass(ViewContext viewContext) => PageNavClass(viewContext, MyOrders);
 
         public static string ExternalLoginsNavClass(ViewContext viewContext) => PageNavClass(viewContext, ExternalLogins);
 

@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Services.Mapping", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{13EBD51B-2130-4AFC-A893-81C0D7F22612}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoWaiLo.Services.Tests", "LoWaiLo.Services.Tests\LoWaiLo.Services.Tests.csproj", "{FBFFCC47-BD3A-46B4-8BBC-6243EC224D39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoWaiLo.Services.Tests", "LoWaiLo.Services.Tests\LoWaiLo.Services.Tests.csproj", "{FBFFCC47-BD3A-46B4-8BBC-6243EC224D39}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

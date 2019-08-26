@@ -31,7 +31,7 @@
                 Content = content,
                 Rating = rating,
                 AuthorId = authorId,
-                ModifiedOn = DateTime.Now,
+                ModifiedOn = DateTime.UtcNow.AddHours(3),
             };
 
             await this.reviewsRepository.AddAsync(review);

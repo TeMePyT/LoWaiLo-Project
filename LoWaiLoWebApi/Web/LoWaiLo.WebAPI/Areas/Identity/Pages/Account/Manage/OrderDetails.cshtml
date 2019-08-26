@@ -1,0 +1,71 @@
+﻿@page
+@model OrderDetailsModel
+@{
+    ViewData["Title"] = "Детайли на поръчката";
+    var productsTotal = Model.Order.Products.Sum(x => x.TotalPrice) + Model.Order.Addons.Sum(x => x.TotalPrice);
+}
+<div class="h3 font-italic text-center">Детайли на поръчката</div>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-6 push-xl-7 col-lg-5 push-lg-7">
+            <div class="shadow bg-white stick-to-content mb-4">
+                <div class="bg-dark dark p-4"><h5 class="mb-0">Вашата поръчка</h5></div>
+                <table class="table-cart">
+                    @foreach (var product in Model.Order.Products)
+                    {
+                        <tr>
+                            <td class="actions">
+                                @product.Quantity бр.
+                            </td>
+                            <td class="title">
+                                <span class="name"><a asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id">@product.Name</a></span>
+                            </td>
+                            <td class="price">@product.TotalPrice лв.</td>
+                        </tr>
+                    }
+                    @foreach (var addon in Model.Order.Addons)
+                    {
+                        <tr>
+                            <td class="actions">
+                                @addon.Quantity бр.
+                            </td>
+                            <td class="title">
+                                <span class="name">@addon.Name</span>
+                            </td>
+                            <td class="price">@addon.TotalPrice</td>
+                        </tr>
+                    }
+                </table>
+                <div class="cart-summary">
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Общо продукти:</div>
+                        <div class="col-5"><strong>@productsTotal</strong></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 text-right text-muted">Доставка:</div>
+                        <div class="col-5"><strong>@Model.Order.DeliveryPrice лв</strong></div>
+                    </div>
+                    <hr class="hr-sm">
+                    <div class="row text-lg">
+                        <div class="col-7 text-right text-muted"> Общо:</div>
+                        <div class="col-5"><strong>@Model.Order.TotalPrice</strong></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-5 pull-xl-5 col-lg-6 pull-lg-5">
+            <div class="bg-white p-4 p-md-5 mb-4">
+                <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Информация за поръчката</h4>
+                <div class="row mb-5">
+                    <p class="mb-1"><strong>Получател:</strong> @Model.Order.FullName</p>
+                    <p class="mb-1"><strong>Телефонен номер:</strong> @Model.Order.PhoneNumber</p>
+                    <p class="mb-1"><strong>Адрес:</strong> @Model.Order.DeliveryAddress</p>
+                    <p class="mb-1"><strong>Цена за доставка:</strong> @Model.Order.DeliveryPrice лв.</p>
+                    <p class="mb-1"><strong>Цена за продуктите:</strong> @productsTotal лв.</p>
+                    <p class="mb-1"><strong>Всичко:</strong> @Model.Order.TotalPrice лв.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

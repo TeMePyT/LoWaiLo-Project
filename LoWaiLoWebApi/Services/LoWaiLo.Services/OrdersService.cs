@@ -1,5 +1,6 @@
 ﻿namespace LoWaiLo.Services
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -28,6 +29,7 @@
                 Status = OrderStatus.Pending,
                 DeliveryAddress = deliveryAddress,
                 PhoneNumber = phoneNumber,
+                CreatedOn = DateTime.UtcNow.AddHours(3),
             };
 
             var orderProducts = products.Select(x => new OrderProduct
@@ -78,7 +80,7 @@
                 .Any(o => o.Id == orderId);
         }
 
-        public IEnumerable<Order> GetOrdersByStatus(OrderStatus status)
+        public IQueryable<Order> GetOrdersByStatus(OrderStatus status)
         {
             return this.ordersRepository
                 .All()
@@ -90,7 +92,7 @@
                 .Where(o => o.Status == status);
         }
 
-        public IEnumerable<Order> GetUserOrders(string userId)
+        public IQueryable<Order> GetUserOrders(string userId)
         {
             return this.ordersRepository
                 .All()

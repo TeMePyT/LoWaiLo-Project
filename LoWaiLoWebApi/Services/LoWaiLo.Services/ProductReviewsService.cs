@@ -32,7 +32,7 @@
                 Rating = rating,
                 AuthorId = authorId,
                 ProductId = productId,
-                ModifiedOn = DateTime.Now,
+                ModifiedOn = DateTime.UtcNow.AddHours(3),
             };
 
             await this.reviewsRepository.AddAsync(review);
