@@ -1,4 +1,4 @@
-﻿namespace XeonComputers
+﻿namespace LoWaiLo.WebAPI.Helpers
 {
     using System;
     using System.ComponentModel.DataAnnotations;

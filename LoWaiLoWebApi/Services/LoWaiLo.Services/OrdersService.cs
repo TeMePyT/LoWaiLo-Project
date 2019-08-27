@@ -92,6 +92,20 @@
                 .Where(o => o.Status == status);
         }
 
+        public Order GetOrderById(string id)
+        {
+            var order = this.ordersRepository
+                .All()
+                .Include(o => o.OrderAddons)
+                .ThenInclude(a => a.Addon)
+                .Include(o => o.OrderProducts)
+                .ThenInclude(p => p.Product)
+                .Include(o => o.Customer)
+                .FirstOrDefault(x => x.Id == id);
+
+            return order;
+        }
+
         public IQueryable<Order> GetUserOrders(string userId)
         {
             return this.ordersRepository
@@ -111,6 +125,18 @@
                 .First(o => o.Id == orderId);
 
             order.Status = status;
+
+            switch (status)
+            {
+                case OrderStatus.Approved:
+                    order.ApprovedOn = DateTime.UtcNow.AddHours(3);
+                    break;
+                case OrderStatus.Shipping:
+                    order.ShippedOn = DateTime.UtcNow.AddHours(3);
+                    break;
+                default:
+                    break;
+            }
 
             this.ordersRepository.Update(order);
             await this.ordersRepository.SaveChangesAsync();

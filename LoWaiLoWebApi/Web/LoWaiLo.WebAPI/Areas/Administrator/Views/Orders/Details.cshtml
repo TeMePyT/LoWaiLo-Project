@@ -1,17 +1,26 @@
-﻿@page
-@model OrderDetailsModel
+﻿@model OrderViewModel
 @{
-    ViewData["Title"] = "Детайли на поръчката";
-    var productsTotal = Model.Order.Products.Sum(x => x.TotalPrice) + Model.Order.Addons.Sum(x => x.TotalPrice);
+    ViewData["Title"] = "Детайли за поръчката";
+    var productsTotal = Model.OrderProducts.Sum(x => x.Price) + Model.OrderAddons.Sum(x => x.Price);
 }
+<!-- Page Title -->
+<div class="page-title bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-4">
+                <h3 class="mb-0">Детайли за поръчката</h3>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="h3 font-italic text-center">Детайли на поръчката</div>
 <div class="container">
     <div class="row">
-        <div class="col-xl-6 push-xl-7 col-lg-5 push-lg-7">
+        <div class="col-xl-4 push-xl-8 col-lg-5 push-lg-7">
             <div class="shadow bg-white mb-4">
-                <div class="bg-dark dark p-4"><h5 class="mb-0">Вашата поръчка</h5></div>
+                <div class="bg-dark dark p-4"><h5 class="mb-0">Продукти</h5></div>
                 <table class="table-cart">
-                    @foreach (var product in Model.Order.Products)
+                    @foreach (var product in Model.OrderProducts)
                     {
                         <tr>
                             <td class="actions">
@@ -20,10 +29,10 @@
                             <td class="title">
                                 <span class="name"><a asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id">@product.Name</a></span>
                             </td>
-                            <td class="price">@product.TotalPrice лв.</td>
+                            <td class="price">@product.Price лв.</td>
                         </tr>
                     }
-                    @foreach (var addon in Model.Order.Addons)
+                    @foreach (var addon in Model.OrderAddons)
                     {
                         <tr>
                             <td class="actions">
@@ -32,7 +41,7 @@
                             <td class="title">
                                 <span class="name">@addon.Name</span>
                             </td>
-                            <td class="price">@addon.TotalPrice</td>
+                            <td class="price">@addon.Price</td>
                         </tr>
                     }
                 </table>
@@ -43,38 +52,27 @@
                     </div>
                     <div class="row">
                         <div class="col-7 text-right text-muted">Доставка:</div>
-                        <div class="col-5"><strong>@Model.Order.DeliveryPrice лв</strong></div>
+                        <div class="col-5"><strong>@Model.DeliveryPrice лв</strong></div>
                     </div>
                     <hr class="hr-sm">
                     <div class="row text-lg">
                         <div class="col-7 text-right text-muted"> Общо:</div>
-                        <div class="col-5"><strong>@Model.Order.TotalPrice</strong></div>
+                        <div class="col-5"><strong>@Model.TotalPrice</strong></div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xl-6 pull-xl-6 col-lg-6 pull-lg-5">
+        <div class="col-xl-8 pull-xl-4 col-lg-7 pull-lg-5">
             <div class="bg-white p-4 p-md-5 mb-4">
                 <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Информация за поръчката</h4>
                 <div class="row mb-5">
-                    <p class="col-sm-12"><strong>Номер на поръчката: </strong> @Model.Order.OrderNumber</p>
-                    <p class="col-sm-12"><strong>Получател: </strong> @Model.Order.FullName</p>
-                    <p class="col-sm-12"><strong>Телефонен номер: </strong> @Model.Order.PhoneNumber</p>
-                    <p class="col-sm-12"><strong>Адрес: </strong> @Model.Order.DeliveryAddress</p>
-                    <p class="col-sm-12"><strong>Статус: </strong>@Model.Order.Status</p>
-                    @if (Model.Order.Status == "Приета")
-                    {
-                        <p class="col-sm-12"><strong>Приета на: </strong>@Model.Order.ApprovedOn?.ToString(@"MM\/dd\/yyyy HH:mm")</p>
-                    }
-                    else if (Model.Order.Status == "Изпратена")
-                    {
-                        <p class="col-sm-12"><strong>Изпратена на: </strong>@Model.Order.ShippedOn?.ToString(@"MM\/dd\/yyyy HH:mm")</p>
-                    }
-                    <p class="col-sm-12"><strong>Цена за продуктите: </strong> @productsTotal лв.</p>
-
+                    <p class="col-sm-12"><strong>Номер на поръчката: </strong> @Model.OrderNumber</p>
+                    <p class="col-sm-12"><strong>Получател: </strong> @Model.CustomerFullName</p>
+                    <p class="col-sm-12"><strong>Телефонен номер: </strong> @Model.PhoneNumber</p>
+                    <p class="col-sm-12"><strong>Адрес: </strong> @Model.DeliveryAddress</p>
+                    <p class="col-sm-12"><strong>Статус: </strong>@Model.Status</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

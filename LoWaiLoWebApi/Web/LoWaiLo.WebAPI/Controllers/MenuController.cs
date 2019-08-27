@@ -23,7 +23,7 @@
 
     using X.PagedList;
 
-    public class MenuController : Controller
+    public class MenuController : BaseController
     {
         private const int DefaultPageSize = 10;
         private const int DefaultPageNumber = 1;

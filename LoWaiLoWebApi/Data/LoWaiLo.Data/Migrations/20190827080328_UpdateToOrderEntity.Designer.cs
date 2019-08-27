@@ -4,14 +4,16 @@ using LoWaiLo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace LoWaiLo.Data.Migrations
 {
     [DbContext(typeof(LoWaiLoDbContext))]
-    partial class LoWaiLoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190827080328_UpdateToOrderEntity")]
+    partial class UpdateToOrderEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,8 +220,6 @@ namespace LoWaiLo.Data.Migrations
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime?>("ApprovedOn");
-
                     b.Property<DateTime>("CreatedOn");
 
                     b.Property<string>("CustomerId");
@@ -235,8 +235,6 @@ namespace LoWaiLo.Data.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("PhoneNumber");
-
-                    b.Property<DateTime?>("ShippedOn");
 
                     b.Property<int>("Status");
 

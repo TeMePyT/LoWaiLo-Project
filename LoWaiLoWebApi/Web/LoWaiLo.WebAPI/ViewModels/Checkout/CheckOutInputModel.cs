@@ -25,7 +25,6 @@
         [Phone]
         [Display(Name = "Телефонен номер")]
         [DataType(DataType.PhoneNumber)]
-        [RegularExpression(@"/^([+]\d{2})?\d{10}$/", ErrorMessage = "Моля въведете валиден номер")]
         public string PhoneNumber { get; set; }
 
         public ShoppingCartViewModel ShoppingCart { get; set; }

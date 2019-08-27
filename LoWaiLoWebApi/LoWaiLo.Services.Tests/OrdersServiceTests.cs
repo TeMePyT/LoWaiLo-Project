@@ -216,5 +216,69 @@
             Assert.Equal(expectedQty, result);
 
         }
+
+        [Fact]
+        public async Task GetOrderById_ShouldReturn_Order()
+        {
+            var addons = new List<ShoppingCartAddon>
+                {
+                    new ShoppingCartAddon
+                    {
+                        Addon=new Addon
+                        {
+                            Price=2,
+                        },
+
+                        Quantity=1,
+                    },
+                    new ShoppingCartAddon
+                    {
+                         Addon=new Addon
+                        {
+                            Price=3,
+                        },
+                        Quantity=2,
+                    },
+                };
+
+            var products = new List<ShoppingCartProduct>
+                {
+                    new ShoppingCartProduct
+                    {
+                        Quantity=3,
+                       Product=new Product
+                       {
+                           Price=2
+                       },
+                    },
+                    new ShoppingCartProduct
+                    {
+                        Quantity =1,
+                        Product=new Product
+                        {
+                            Price=2,
+                        }
+                    },
+                };
+            var userId = "123";
+            var address = "Pleven, Hristo Botev 89, A, 12";
+            var phoneNumber = "064831122";
+            var order = await this.ordersService.CreateOrderAsync(userId, address, phoneNumber, products, addons);
+
+            var orderId = this.ordersRepository.All().First().Id;
+
+            var result = this.ordersService.GetOrderById(orderId);
+
+            Assert.NotNull(result);
+            Assert.Equal(orderId, result.Id);
+        }
+
+        [Fact]
+        public void GetOrderById_ShouldReturn_Null()
+        {
+            var result = this.ordersService.GetOrderById("123");
+
+            Assert.Null(result);
+        }
     }
 }

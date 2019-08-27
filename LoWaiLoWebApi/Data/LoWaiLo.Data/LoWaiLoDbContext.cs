@@ -10,6 +10,7 @@
     using LoWaiLo.Data.Models;
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Metadata;
 
     public class LoWaiLoDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
@@ -85,6 +86,11 @@
                   .WithOne(x => x.ShoppingCart)
                   .HasForeignKey<ApplicationUser>(x => x.ShoppingCartId)
                   .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Order>()
+                .Property(p => p.OrderNumber)
+                .ValueGeneratedOnAdd()
+                .Metadata.AfterSaveBehavior = PropertySaveBehavior.Ignore;
 
             // Needed for Identity models configuration
             base.OnModelCreating(builder);

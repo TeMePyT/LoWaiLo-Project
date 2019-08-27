@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@this.ViewData["Title"] - LoWaiLo</title>
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="~/plugins/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="~/plugins/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="~/plugins/animsition/dist/css/animsition.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="~/img/favicon.ico">
+
+    <!-- CSS Icons -->
+    <link rel="stylesheet" href="~/css/themify-icons.css" />
+    <link rel="stylesheet" href="~/plugins/font-awesome/css/font-awesome.min.css" />
+
+    <!-- CSS Theme -->
+    <link id="theme" rel="stylesheet" href="~/css/themes/theme-red.min.css" />
+
+</head>
+<body>
+    <!-- Body Wrapper -->
+    <div id="body-wrapper" class="animsition header-absolute">
+        <partial name="~/Views/Shared/Partials/_CookieConsentPartial.cshtml" />
+        <partial name="~/Views/Shared/Partials/Navbars/_NavbarAdminPartial.cshtml" />
+        <!-- Content -->
+        <div id="content">
+            @RenderBody()
+            <partial name="~/Views/Shared/Partials/Footers/_FooterPartial.cshtml" />
+        </div>
+    </div>
+    <!-- Panel Mobile -->
+    <nav id="panel-mobile">
+        <div class="module module-logo bg-dark dark">
+            <a asp-controller="Home" asp-action="Index">
+                <img src="~/img/logo-light.png" alt="" width="88">
+            </a>
+            <button class="close" data-toggle="panel-mobile"><i class="ti ti-close"></i></button>
+        </div>
+        <nav class="module module-navigation"></nav>
+        <div class="module module-social">
+            <h6 class="text-sm mb-3">Follow Us!</h6>
+            <a href="https://www.facebook.com/pages/%D0%9B%D0%BE-%D0%A3%D0%B0%D0%B9-%D0%9B%D0%BE/137461933116781" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="ti ti-facebook"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="ti ti-google"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="ti ti-twitter"></i></a>
+            <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="ti ti-instagram"></i></a>
+        </div>
+    </nav>
+
+    <!-- JS Plugins -->
+    <script src="~/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="~/plugins/tether/dist/js/tether.min.js"></script>
+    <script src="~/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/plugins/slick-carousel/slick/slick.min.js"></script>
+    <script src="~/plugins/jquery.appear/jquery.appear.js"></script>
+    <script src="~/plugins/jquery.scrollto/jquery.scrollTo.min.js"></script>
+    <script src="~/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+    <script src="~/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
+    <script src="~/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
+    <script src="~/plugins/skrollr/dist/skrollr.min.js"></script>
+    <script src="~/plugins/animsition/dist/js/animsition.min.js"></script>
+
+
+    <!-- JS Core -->
+    <script src="~/js/core.js"></script>
+
+    <!-- JS Google Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB__UPqHGCQ5CtRMlFVtYwr5_uIhA3GGxE&libraries=places&callback=initMap"
+            async defer></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

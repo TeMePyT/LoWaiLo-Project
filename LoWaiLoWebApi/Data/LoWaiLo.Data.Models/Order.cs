@@ -1,5 +1,6 @@
 ﻿    namespace LoWaiLo.Data.Models
 {
+    using System;
     using System.Collections.Generic;
 
     using LoWaiLo.Data.Common;
@@ -11,7 +12,13 @@
 
         public virtual ApplicationUser Customer { get; set; }
 
+        public int OrderNumber { get; set; }
+
         public OrderStatus Status { get; set; }
+
+        public DateTime? ApprovedOn { get; set; }
+
+        public DateTime? ShippedOn { get; set; }
 
         public string DeliveryAddress { get; set; }
 

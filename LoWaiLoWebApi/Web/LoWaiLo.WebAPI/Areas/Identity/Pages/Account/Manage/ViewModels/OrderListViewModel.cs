@@ -1,19 +1,20 @@
 ﻿namespace LoWaiLo.WebAPI.Areas.Identity.Pages.Account.Manage.ViewModels
 {
     using System;
+
     using AutoMapper;
     using LoWaiLo.Data.Models;
-    using LoWaiLo.Data.Models.Enums;
     using LoWaiLo.Services.Mapping;
-    using XeonComputers;
 
-#pragma warning disable SA1649 // File name should match first type name
-    public class OrderListViewModel : IMapFrom<Order>, IHaveCustomMappings
-#pragma warning restore SA1649 // File name should match first type name
+    using LoWaiLo.WebAPI.Helpers;
+
+    public partial class OrderListViewModel : IMapFrom<Order>, IHaveCustomMappings
     {
         public string Id { get; set; }
 
         public DateTime CreatedOn { get; set; }
+
+        public int OrderNumber { get; set; }
 
         public string Status { get; set; }
 
@@ -23,7 +24,6 @@
         {
             configuration.CreateMap<Order, OrderListViewModel>()
                 .ForMember(dest => dest.Status, opt => opt.MapFrom(src => src.Status.GetDisplayName()));
-
         }
     }
 }

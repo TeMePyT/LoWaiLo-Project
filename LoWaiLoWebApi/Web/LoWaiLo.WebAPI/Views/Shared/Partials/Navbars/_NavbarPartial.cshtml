@@ -32,8 +32,11 @@
                                 </div>
                             </li>
                             <li> <a asp-controller="Menu" asp-action="Index">Меню</a></li>
-                            <li><a href="#">Оферти</a></li>
                             <li><a asp-controller="Home" asp-action="Contact">За контакти</a></li>
+                            @if (User.IsInRole(GlobalConstants.AdministratorRoleName.ToString()) || User.IsInRole(GlobalConstants.MerchantRoleName.ToString()))
+                            {
+                                <li><a asp-area="Administrator" asp-controller="Home" asp-action="Index" style="color:red">Администрация</a></li>
+                            }
                         </ul>
                     </nav>
                 </div>

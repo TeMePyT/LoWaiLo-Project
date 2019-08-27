@@ -17,6 +17,8 @@
 
         IQueryable<Order> GetUserOrders(string userId);
 
+        Order GetOrderById(string id);
+
         bool Exists(string orderId);
     }
 }

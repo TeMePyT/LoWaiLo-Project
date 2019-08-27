@@ -1,0 +1,70 @@
+﻿<!-- Header -->
+<header id="header" class="light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Logo -->
+                <div class="module module-logo dark">
+                    <a asp-area="" asp-controller="Home" asp-action="Index">
+                        <img src="~/img/logo-light-red.png" alt="" width="88">
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <!-- Navigation -->
+                <nav class="module module-navigation  mr-4">
+                    <ul id="nav-main" class="nav nav-main">
+                        <li><a asp-controller="Home" asp-action="Index">Начало</a> </li>
+                        <li class="has-dropdown">
+                            <a href="#">Поръчки</a>
+                            <div class="dropdown-container">
+                                <ul class="dropdown-mega">
+                                    <li><a href="#">Входящи</a></li>
+                                    <li><a href="#">Приети</a></li>
+                                    <li><a href="#">Изпратени</a></li>
+                                    <li><a href="#">История</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="#">Категории</a>
+                            <div class="dropdown-container">
+                                <ul class="dropdown-mega">
+                                    <li><a href="#">Всички</a></li>
+                                    <li><a href="#">Добави категория</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="#">Продукти</a>
+                            <div class="dropdown-container">
+                                <ul class="dropdown-mega">
+                                    <li><a href="#">Всички</a></li>
+                                    <li><a href="#">Добави продукт</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li> <a asp-area="" asp-controller="Home" asp-action="Index">Към сайта</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="col-md-1">
+                <div class="module right">
+                    @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header / End -->
+<!-- Header -->
+<header id="header-mobile" class="light">
+
+    <div class="module module-nav-toggle">
+        <a href="#" id="nav-toggle" data-toggle="panel-mobile"><span></span><span></span><span></span><span></span></a>
+    </div>
+    <div class="module module-logo">
+        @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
+    </div>
+</header>
+<!-- Header / End -->

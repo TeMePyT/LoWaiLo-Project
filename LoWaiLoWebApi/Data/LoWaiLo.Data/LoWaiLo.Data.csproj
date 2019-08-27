@@ -39,6 +39,8 @@
   <Compile Remove="Migrations\20190825001106_TweaksToOrderEntity.Designer.cs" />
   <Compile Remove="Migrations\20190825001351_TweaksToOrderEntity.cs" />
   <Compile Remove="Migrations\20190825001351_TweaksToOrderEntity.Designer.cs" />
+  <Compile Remove="Migrations\20190827132727_AnotherTweakToOrderEntity.cs" />
+  <Compile Remove="Migrations\20190827132727_AnotherTweakToOrderEntity.Designer.cs" />
 </ItemGroup>
   <ItemGroup>
     <AdditionalFiles Include="..\..\stylecop.json" Link="stylecop.json" />

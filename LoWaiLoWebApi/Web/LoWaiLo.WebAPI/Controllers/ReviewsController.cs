@@ -18,7 +18,7 @@
     using Microsoft.EntityFrameworkCore;
     using X.PagedList;
 
-    public class ReviewsController : Controller
+    public class ReviewsController : BaseController
     {
         private const int DefaultPageSize = 10;
         private const int DefaultPageNumber = 1;

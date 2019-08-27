@@ -17,7 +17,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
-    public class CheckoutController : Controller
+    public class CheckoutController : BaseController
     {
         private readonly IShoppingCartService shoppingCartService;
         private readonly IOrdersService ordersService;
