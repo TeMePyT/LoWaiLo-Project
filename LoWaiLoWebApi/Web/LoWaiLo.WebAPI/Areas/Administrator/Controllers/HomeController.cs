@@ -16,6 +16,7 @@
             this.ordersService = ordersService;
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             var model = new IndexViewModel();

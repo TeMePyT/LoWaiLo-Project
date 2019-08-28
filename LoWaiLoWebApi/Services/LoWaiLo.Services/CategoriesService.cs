@@ -7,6 +7,7 @@
     using LoWaiLo.Data.Common;
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Contracts;
+    using Microsoft.EntityFrameworkCore;
 
     public class CategoriesService : ICategoriesService
     {
@@ -34,11 +35,12 @@
             await this.categoriesRepository.SaveChangesAsync();
         }
 
-        public async Task CreateAsync(string categoryName)
+        public async Task CreateAsync(string categoryName, string imgUrl)
         {
             var category = new Category
             {
                 Name = categoryName,
+                Image = imgUrl,
             };
 
             await this.categoriesRepository.AddAsync(category);
@@ -57,6 +59,45 @@
             return this.categoriesRepository
                 .All()
                 .FirstOrDefault(c => c.Name == categoryName);
+        }
+
+        public async Task<Category> Update(int categoryId, string categoryName, string imgUrl)
+        {
+            var category = this.categoriesRepository
+                .All()
+                .First(x => x.Id == categoryId);
+            if (category.Name != categoryName)
+            {
+                category.Name = categoryName;
+                this.categoriesRepository.Update(category);
+                await this.categoriesRepository.SaveChangesAsync();
+            }
+
+            if (category.Image != imgUrl)
+            {
+                category.Image = imgUrl;
+                this.categoriesRepository.Update(category);
+                await this.categoriesRepository.SaveChangesAsync();
+            }
+
+            return category;
+        }
+
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var category = this.categoriesRepository
+                 .All()
+                 .Include(x => x.Products)
+                 .FirstOrDefault(x => x.Id == id);
+
+            if (category == null || category.Products.Count() != 0)
+            {
+                return false;
+            }
+
+            this.categoriesRepository.Delete(category);
+            await this.categoriesRepository.SaveChangesAsync();
+            return true;
         }
     }
 }

@@ -1,0 +1,7 @@
+﻿@if (TempData.ContainsKey("SuccessMessage"))
+{
+    <div class="alert alert-success alert-dismissible" role="alert">
+        <p class="close" data-dismiss="alert" aria-label="close">&times;</p>
+        @TempData["SuccessMessage"]
+    </div>
+}

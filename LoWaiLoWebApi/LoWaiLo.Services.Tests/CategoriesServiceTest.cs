@@ -31,7 +31,7 @@
         [Fact]
         public async Task CreateAsyncShouldCreateCategorySuccesully()
         {
-            await this.categoriesService.CreateAsync("Супи");
+            await this.categoriesService.CreateAsync("Супи", "https://www.dropbox.com/s/qmokaivtr9zel24/sm-01.jpg?raw=1");
 
             var resultCount = categoriesService.All().Count();
             var resultName = categoriesService.All().First().Name;
@@ -76,7 +76,7 @@
         [Fact]
         public async Task AnyShouldReturnTrue()
         {
-            await categoriesService.CreateAsync("Супи");
+            await categoriesService.CreateAsync("Супи", "https://www.dropbox.com/s/qmokaivtr9zel24/sm-01.jpg?raw=1");
 
             var result = categoriesService.Any();
 
@@ -149,6 +149,46 @@
             var category = categoriesService.FindById(1);
 
             Assert.Null(category);
+        }
+
+        [Fact]
+        public async Task UpdateAsync_ShouldUpdateCategory_Succesfully()
+        {
+            string name = "Супи";
+            string imgUrl = "https://www.dropbox.com/s/qmokaivtr9zel24/sm-01.jpg?raw=1";
+            await this.categoriesService.CreateAsync(name, imgUrl);
+
+            var category = this.categoriesRepository.All().First();
+
+            Assert.Equal("Супи", category.Name);
+            Assert.Equal("https://www.dropbox.com/s/qmokaivtr9zel24/sm-01.jpg?raw=1", category.Image);
+
+            string newName = "Десерти";
+            string newUrl = "https://www.dropbox.com/s/x8nge5s4s919lzb/sm_02.jpg?dl=0";
+
+            var result = await this.categoriesService.Update(category.Id, newName, newUrl);
+
+            Assert.Equal("Десерти", result.Name);
+            Assert.Equal("https://www.dropbox.com/s/x8nge5s4s919lzb/sm_02.jpg?dl=0", result.Image);
+
+        }
+
+        [Fact]
+        public async Task DeleteAsync_ShouldDeleteCategory_Succesfully()
+        {
+            string name = "Супи";
+            string imgUrl = "https://www.dropbox.com/s/qmokaivtr9zel24/sm-01.jpg?raw=1";
+            await this.categoriesService.CreateAsync(name, imgUrl);
+
+            var category = this.categoriesRepository.All().First();
+            Assert.NotNull(category);
+
+            var result1 = await this.categoriesService.DeleteAsync(category.Id);
+            Assert.True(result1);
+
+            var result2 = this.categoriesRepository.All().FirstOrDefault();
+            Assert.Null(result2);
+
         }
     }
 }

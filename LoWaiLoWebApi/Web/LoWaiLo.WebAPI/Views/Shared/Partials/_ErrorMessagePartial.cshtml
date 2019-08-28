@@ -1,7 +1,7 @@
-﻿@if (this.TempData.ContainsKey("ErroMessage"))
+﻿@if (TempData.ContainsKey("ErrorMessage"))
 {
     <div class="alert alert-danger alert-dismissible" role="alert">
-        <p class="close" data-dismiss="alert" aria-label="close">&times;</p>
-        <strong>Грешка!</strong> @this.TempData["ErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="ti-close"></i></button>
+        <strong>Грешка!</strong> @TempData["ErrorMessage"]
     </div>
 }

@@ -20,6 +20,7 @@
             this.ordersService = ordersService;
         }
 
+        [HttpGet]
         public async Task<IActionResult> Cancel(string id, string returnUrl = null)
         {
             var order = this.ordersService.GetOrderById(id);
@@ -48,6 +49,7 @@
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> Approve(string id, string returnUrl = null)
         {
             var order = this.ordersService.GetOrderById(id);
@@ -66,7 +68,7 @@
 
             if (order.Status != OrderStatus.Pending)
             {
-                this.TempData["ErrorMessage"] = $"Не можете да приемете поръчка със статус {order.Status.GetDisplayName()}";
+                this.TempData["ErrorMessage"] = $"Не можете да приемете поръчка със статус: {order.Status.GetDisplayName()}";
                 if (!string.IsNullOrEmpty(returnUrl) && this.Url.IsLocalUrl(returnUrl))
                 {
                     return this.Redirect(returnUrl);
@@ -89,6 +91,7 @@
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> Ship(string id, string returnUrl = null)
         {
             var order = this.ordersService.GetOrderById(id);
@@ -107,7 +110,7 @@
 
             if (order.Status != OrderStatus.Approved)
             {
-                this.TempData["ErrorMessage"] = $"Не можете да изпратите поръчка със статус {order.Status.GetDisplayName()}";
+                this.TempData["ErrorMessage"] = $"Не можете да изпратите поръчка със статус: {order.Status.GetDisplayName()}";
                 if (!string.IsNullOrEmpty(returnUrl) && this.Url.IsLocalUrl(returnUrl))
                 {
                     return this.Redirect(returnUrl);
@@ -130,6 +133,7 @@
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> Deliver(string id, string returnUrl = null)
         {
             var order = this.ordersService.GetOrderById(id);
@@ -148,7 +152,7 @@
 
             if (order.Status != OrderStatus.Shipping)
             {
-                this.TempData["ErrorMessage"] = $"Не можете да доставите поръчка със статус {order.Status.GetDisplayName()}";
+                this.TempData["ErrorMessage"] = $"Не можете да доставите поръчка със статус: {order.Status.GetDisplayName()}";
                 if (!string.IsNullOrEmpty(returnUrl) && this.Url.IsLocalUrl(returnUrl))
                 {
                     return this.Redirect(returnUrl);
@@ -171,6 +175,7 @@
             }
         }
 
+        [HttpGet]
         public IActionResult Details(string id)
         {
             var order = this.ordersService.GetOrderById(id);
@@ -185,6 +190,7 @@
             return this.View(model);
         }
 
+        [HttpGet]
         public IActionResult Shipped()
         {
             var model = new ShippedOrdersViewModel();
