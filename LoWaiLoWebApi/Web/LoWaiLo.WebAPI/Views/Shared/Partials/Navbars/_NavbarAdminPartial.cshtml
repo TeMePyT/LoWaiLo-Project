@@ -14,44 +14,51 @@
                 <!-- Navigation -->
                 <nav class="module module-navigation  mr-4">
                     <ul id="nav-main" class="nav nav-main">
-                        <li><a asp-controller="Home" asp-action="Index">Начало</a> </li>
+                        <li>
+                            <a asp-controller="Home" asp-action="Index">Начало</a>
+                        </li>
                         <li class="has-dropdown">
                             <a href="#">Поръчки</a>
                             <div class="dropdown-container">
                                 <ul class="dropdown-mega">
-                                    <li><a href="#">Входящи</a></li>
-                                    <li><a href="#">Приети</a></li>
-                                    <li><a href="#">Изпратени</a></li>
+                                    <li><a asp-controller="Orders" asp-action="Shipped">Изпратени</a></li>
+                                    <li><a asp-controller="Orders" asp-action="History">История</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="#">Меню</a>
+                            <div class="dropdown-container">
+                                <ul>
+                                    <li class="has-dropdown">
+                                        <a href="#">Категории</a>
+                                        <ul>
+                                            <li><a href="#">Всички</a></li>
+                                            <li><a href="#">Добави категория</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="has-dropdown">
+                                        <a href="#">Продукти</a>
+                                        <ul>
+                                            <li><a href="#">Всички</a></li>
+                                            <li><a href="#">Добави категория</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="has-dropdown">
+                            <a href="#">Резервации</a>
+                            <div class="dropdown-container">
+                                <ul class="dropdown-mega">
+                                    <li><a href="#">Всички</a></li>
                                     <li><a href="#">История</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="#">Категории</a>
-                            <div class="dropdown-container">
-                                <ul class="dropdown-mega">
-                                    <li><a href="#">Всички</a></li>
-                                    <li><a href="#">Добави категория</a></li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="has-dropdown">
-                            <a href="#">Продукти</a>
-                            <div class="dropdown-container">
-                                <ul class="dropdown-mega">
-                                    <li><a href="#">Всички</a></li>
-                                    <li><a href="#">Добави продукт</a></li>
                                 </ul>
                             </div>
                         </li>
                         <li> <a asp-area="" asp-controller="Home" asp-action="Index">Към сайта</a></li>
                     </ul>
                 </nav>
-            </div>
-            <div class="col-md-1">
-                <div class="module right">
-                    @await this.Html.PartialAsync("~/Views/Shared/Partials/_LoginPartial.cshtml")
-                </div>
             </div>
         </div>
     </div>

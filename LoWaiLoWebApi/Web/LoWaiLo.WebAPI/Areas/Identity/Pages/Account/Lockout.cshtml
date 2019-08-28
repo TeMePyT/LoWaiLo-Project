@@ -2,9 +2,15 @@
 @model LockoutModel
 @{
     ViewData["Title"] = "Заключен";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<header>
-    <h1 class="text-danger">@ViewData["Title"]</h1>
-    <p class="text-danger">Акаунтът беше заключен поради 5 неуспешни опита за вход. Моля опитайте по-късно.</p>
-</header>
+<!-- Page Title -->
+<div class="page-title bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-4">
+                <h3 class="mb-2">@ViewData["Title"]</h3>
+                <h4 class="mb-0">Акаунтът беше заключен поради 5 неуспешни опита за вход. Моля опитайте по-късно.</h4>
+            </div>
+        </div>
+    </div>

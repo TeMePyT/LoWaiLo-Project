@@ -248,7 +248,6 @@
 
             this.shoppingCartAddonsRepository.DeleteRange(addons);
             await this.shoppingCartAddonsRepository.SaveChangesAsync();
-
         }
 
         private ShoppingCartProduct GetShoppingCartProduct(int productId, int shoppingCartId)

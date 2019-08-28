@@ -28,8 +28,10 @@
     <div id="body-wrapper" class="animsition header-absolute">
         <partial name="~/Views/Shared/Partials/_CookieConsentPartial.cshtml" />
         <partial name="~/Views/Shared/Partials/Navbars/_NavbarAdminPartial.cshtml" />
+        <partial name="~/Views/Shared/Partials/_ErrorMessagePartial.cshtml" />
         <!-- Content -->
         <div id="content">
+            <partial name="~/Views/Shared/Partials/_ErrorMessagePartial.cshtml" />
             @RenderBody()
             <partial name="~/Views/Shared/Partials/Footers/_FooterPartial.cshtml" />
         </div>

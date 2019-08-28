@@ -1,0 +1,111 @@
+﻿@model HistoryViewModel
+@{
+    ViewData["Title"] = "История";
+}
+<!-- Page Title -->
+<div class="page-title bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-4">
+                <h3 class="mb-0 font-italic">История на поръчките</h3>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page Content -->
+<div class="page-content">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="container mobile-fondsize-11 shadow p-4 mb-4 bg-white">
+                <div class="mobile-fondsize-20 h3 text-center text-muted font-italic">Приключени поръчки</div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="row">
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center">Номер</th>
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center">Клиент</th>
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center">Получена</th>
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center">Приета</th>
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center">Изпратена</th>
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.DeliveredOrders)
+                        {
+                            <tr class="row" id="order">
+                                <td class="col-md-2 col d-flex justify-content-center">
+                                    @order.OrderNumber
+                                </td>
+                                <td class="col-md-2 col d-flex justify-content-center">
+                                    @order.CustomerFullName
+                                </td>
+                                <td class="col-md-2 col d-flex justify-content-center">
+                                    @order.CreatedOn.ToString(@"MM\/dd\/yyyy HH:mm:ss")
+                                </td>
+                                <td class="col-md-2 col d-flex justify-content-center">
+                                    @order.ApprovedOn?.ToString(@"HH:mm:ss")
+                                </td>
+                                <td class="col-md-2 col d-flex justify-content-center">
+                                    @order.ShippedOn?.ToString(@"HH:mm:ss")
+                                </td>
+                                <td class="col-md-2 col d-flex justify-content-around">
+                                    <div class="mr-2">
+                                        <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-info btn-sm"><span>Детайли</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (Model.DeliveredOrders.Count() == 0)
+                {
+                    <div class="mobile-fondsize-11 h6 text-center font-italic">Нямате приключени поръчки!</div>
+                }
+            </div>
+        </div>
+        <div class="col-xl-6">
+            <div class="container mobile-fondsize-11 shadow p-4 mb-4 bg-white">
+                <div class="mobile-fondsize-20 h3 text-center text-muted font-italic">Отказани поръчки</div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="row">
+                            <th scope="col" class="col-2 d-flex justify-content-center">Номер</th>
+                            <th scope="col" class="col-2 d-flex justify-content-center">Клиент</th>
+                            <th scope="col" class="col-2 d-flex justify-content-center">Получена на</th>
+                            <th scope="col" class="col-2 d-flex justify-content-center">Брой продукти</th>
+                            <th scope="col" class="col-4 d-flex justify-content-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.CanceledOrders)
+                        {
+                            <tr class="row" id="order">
+                                <td class="col-2 d-flex justify-content-center">
+                                    @order.OrderNumber
+                                </td>
+                                <td class="col-2 d-flex justify-content-center">
+                                    @order.CustomerFullName
+                                </td>
+                                <td class="col-2 d-flex justify-content-center">
+                                    @order.CreatedOn.ToString(@"MM\/dd\/yyyy HH:mm:ss")
+                                </td>
+                                <td class="col-2 d-flex justify-content-center">
+                                    @(order.OrderProducts.Count() + order.OrderAddons.Count())
+                                </td>
+                                <td class="col-md-4 d-flex justify-content-around">
+                                    <div class="mr-2">
+                                        <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-info btn-sm"><span>Детайли</span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (Model.CanceledOrders.Count() == 0)
+                {
+                    <div class="mobile-fondsize-11 h6 text-center font-italic">Нямате отказани поръчки!</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
