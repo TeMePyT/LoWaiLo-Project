@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Администрация";
 }
+    <meta http-equiv="refresh" content="30">
 <!-- Page Title -->
 <div class="page-title bg-light">
     <div class="container">
@@ -42,13 +43,13 @@
                                     </td>
                                     <td class="col-md-6 col d-flex justify-content-around">
                                         <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Cancel" asp-route-id="@order.Id" class="btn btn-primary btn-sm"><span>Откажи</span></a>
+                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Cancel" asp-route-id="@order.Id" class="btn btn-outline-primary btn-sm"><span>Откажи</span></a>
                                         </div>
                                         <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-info btn-sm"><span>Детайли</span></a>
+                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-info btn-sm"><span>Детайли</span></a>
                                         </div>
                                         <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Approve" asp-route-id="@order.Id" class="btn btn-warning btn-sm"><span>Приеми</span></a>
+                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Approve" asp-route-id="@order.Id" class="btn btn-outline-warning btn-sm"><span>Приеми</span></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -88,13 +89,13 @@
                                     </td>
                                     <td class="col-md-6 d-flex justify-content-around">
                                         <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-primary btn-sm"><span>Откажи</span></a>
+                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-primary btn-sm"><span>Откажи</span></a>
                                         </div>
                                         <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-info btn-sm"><span>Детайли</span></a>
+                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-info btn-sm"><span>Детайли</span></a>
                                         </div>
                                         <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Ship" asp-route-id="@order.Id" class="btn btn-warning btn-sm"><span>Изпрати</span></a>
+                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Ship" asp-route-id="@order.Id" class="btn btn-outline-warning btn-sm"><span>Изпрати</span></a>
                                         </div>
                                     </td>
                                 </tr>

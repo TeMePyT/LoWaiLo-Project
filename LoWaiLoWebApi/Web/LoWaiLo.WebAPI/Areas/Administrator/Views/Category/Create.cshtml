@@ -2,39 +2,42 @@
 @{
     ViewData["Title"] = "Създаване на категория";
 }
-    <div class="page-title bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 push-lg-4">
-                    <h3 class="mb-0 font-italic">Създаване на категория</h3>
-                </div>
+<div class="page-title bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 push-lg-4">
+                <h3 class="mb-0 font-italic">Създаване на категория</h3>
             </div>
         </div>
     </div>
-    <section class="section bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <section>
-                        <form method="post" asp-controller="Category" asp-action="Create">
-                            <h3 class="mobile-fondsize-20 text-muted">@ViewData["Title"]</h3>
-                            <hr />
-                            <div class="form-group">
-                                <label asp-for="@Model.Name"></label>
-                                <input asp-for="@Model.Name" class="form-control" />
-                                <span asp-validation-for="@Model.Name" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <label asp-for="@Model.Image"></label>
-                                <input asp-for="@Model.Image" class="form-control" />
-                                <span asp-validation-for="@Model.Image" class="text-danger"></span>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-primary"><span>Добави</span></button>
-                            </div>
-                        </form>
-                    </section>
-                </div>
+</div>
+<section class="section bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <section>
+                    <form method="post" asp-controller="Category" asp-action="Create">
+                        <h3 class="mobile-fondsize-20 text-muted">@ViewData["Title"]</h3>
+                        <hr />
+                        <div class="form-group">
+                            <label asp-for="@Model.Name"></label>
+                            <input asp-for="@Model.Name" class="form-control" />
+                            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="@Model.Image"></label>
+                            <input asp-for="@Model.Image" class="form-control" />
+                            <span asp-validation-for="@Model.Image" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"><span>Добави</span></button>
+                        </div>
+                    </form>
+                </section>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+@section Scripts {
+    <partial name="~/Views/Shared/Partials/_ValidationScriptsPartial.cshtml" />
+}

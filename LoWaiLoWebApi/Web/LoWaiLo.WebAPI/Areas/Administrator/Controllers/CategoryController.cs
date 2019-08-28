@@ -83,7 +83,7 @@
                 var result = await this.categoriesService.DeleteAsync(id);
                 if (result)
                 {
-                    this.TempData["SuccessMessage"] = $"Успешно изтрихте категорията";
+                    this.TempData["SuccessMessage"] = "Успешно изтрихте категорията";
                     return this.RedirectToAction("All", "Category");
                 }
                 else

@@ -40,11 +40,11 @@
                             @category.ProductsCount
                         </td>
                         <td class="col-2 d-flex justify-content-center">
-                            <a href="@category.Image">Цък..</a>
+                            <a href="@category.Image" target="_blank">Цък..</a>
                         </td>
                         <td class="col-md-4 d-flex justify-content-around">
                             <div class="mr-2">
-                                <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-info btn-sm"><span>Промени</span></a>
+                                <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id" class="btn btn-outline-info btn-sm"><span>Промени</span></a>
                             </div>
                             <div class="mr-2">
                                 <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id" class="btn btn-outline-danger btn-sm"><span>Изтрий</span></a>
