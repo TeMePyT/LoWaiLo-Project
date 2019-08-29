@@ -58,6 +58,12 @@
 
         public ActionResult Details(int id)
         {
+            if (!this.productsService.Exists(id))
+            {
+                this.TempData["ErrorMessage"] = "Продуктът не беше намерен";
+                return this.RedirectToAction("Index", "Menu");
+            }
+
             var model = new DetailsViewModel();
             try
             {
@@ -77,7 +83,7 @@
             }
            catch (Exception)
             {
-                this.TempData["ErrorMessage"] = "Продуктът не беше намерен";
+                this.TempData["ErrorMessage"] = "Нещо се обърка";
                 return this.RedirectToAction("Index", "Menu");
             }
         }
@@ -93,6 +99,12 @@
         {
             if (this.ModelState.IsValid)
             {
+                if (!this.productsService.Exists(model.ProductId))
+                {
+                    this.TempData["ErrorMessage"] = "Продуктът не беше намерен";
+                    return this.RedirectToAction(nameof(this.Details), new { id = (int)this.TempData["ProductId"] });
+                }
+
                 try
                 {
                     var author = await this.userManager.FindByNameAsync(this.User.Identity.Name);
@@ -119,7 +131,7 @@
         [Authorize]
         public async Task<IActionResult> DeleteProductReview(int id)
         {
-            if (this.productReviewsService.GetReviews((int)this.TempData["ProductId"]).Any(x => x.Id == id))
+            if (this.productReviewsService.Exists(id))
             {
                 try
                 {
@@ -135,7 +147,7 @@
             }
             else
             {
-                this.TempData["ErrorMessage"] = $"Мнение с номер {id} не беше намерено.";
+                this.TempData["ErrorMessage"] = $"Мнението не беше намерено.";
                 return this.RedirectToAction(nameof(this.Details), new { id = (int)this.TempData["ProductId"] });
             }
         }

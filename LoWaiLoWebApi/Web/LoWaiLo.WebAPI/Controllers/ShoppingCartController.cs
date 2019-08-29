@@ -40,6 +40,12 @@
 
         public async Task<IActionResult> AddProduct(int id, int? quantity)
         {
+            if (!this.productsService.Exists(id))
+            {
+                this.TempData["ErrorMessage"] = "Продуктът не беше намерен.";
+                return this.RedirectToAction("Index", "Menu");
+            }
+
             if (this.User.Identity.IsAuthenticated)
             {
                 var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
@@ -78,6 +84,12 @@
 
         public async Task<IActionResult> AddAddon(int id, int? quantity)
         {
+            if (!this.addonsService.Exists(id))
+            {
+                this.TempData["ErrorMessage"] = "Добавката не беше намерена.";
+                return this.RedirectToAction("Index", "Menu");
+            }
+
             if (this.User.Identity.IsAuthenticated)
             {
                 var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
@@ -116,6 +128,12 @@
 
         public async Task<IActionResult> DeleteProduct(int id, string returnUrl = null)
         {
+            if (!this.productsService.Exists(id))
+            {
+                this.TempData["ErrorMessage"] = "Продуктът не беше намерен.";
+                return this.RedirectToAction("Index", "Menu");
+            }
+
             if (this.User.Identity.IsAuthenticated)
             {
                 var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
@@ -150,6 +168,13 @@
 
         public async Task<IActionResult> DeleteAddon(int id, string returnUrl = null)
         {
+
+            if (!this.addonsService.Exists(id))
+            {
+                this.TempData["ErrorMessage"] = "Добавката не беше намерена.";
+                return this.RedirectToAction("Index", "Menu");
+            }
+
             if (this.User.Identity.IsAuthenticated)
             {
                 var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
@@ -187,6 +212,12 @@
             if (quantity <= 0)
             {
                 return this.RedirectToAction(nameof(this.DeleteProduct), new { id, returnUrl });
+            }
+
+            if (!this.productsService.Exists(id))
+            {
+                this.TempData["ErrorMessage"] = "Продуктът не беше намерен.";
+                return this.RedirectToAction("Index", "Menu");
             }
 
             if (this.User.Identity.IsAuthenticated)
@@ -227,6 +258,12 @@
             if (quantity <= 0)
             {
                 return this.RedirectToAction(nameof(this.DeleteAddon), new { id, returnUrl });
+            }
+
+            if (!this.addonsService.Exists(id))
+            {
+                this.TempData["ErrorMessage"] = "Добавката не беше намерена.";
+                return this.RedirectToAction("Index", "Menu");
             }
 
             if (this.User.Identity.IsAuthenticated)

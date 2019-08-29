@@ -77,7 +77,7 @@
         [Authorize]
         public async Task<IActionResult> DeleteReview(int id)
         {
-            if (this.siteReviewsService.GetReviews().Any(x => x.Id == id))
+            if (this.siteReviewsService.Exists(id))
             {
                 try
                 {

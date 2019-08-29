@@ -89,47 +89,55 @@
         [Authorize]
         public async Task<IActionResult> Checkout(CheckoutInputModel model)
         {
-            var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
-            var firstName = model.FirstName;
-            if (user.FirstName == null)
+            if (this.ModelState.IsValid)
             {
-                user.FirstName = firstName;
-                await this.userManager.UpdateAsync(user);
-            }
+                var user = await this.userManager.FindByNameAsync(this.User.Identity.Name);
+                var firstName = model.FirstName;
+                if (user.FirstName == null)
+                {
+                    user.FirstName = firstName;
+                    await this.userManager.UpdateAsync(user);
+                }
 
-            var lastName = model.LastName;
-            if (user.LastName == null)
-            {
-                user.LastName = lastName;
-                await this.userManager.UpdateAsync(user);
-            }
+                var lastName = model.LastName;
+                if (user.LastName == null)
+                {
+                    user.LastName = lastName;
+                    await this.userManager.UpdateAsync(user);
+                }
 
-            var phoneNumber = model.PhoneNumber;
-            if (user.PhoneNumber == null)
-            {
-                user.PhoneNumber = phoneNumber;
-                await this.userManager.UpdateAsync(user);
-            }
+                var phoneNumber = model.PhoneNumber;
+                if (user.PhoneNumber == null)
+                {
+                    user.PhoneNumber = phoneNumber;
+                    await this.userManager.UpdateAsync(user);
+                }
 
-            var address = model.Address;
-            if (user.Address == null)
-            {
-                user.Address = address;
-            }
+                var address = model.Address;
+                if (user.Address == null)
+                {
+                    user.Address = address;
+                }
 
-            var products = this.shoppingCartService.GetAllShoppingCartProducts(user.Id).AsEnumerable();
-            var addons = this.shoppingCartService.GetShoppingCartAddons(user.Id).AsEnumerable();
+                var products = this.shoppingCartService.GetAllShoppingCartProducts(user.Id).AsEnumerable();
+                var addons = this.shoppingCartService.GetShoppingCartAddons(user.Id).AsEnumerable();
 
-            try
-            {
-                await this.ordersService.CreateOrderAsync(user.Id, address, phoneNumber, products, addons);
-                await this.shoppingCartService.ClearShoppingCart(user.Id);
-                return this.Redirect(nameof(this.Confirmation));
+                try
+                {
+                    await this.ordersService.CreateOrderAsync(user.Id, address, phoneNumber, products, addons);
+                    await this.shoppingCartService.ClearShoppingCart(user.Id);
+                    return this.Redirect(nameof(this.Confirmation));
+                }
+                catch (Exception)
+                {
+                    this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
+                    return this.RedirectToAction("Index", "Checkout");
+                }
             }
-            catch (Exception)
+            else
             {
                 this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-                return this.RedirectToAction("Index", "Checkout");
+                return this.RedirectToAction(nameof(this.Index), model);
             }
         }
 
