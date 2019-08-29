@@ -152,12 +152,6 @@
 
             loggerFactory.AddContext(LogLevel.Error, app);
 
-            app.UseCors(x => x
-               .AllowAnyMethod()
-               .AllowAnyHeader()
-               .AllowCredentials()
-               .WithOrigins("http://localhost:44334"));
-
             app.UseSeedAdminMiddleware();
             app.UseSeedCategoriesMiddleware();
             app.UseSeedProductsMiddleware();

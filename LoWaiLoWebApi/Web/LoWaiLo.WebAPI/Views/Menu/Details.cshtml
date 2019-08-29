@@ -19,9 +19,6 @@
                         <div class="product-header text-center">
                             <h1 class="product-title">@Model.Product.Name</h1>
                         </div>
-                        @*<h5 class="text-center text-muted">Допълнителна информация</h5>
-                            <textarea cols="30" rows="4" class="form-control" placeholder="Попълнете тук, ако имате специални изисквания..."></textarea>
-                            <br />*@
                         <h5 class="text-center text-muted">Поръчайте сега!</h5>
                         <div class="product-price text-center">@Model.Product.Price лв</div>
                         <div class="row">
@@ -32,7 +29,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <input id="pId" type="hidden" value="@Model.Product.Id" />
-                                <button asp-action="ShoppingCart" asp-controller="AddProduct" asp-route-id="@Model.Product.Id" class="btn btn-outline-primary btn-lg btn-block" id="btnAdd"><span>Добави</span></button>
+                                <button class="btn btn-outline-primary btn-lg btn-block" id="btnAdd"><span>Добави</span></button>
                             </div>
                         </div>
                         <div class="text-center mt-4">
