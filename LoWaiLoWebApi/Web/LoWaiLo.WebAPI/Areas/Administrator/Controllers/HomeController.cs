@@ -5,6 +5,7 @@
     using LoWaiLo.Services.Mapping;
     using LoWaiLo.WebAPI.Areas.Administrator.ViewModels.Home;
     using LoWaiLo.WebAPI.Areas.Administrator.ViewModels.Orders;
+
     using Microsoft.AspNetCore.Mvc;
 
     public class HomeController : AdministratorController

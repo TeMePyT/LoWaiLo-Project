@@ -3,7 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+
     using AutoMapper;
+
     using LoWaiLo.Data.Models;
     using LoWaiLo.Services.Contracts;
     using LoWaiLo.Services.Mapping;
@@ -13,6 +15,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.EntityFrameworkCore;
+
     using X.PagedList;
 
     public class ProductsController : AdministratorController
@@ -169,6 +172,7 @@
             }
 
             var product = Mapper.Map<Product>(model);
+
             try
             {
                 await this.productsService.AddAsync(product);
@@ -177,10 +181,9 @@
             }
             catch (Exception)
             {
-                this.TempData["ErrorMessage"] = "Нещо се обърка";
-                return this.RedirectToAction(nameof(this.All));
+                this.TempData["ErrorMessage"] = "Нещо не е наред, опитайте пак";
+                return this.View(model);
             }
-
         }
     }
 }
