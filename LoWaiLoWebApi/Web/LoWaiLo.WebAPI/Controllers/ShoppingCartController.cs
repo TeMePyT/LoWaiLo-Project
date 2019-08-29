@@ -50,7 +50,7 @@
                 catch (Exception)
                 {
                     this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction("Index", "Menu");
                 }
             }
             else
@@ -88,7 +88,7 @@
                 catch (Exception)
                 {
                     this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction("Index", "Menu");
                 }
             }
             else
@@ -127,7 +127,7 @@
                 if (session == null)
                 {
                     this.ViewBag.ErrorMessage = "Вашата количка е празна.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction("Index", "Menu");
                 }
 
                 if (session.Products.Any(x => x.Id == id))
@@ -161,7 +161,7 @@
                 if (session == null)
                 {
                     this.TempData["ErrorMessage"] = "Вашата количка е празна.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction("Index", "Menu");
                 }
 
                 if (session.Addons.Any(x => x.Id == id))
@@ -200,7 +200,7 @@
                 if (session == null)
                 {
                     this.ViewBag.ErrorMessage = "Вашата количка е празна.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction("Index", "Menu");
                 }
 
                 if (session.Products.Any(x => x.Id == id))
@@ -240,7 +240,7 @@
                 if (session == null)
                 {
                     this.ViewBag.ErrorMessage = "Вашата количка е празна.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction("Index", "Menu");
                 }
 
                 if (session.Addons.Any(x => x.Id == id))

@@ -8,7 +8,7 @@
 
     using Microsoft.AspNetCore.Mvc.Rendering;
 
-    public class EditProductInputModel : IMapFrom<Product>
+    public class EditProductInputModel : IMapFrom<Product>, IMapTo<Product>
     {
         private const string RequiredError = "Полето е задължително.";
 
@@ -28,7 +28,7 @@
         [Range(1, 10000, ErrorMessage = "Полето \"{0}\" трябва да е число в диапазона от {1} до {2}")]
         public decimal Price { get; set; }
 
-        [Display(Name="Тегло")]
+        [Display(Name="Тегло (в грамове)")]
         [Required(ErrorMessage = RequiredError)]
         [Range(1, 1500, ErrorMessage = "Полето \"{0}\" трябва да е число в диапазона от {1} до {2} в грамове")]
         public int Weight { get; set; }

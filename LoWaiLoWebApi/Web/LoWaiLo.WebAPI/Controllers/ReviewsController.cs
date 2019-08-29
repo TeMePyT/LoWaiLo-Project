@@ -66,12 +66,12 @@
                 catch (Exception)
                 {
                     this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction(nameof(this.Index));
                 }
             }
 
             this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-            return this.RedirectToAction("Error", "Home");
+            return this.RedirectToAction(nameof(this.Index));
         }
 
         [Authorize]
@@ -88,13 +88,13 @@
                 catch (Exception)
                 {
                     this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction(nameof(this.Index));
                 }
             }
             else
             {
                 this.TempData["ErrorMessage"] = $"Мнение с номер {id} не беше намерено.";
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction(nameof(this.Index));
             }
         }
     }

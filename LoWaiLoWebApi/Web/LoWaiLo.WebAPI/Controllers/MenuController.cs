@@ -59,19 +59,27 @@
         public ActionResult Details(int id)
         {
             var model = new DetailsViewModel();
-            var product = Mapper.Map<ProductViewModel>(this.productsService.GetProductById(id));
+            try
+            {
+                var product = Mapper.Map<ProductViewModel>(this.productsService.GetProductById(id));
 
-            model.Product = product;
+                model.Product = product;
 
-            int pageNumber = model.PageNumber ?? DefaultPageNumber;
-            int pageSize = model.PageSize ?? DefaultPageSize;
-            model.Product.Reviews = this.productReviewsService.GetReviews(id).To<ReviewViewModel>().OrderByDescending(r => r.ModifiedOn).ToPagedList(pageNumber, pageSize);
-            model.InnerModel = new CreateProductReviewInputModel();
+                int pageNumber = model.PageNumber ?? DefaultPageNumber;
+                int pageSize = model.PageSize ?? DefaultPageSize;
+                model.Product.Reviews = this.productReviewsService.GetReviews(id).To<ReviewViewModel>().OrderByDescending(r => r.ModifiedOn).ToPagedList(pageNumber, pageSize);
+                model.InnerModel = new CreateProductReviewInputModel();
 
-            this.ViewBag.Id = id;
-            this.TempData["ProductId"] = id;
+                this.ViewBag.Id = id;
+                this.TempData["ProductId"] = id;
 
-            return this.View(model);
+                return this.View(model);
+            }
+           catch (Exception)
+            {
+                this.TempData["ErrorMessage"] = "Продуктът не беше намерен";
+                return this.RedirectToAction("Index", "Menu");
+            }
         }
 
         public IActionResult AddReview()
@@ -100,12 +108,12 @@
                 catch (Exception)
                 {
                     this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction(nameof(this.Details), new { id = (int)this.TempData["ProductId"] });
                 }
             }
 
             this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-            return this.RedirectToAction("Error", "Home");
+            return this.RedirectToAction(nameof(this.Details), new { id = (int)this.TempData["ProductId"] });
         }
 
         [Authorize]
@@ -122,13 +130,13 @@
                 catch (Exception)
                 {
                     this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-                    return this.RedirectToAction("Error", "Home");
+                    return this.RedirectToAction(nameof(this.Details), new { id = (int)this.TempData["ProductId"] });
                 }
             }
             else
             {
                 this.TempData["ErrorMessage"] = $"Мнение с номер {id} не беше намерено.";
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction(nameof(this.Details), new { id = (int)this.TempData["ProductId"] });
             }
         }
     }

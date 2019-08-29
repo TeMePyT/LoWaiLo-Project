@@ -40,7 +40,7 @@
             if (user == null)
             {
                 this.TempData["ErrorMessage"] = $"Потребител с име {this.User.Identity.Name} не беше намерен.";
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction("Index", "Home");
             }
 
             model.Address = user.Address;
@@ -129,7 +129,7 @@
             catch (Exception)
             {
                 this.TempData["ErrorMessage"] = "Нещо се обърка при обработката на заявката ви.";
-                return this.RedirectToAction("Error", "Home");
+                return this.RedirectToAction("Index", "Checkout");
             }
         }
 

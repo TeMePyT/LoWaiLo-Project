@@ -15,98 +15,102 @@
 </div>
 <!-- Page Content -->
 <div class="page-content">
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="container mobile-fondsize-11 shadow p-4 mb-4 bg-white">
-                    <div class="mobile-fondsize-20 h3 text-center text-muted font-italic">Необработени поръчки</div>
-                    <table class="table table-hover">
-                        <thead>
+    <div class="row">
+        <!-- Page 1st Row -->
+        <div class="col-xl-6">
+            <div class="container mobile-fondsize-11 shadow p-4 mb-4 bg-white">
+                <div class="mobile-fondsize-20 h3 text-center text-muted font-italic">Необработени поръчки</div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="row">
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center">Номер</th>
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center">Получена</th>
+                            <th scope="col" class="col-md-2 col d-flex justify-content-center">Брой продукти</th>
+                            <th scope="col" class="col-md-6 col d-flex justify-content-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.PendingOrders)
+                        {
+                            <!-- 1st Row Item -->
                             <tr class="row">
-                                <th scope="col" class="col-md-2 col d-flex justify-content-center">Номер</th>
-                                <th scope="col" class="col-md-2 col d-flex justify-content-center">Получена</th>
-                                <th scope="col" class="col-md-2 col d-flex justify-content-center">Брой продукти</th>
-                                <th scope="col" class="col-md-6 col d-flex justify-content-center"></th>
+                                <td class="col-md-2 col d-flex justify-content-center">
+                                    @order.OrderNumber
+                                </td>
+                                <td class="col-md-2 col d-flex justify-content-center">
+                                    @order.CreatedOn.ToString(@"MM\/dd\/yyyy HH:mm:ss")
+                                </td>
+                                <td class="col-md-2 col d-flex justify-content-center">
+                                    @(order.OrderProducts.Count() + order.OrderAddons.Count())
+                                </td>
+                                <td class="col-md-6 col d-flex justify-content-around">
+                                    <div class="mr-2">
+                                        <a asp-area="Administrator" asp-controller="Orders" asp-action="Cancel" asp-route-id="@order.Id" class="btn btn-outline-primary btn-sm"><span>Откажи</span></a>
+                                    </div>
+                                    <div class="mr-2">
+                                        <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-info btn-sm"><span>Детайли</span></a>
+                                    </div>
+                                    <div class="mr-2">
+                                        <a asp-area="Administrator" asp-controller="Orders" asp-action="Approve" asp-route-id="@order.Id" class="btn btn-outline-warning btn-sm"><span>Приеми</span></a>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var order in Model.PendingOrders)
-                            {
-                                <tr class="row">
-                                    <td class="col-md-2 col d-flex justify-content-center">
-                                        @order.OrderNumber
-                                    </td>
-                                    <td class="col-md-2 col d-flex justify-content-center">
-                                        @order.CreatedOn.ToString(@"MM\/dd\/yyyy HH:mm:ss")
-                                    </td>
-                                    <td class="col-md-2 col d-flex justify-content-center">
-                                        @(order.OrderProducts.Count() + order.OrderAddons.Count())
-                                    </td>
-                                    <td class="col-md-6 col d-flex justify-content-around">
-                                        <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Cancel" asp-route-id="@order.Id" class="btn btn-outline-primary btn-sm"><span>Откажи</span></a>
-                                        </div>
-                                        <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-info btn-sm"><span>Детайли</span></a>
-                                        </div>
-                                        <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Approve" asp-route-id="@order.Id" class="btn btn-outline-warning btn-sm"><span>Приеми</span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    @if (Model.PendingOrders.Count() == 0)
-                    {
-                        <div class="mobile-fondsize-11 h6 text-center font-italic">Нямате необработени поръчки!</div>
-                    }
-                </div>
+                        }
+                    </tbody>
+                </table>
+                @if (Model.PendingOrders.Count() == 0)
+                {
+                    <div class="mobile-fondsize-11 h6 text-center font-italic">Нямате необработени поръчки!</div>
+                }
             </div>
-            <div class="col-xl-6">
-                <div class="container mobile-fondsize-11 shadow p-4 mb-4 bg-white">
-                    <div class="mobile-fondsize-20 h3 text-center text-muted font-italic">Приети поръчки</div>
-                    <table class="table table-hover">
-                        <thead>
+        </div>
+        <!-- Page 2nd Row -->
+        <div class="col-xl-6">
+            <div class="container mobile-fondsize-11 shadow p-4 mb-4 bg-white">
+                <div class="mobile-fondsize-20 h3 text-center text-muted font-italic">Приети поръчки</div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="row">
+                            <th scope="col" class="col-2 d-flex justify-content-center">Номер</th>
+                            <th scope="col" class="col-2 d-flex justify-content-center">Приета на</th>
+                            <th scope="col" class="col-2 d-flex justify-content-center">Брой продукти</th>
+                            <th scope="col" class="col-6 d-flex justify-content-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var order in Model.ApprovedOrders)
+                        {
+                            <!-- 2nd Row Item -->
                             <tr class="row">
-                                <th scope="col" class="col-2 d-flex justify-content-center">Номер</th>
-                                <th scope="col" class="col-2 d-flex justify-content-center">Приета на</th>
-                                <th scope="col" class="col-2 d-flex justify-content-center">Брой продукти</th>
-                                <th scope="col" class="col-6 d-flex justify-content-center"></th>
+                                <td class="col-2 d-flex justify-content-center">
+                                    @order.OrderNumber
+                                </td>
+                                <td class="col-2 d-flex justify-content-center">
+                                    @order.ApprovedOn?.ToString(@"MM\/dd\/yyyy HH:mm:ss")
+                                </td>
+                                <td class="col-2 d-flex justify-content-center">
+                                    @(order.OrderProducts.Count() + order.OrderAddons.Count())
+                                </td>
+                                <td class="col-md-6 d-flex justify-content-around">
+                                    <div class="mr-2">
+                                        <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-primary btn-sm"><span>Откажи</span></a>
+                                    </div>
+                                    <div class="mr-2">
+                                        <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-info btn-sm"><span>Детайли</span></a>
+                                    </div>
+                                    <div class="mr-2">
+                                        <a asp-area="Administrator" asp-controller="Orders" asp-action="Ship" asp-route-id="@order.Id" class="btn btn-outline-warning btn-sm"><span>Изпрати</span></a>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var order in Model.ApprovedOrders)
-                            {
-                                <tr class="row">
-                                    <td class="col-2 d-flex justify-content-center">
-                                        @order.OrderNumber
-                                    </td>
-                                    <td class="col-2 d-flex justify-content-center">
-                                        @order.ApprovedOn?.ToString(@"MM\/dd\/yyyy HH:mm:ss")
-                                    </td>
-                                    <td class="col-2 d-flex justify-content-center">
-                                        @(order.OrderProducts.Count() + order.OrderAddons.Count())
-                                    </td>
-                                    <td class="col-md-6 d-flex justify-content-around">
-                                        <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-primary btn-sm"><span>Откажи</span></a>
-                                        </div>
-                                        <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Details" asp-route-id="@order.Id" class="btn btn-outline-info btn-sm"><span>Детайли</span></a>
-                                        </div>
-                                        <div class="mr-2">
-                                            <a asp-area="Administrator" asp-controller="Orders" asp-action="Ship" asp-route-id="@order.Id" class="btn btn-outline-warning btn-sm"><span>Изпрати</span></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                    @if (Model.ApprovedOrders.Count() == 0)
-                    {
-                        <div class="mobile-fondsize-11 h6 text-center font-italic">Нямате приети поръчки!</div>
-                    }
-                </div>
+                        }
+                    </tbody>
+                </table>
+                @if (Model.ApprovedOrders.Count() == 0)
+                {
+                    <div class="mobile-fondsize-11 h6 text-center font-italic">Нямате приети поръчки!</div>
+                }
             </div>
         </div>
     </div>
+</div>
