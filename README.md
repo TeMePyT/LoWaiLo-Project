@@ -71,7 +71,6 @@ password: 123456
 ##### All
 - List of all products, ordered by CategoryID, then by ID.
 - Options to Edit or Delete product.
-- Option for product details.
 ##### Create
 - Form for creating a product.
 #### Addons
