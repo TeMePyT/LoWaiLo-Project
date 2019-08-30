@@ -75,7 +75,7 @@ password: 123456
 ##### Create
 - Form for creating a product.
 #### Addons
-#####All
+##### All
 - List of all addons.
 - Options to Edit or Delete Addon.
 
