@@ -23,41 +23,42 @@
                 <th scope="col" class="col-1 d-flex justify-content-center"></th>
                 <th scope="col" class="col-3 d-flex justify-content-center">Име</th>
                 <th scope="col" class="col-1 d-flex justify-content-center">Цена</th>
+                <th scope="col" class="col-1 d-flex justify-content-center">Тегло</th>
                 <th scope="col" class="col-2 d-flex justify-content-center">Категория</th>
-                <th scope="col" class="col-5 d-flex justify-content-center"></th>
+                <th scope="col" class="col-4 d-flex justify-content-center"></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var product in Model.Products)
             {
                 <!-- Item -->
-                <tr class="row d-flex justify-content-around">
-                    <td class="col-1 d-flex justify-content-center">
-                        <a href="@product.Image" target="_blank"><img src="@product.Image" width="50" height="50"></a>
-                    </td>
-                    <td class="col-3 d-flex justify-content-center">
-                        <a asp-area="" asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id">
-                            @product.Name
-                        </a>
-                    </td>
-                    <td class="col-1 d-flex justify-content-center">
-                        @(product.Price) лв.
-                    </td>
-                    <td class="col-2 d-flex justify-content-center">
-                        @product.CategoryName
-                    </td>
-                    <td class="col-md-5 d-flex justify-content-around">
-                        <div class="mr-2">
-                            <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-outline-warning btn-sm mobile-fondsize-11"><span>Промени</span></a>
-                        </div>
-                        <div class="mr-2">
-                            <a asp-area="" asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id" class="btn btn-outline-info btn-sm"><span>Детайли</span></a>
-                        </div>
-                        <div class="mr-2">
-                            <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-outline-primary btn-sm mobile-fondsize-11"><span>Изтрий</span></a>
-                        </div>
-                    </td>
-                </tr>
+            <tr class="row d-flex justify-content-around">
+                <td class="col-1 d-flex justify-content-center">
+                    <a href="@product.Image" target="_blank"><img src="@product.Image" width="50" height="50"></a>
+                </td>
+                <td class="col-3 d-flex justify-content-center">
+                    <a asp-area="" asp-controller="Menu" asp-action="Details" asp-route-id="@product.Id">
+                        @product.Name
+                    </a>
+                </td>
+                <td class="col-1 d-flex justify-content-center">
+                    @(product.Price) лв.
+                </td>
+                <td class="col-1 d-flex justify-content-center">
+                    @product.Weight гр.
+                </td>
+                <td class="col-2 d-flex justify-content-center">
+                    @product.CategoryName
+                </td>
+                <td class="col-md-4 d-flex justify-content-around">
+                    <div class="mr-2">
+                        <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-outline-warning btn-sm mobile-fondsize-11"><span>Промени</span></a>
+                    </div>
+                    <div class="mr-2">
+                        <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-outline-primary btn-sm mobile-fondsize-11"><span>Изтрий</span></a>
+                    </div>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
